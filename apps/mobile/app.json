@@ -1,0 +1,40 @@
+{
+  "expo": {
+    "name": "Premium Home Partners",
+    "slug": "premium-home-partners",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "icon": "./assets/icon.png",
+    "userInterfaceStyle": "automatic",
+    "ios": {
+      "supportsTablet": true,
+      "bundleIdentifier": "com.premiumhomepartners.app"
+    },
+    "android": {
+      "adaptiveIcon": {
+        "backgroundColor": "#f4f7fb",
+        "foregroundImage": "./assets/android-icon-foreground.png",
+        "backgroundImage": "./assets/android-icon-background.png",
+        "monochromeImage": "./assets/android-icon-monochrome.png"
+      },
+      "predictiveBackGestureEnabled": false,
+      "package": "com.premiumhomepartners.app"
+    },
+    "web": {
+      "favicon": "./assets/favicon.png",
+      "output": "single",
+      "bundler": "metro",
+      "name": "Premium Home Partners",
+      "themeColor": "#f4f7fb",
+      "backgroundColor": "#f4f7fb"
+    },
+    "plugins": [
+      "expo-router",
+      "expo-font"
+    ],
+    "scheme": "premiumhome",
+    "experiments": {
+      "typedRoutes": false
+    }
+  }
+}

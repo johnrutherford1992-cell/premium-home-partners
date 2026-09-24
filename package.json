@@ -1,0 +1,12 @@
+{
+  "name": "premium-home-partners",
+  "private": true,
+  "workspaces": ["apps/*", "packages/*"],
+  "scripts": {
+    "dev": "npm run start -w apps/mobile",
+    "web": "npm run web -w apps/mobile",
+    "build:web": "npm run build:web -w apps/mobile",
+    "typecheck": "npm run typecheck --workspaces --if-present",
+    "test": "npm run test --workspaces --if-present"
+  }
+}
