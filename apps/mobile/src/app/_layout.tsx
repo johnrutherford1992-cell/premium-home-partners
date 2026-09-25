@@ -7,6 +7,7 @@ import { StatusBar } from 'expo-status-bar';
 import { Fragment } from 'react';
 import { View } from 'react-native';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
+import { PhotoCaptureHost } from '../components/camera';
 import { SessionProvider } from '../lib/auth';
 import { useMode } from '../lib/mode';
 import { queryClient } from '../lib/queryClient';
@@ -42,6 +43,7 @@ export default function RootLayout() {
           )}
         </Fragment>
         <ToastHost />
+        <PhotoCaptureHost />
       </QueryClientProvider>
     </SafeAreaProvider>
   );

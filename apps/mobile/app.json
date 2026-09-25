@@ -30,7 +30,15 @@
     },
     "plugins": [
       "expo-router",
-      "expo-font"
+      "expo-font",
+      [
+        "expo-camera",
+        {
+          "cameraPermission": "Premium Home Partners uses the camera to photograph appliance serial plates and the work your technician completes.",
+          "microphonePermission": false,
+          "recordAudioAndroid": false
+        }
+      ]
     ],
     "scheme": "premiumhome",
     "experiments": {
