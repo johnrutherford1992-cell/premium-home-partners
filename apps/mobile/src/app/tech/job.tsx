@@ -1,7 +1,7 @@
-import { router } from 'expo-router';
+import { router, useLocalSearchParams } from 'expo-router';
 import { Pressable, View } from 'react-native';
-import { useApp } from '../../store/app';
-import { useHomeNames, useTiers, useVisit } from '../../store/derived';
+import { EmptyState, ErrorState, LoadingState } from '../../components/States';
+import { stopWhen, useTechVisit, useTechVisitActions } from '../../data/tech';
 import { STATUS } from '../../theme/tokens';
 import { Pill, Row, Screen, TextLink } from '../../ui/controls';
 import { Display, Eyebrow, LqButton, LqCard, LqSectionTitle, Mono, Txt } from '../../ui/primitives';
@@ -15,38 +15,61 @@ const ADVANCE_LABEL = {
 } as const;
 
 export default function TechJob() {
-  const { tech, done, shots, pets, techAdvance, toggleTask, togglePhoto, completeVisit } = useApp();
-  const visit = useVisit();
-  const { cur } = useTiers();
-  const { name, addr } = useHomeNames();
+  const params = useLocalSearchParams<{ id?: string | string[] }>();
+  const id = Array.isArray(params.id) ? params.id[0] : params.id || undefined;
+  const q = useTechVisit(id);
+  const visit = q.data ?? undefined;
+  const act = useTechVisitActions(visit);
   const c = usePalette();
-  const onsite = tech === 'onsite';
-  const active = onsite || tech === 'done';
+
+  const back = <TextLink onPress={() => (router.canGoBack() ? router.back() : router.replace('/tech'))}>‹ Route</TextLink>;
+
+  if (!visit) {
+    return (
+      <Screen>
+        {back}
+        {q.error ? (
+          <ErrorState message={q.error} onRetry={q.refetch} />
+        ) : q.data === null ? (
+          <EmptyState title="Visit not found" body="It may have been rescheduled or reassigned. Head back to your route." />
+        ) : (
+          <LoadingState label="Loading visit…" />
+        )}
+      </Screen>
+    );
+  }
+
+  const status = visit.status;
+  const onsite = status === 'onsite';
+  const active = onsite || status === 'done';
   const allDone = visit.doneCount === visit.tasks.length;
 
   return (
     <Screen>
-      <TextLink onPress={() => (router.canGoBack() ? router.back() : router.replace('/tech'))}>‹ Route</TextLink>
+      {back}
       <View>
         <Mono size={11} medium accent>
-          {visit.time} · {cur.name}
+          {stopWhen(visit)} · {visit.tierName}
         </Mono>
         <Display size={30} style={{ lineHeight: 30 }}>
-          {name}
+          {visit.client.name}
         </Display>
         <Txt size={13} muted>
-          {addr}
+          {visit.client.address}
         </Txt>
       </View>
       <LqCard>
         <Eyebrow>NOTES FROM CLIENT</Eyebrow>
         <Txt size={13} style={{ marginTop: 4 }}>
-          {pets ? '2 friendly dogs — please close the side gate. ' : ''}Gate code 4471. Heater in garage, back left.
+          {visit.client.pets ? '2 friendly dogs — please close the side gate. ' : ''}
+          {visit.client.notes || (visit.client.pets ? '' : 'No notes from the client.')}
         </Txt>
       </LqCard>
-      <LqButton full onPress={techAdvance} disabled={tech === 'onsite' || tech === 'done'}>
-        {ADVANCE_LABEL[tech]}
-      </LqButton>
+      <View testID="visit-advance">
+        <LqButton full onPress={act.advance} disabled={act.advancing || onsite || status === 'done'}>
+          {ADVANCE_LABEL[status]}
+        </LqButton>
+      </View>
       <Row>
         <LqSectionTitle>Checklist</LqSectionTitle>
         <Mono size={12} medium muted>
@@ -60,8 +83,10 @@ export default function TechJob() {
       ) : null}
       <View style={{ gap: 8 }}>
         {visit.tasks.map((t) => {
-          const d = !!done[t.id];
-          const p = !!shots[t.id];
+          const d = t.done;
+          const p = t.photos.length > 0;
+          const uploading = act.photoBusy(t.id);
+          const locked = !onsite || act.taskBusy(t.id);
           return (
             <View
               key={t.id}
@@ -79,10 +104,13 @@ export default function TechJob() {
               }}
             >
               <Pressable
-                onPress={() => toggleTask(t.id)}
-                disabled={!onsite}
+                testID={`task-${t.key}`}
+                onPress={() => act.toggleTask(t)}
+                disabled={locked}
                 accessibilityRole="checkbox"
-                accessibilityState={{ checked: d, disabled: !onsite }}
+                accessibilityState={{ checked: d, disabled: locked }}
+                // react-native-web ignores accessibilityState; aria-checked reaches the DOM (and native).
+                aria-checked={d}
                 accessibilityLabel={t.name}
                 style={{ width: 26, height: 26, borderRadius: 8, borderWidth: 1.5, borderColor: d ? STATUS.forest : c.muted, backgroundColor: d ? STATUS.forest : 'transparent', alignItems: 'center', justifyContent: 'center' }}
               >
@@ -98,20 +126,24 @@ export default function TechJob() {
                   {t.part} · {t.min} min
                 </Mono>
               </View>
-              <Pill
-                label={p ? '✓ Photo' : '+ Photo'}
-                bg={p ? STATUS.forest : 'transparent'}
-                ink={p ? '#fff' : c.accent}
-                border={c.rule}
-                onPress={onsite ? () => togglePhoto(t.id) : undefined}
-              />
+              <View testID={`photo-${t.key}`} style={{ alignSelf: 'flex-start' }}>
+                <Pill
+                  label={uploading ? 'Uploading…' : p ? '✓ Photo' : '+ Photo'}
+                  bg={p ? STATUS.forest : 'transparent'}
+                  ink={p ? '#fff' : c.accent}
+                  border={c.rule}
+                  onPress={act.canPhoto && !uploading ? () => act.addPhoto(t) : undefined}
+                />
+              </View>
             </View>
           );
         })}
       </View>
-      <LqButton full onPress={completeVisit} disabled={!(onsite && allDone)}>
-        {tech === 'done' ? 'Report sent ✓' : onsite && allDone ? 'Complete & send report' : 'Complete all tasks to finish'}
-      </LqButton>
+      <View testID="visit-complete">
+        <LqButton full onPress={act.complete} disabled={act.completing || !(onsite && allDone)}>
+          {status === 'done' ? 'Report sent ✓' : act.completing ? 'Sending report…' : onsite && allDone ? 'Complete & send report' : 'Complete all tasks to finish'}
+        </LqButton>
+      </View>
     </Screen>
   );
 }
