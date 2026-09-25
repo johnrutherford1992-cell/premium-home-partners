@@ -1,20 +1,33 @@
 import { money } from '@php/pricing';
-import type { QuoteRequest } from '../store/app';
 import { STATUS } from '../theme/tokens';
 import type { Palette } from '../theme/tokens';
 
+/**
+ * What vendorView needs from a request, in either mode (see data/vendor.ts):
+ * the bid count, the signed-in vendor's own bid, and whether (and to which
+ * bid) the request was booked.
+ */
+export interface VendorViewInput {
+  status: 'open' | 'booked' | 'canceled';
+  bookedBidId: string | null;
+  bidCount: number;
+  myBid: { id: string; price: number } | null;
+}
+
 /** How a request looks from the signed-in vendor's side. */
-export function vendorView(r: QuoteRequest, c: Palette) {
-  const mi = r.bids.findIndex((b) => b.mine);
-  const won = r.booked != null && r.booked === mi && mi >= 0;
-  const lost = r.booked != null && !won;
+export function vendorView(r: VendorViewInput, c: Palette) {
+  const mine = r.myBid;
+  const booked = r.status === 'booked';
+  const won = booked && mine != null && r.bookedBidId === mine.id;
+  const lost = booked && !won;
+  const closed = r.status !== 'open';
   return {
-    hasMine: mi >= 0,
+    hasMine: mine != null,
     won,
-    closed: r.booked != null,
-    myPrice: mi >= 0 ? money(r.bids[mi].price) : '',
-    status: won ? 'Won · scheduled' : lost ? 'Not selected' : mi >= 0 ? 'Quote sent' : 'New request',
-    color: won ? STATUS.forest : lost ? c.muted : mi >= 0 ? STATUS.slate : c.accent,
-    bidsTxt: `${r.bids.length} bid${r.bids.length === 1 ? '' : 's'} so far${r.booked != null ? ' · closed' : ''}`,
+    closed,
+    myPrice: mine ? money(mine.price) : '',
+    status: won ? 'Won · scheduled' : lost ? 'Not selected' : mine ? 'Quote sent' : 'New request',
+    color: won ? STATUS.forest : lost ? c.muted : mine ? STATUS.slate : c.accent,
+    bidsTxt: `${r.bidCount} bid${r.bidCount === 1 ? '' : 's'} so far${closed ? ' · closed' : ''}`,
   };
 }
