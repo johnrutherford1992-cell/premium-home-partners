@@ -5,7 +5,8 @@ Supabase project. The config is `playwright.config.ts` at the repo root.
 
 | Spec | Needs backend | What it covers |
 |---|---|---|
-| `auth.spec.ts` | yes | All 5 demo accounts sign in through the login form and land in their app. A wrong password shows `login-error`. A homeowner who opens `/office` is sent back. Sign out returns to `/login`. |
+| `auth.spec.ts` | yes | Demo access: the live launcher at `/` opens every side with no password, and "‹ All apps" (`app-exit`) returns to it. Switching Elena → Office → Elena in one tab shows each side's own data, and the way back reuses the cached session (no second sign-in). A deep link (`/office/pricing`, then `/vendor`) in a fresh tab opens that side. The `/login` form still signs in as a specific account (Jordan), and a wrong password shows `login-error`. |
+| `signup.spec.ts` | yes | Launcher → **New customer** → the form (validation, then first/last name, email, phone) → `start_new_customer` → onboarding step 1 with the name filled in. The server shows the new name and no home for Jordan. |
 | `visit-live.spec.ts` | yes | Tech and homeowner on two devices. Start driving, arrive, check off every task, upload a photo, complete the visit. The homeowner's banner follows along live, and the report shows the health score and the photo. |
 | `quotes-live.spec.ts` | yes | Homeowner, vendor and office on three devices. The homeowner requests a quote, the vendor bids, the homeowner books it. The office sees a 10% fee and the vendor sees "Won · scheduled". |
 | `pricing-live.spec.ts` | yes | The office raises the labor rate. The homeowner's Plan price rises live, and "Reset demo data" restores it. |
@@ -35,9 +36,14 @@ Projects: `phone` (390×844, touch), `desktop` (1280×900, tests tagged
 office always runs on a desktop and the other roles on a phone.
 
 **Sign-in rate limit.** By default Supabase allows 30 password sign-ins per
-5 minutes per IP. Only `auth.spec.ts` uses the login form (7 sign-ins per
-run). Every other spec signs each role in once over the API and injects that
-session into the browser's storage, the same way the app stores it. Sessions
+5 minutes per IP. Only `auth.spec.ts` (10 per run) and `signup.spec.ts` (1)
+sign in from the browser, through the launcher, a deep link or the login form.
+Every other spec signs each role in once over the API and injects that
+session into the browser's storage, the same way the app stores it. Because
+the app now opens any side without a login (a signed-out tab or a different
+role switches to that role's default account), `openAs()` checks that the tab
+is signed in as exactly the requested account, and `login()` always goes
+through `/login` itself. Sessions
 are cached in `e2e/output/.auth/`, which is git-ignored and never uploaded,
 and reused while they have 20 or more minutes left.
 
