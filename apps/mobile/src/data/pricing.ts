@@ -236,14 +236,21 @@ export interface OfficePricingMutations {
 }
 
 const timers = new Map<string, ReturnType<typeof setTimeout>>();
-function debounce(id: string, fn: () => void) {
+// Writes for the same field run one after another, so the server can never
+// apply an older value after a newer one.
+const chains = new Map<string, Promise<void>>();
+function debounce(id: string, fn: () => Promise<void>) {
   const t = timers.get(id);
   if (t) clearTimeout(t);
   timers.set(
     id,
     setTimeout(() => {
       timers.delete(id);
-      fn();
+      const next = (chains.get(id) ?? Promise.resolve()).then(fn);
+      chains.set(id, next);
+      void next.finally(() => {
+        if (chains.get(id) === next) chains.delete(id);
+      });
     }, 250),
   );
 }
