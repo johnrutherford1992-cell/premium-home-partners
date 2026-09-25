@@ -1,13 +1,18 @@
 import { Redirect, router } from 'expo-router';
+import { useEffect, useRef, useState } from 'react';
 import { Pressable, View } from 'react-native';
+import { useShallow } from 'zustand/react/shallow';
 import { BlankField, SessionErrorScreen } from '../components/RoleGate';
+import { ErrorState } from '../components/States';
 import { ROLE_HOME, useSession } from '../lib/auth';
+import { DEMO_ACCESS, DEMO_ACCOUNTS, useDemoAccess, type DemoAccount } from '../lib/demoAccess';
 import { useMode } from '../lib/mode';
 import { isSupabaseConfigured } from '../lib/supabase';
 import { useApp } from '../store/app';
 import { useHomeNames, useTiers } from '../store/derived';
-import { Row, Screen } from '../ui/controls';
+import { Row, Screen, TextLink, Toggle } from '../ui/controls';
 import { Display, LqBadge, LqButton, LqCard, Mono, Txt } from '../ui/primitives';
+import { usePalette } from '../ui/theme';
 
 const ROLES = [
   { href: '/homeowner', title: 'Homeowner app', sub: 'Onboard a home, choose coverage, track visits, request add-on quotes.' },
@@ -18,10 +23,11 @@ const ROLES = [
 
 export default function Index() {
   const { mode } = useMode();
-  return mode === 'live' ? <LiveHome /> : <Launcher />;
+  if (mode !== 'live') return <Launcher />;
+  return DEMO_ACCESS ? <LiveLauncher /> : <LiveHome />;
 }
 
-/** Live mode: route by session and role. */
+/** Live and login-gated (EXPO_PUBLIC_DEMO_ACCESS=0): route by session and role. */
 function LiveHome() {
   const s = useSession();
   if (s.status === 'loading') return <BlankField />;
@@ -70,7 +76,8 @@ function Launcher() {
             variant="ghost"
             onPress={() => {
               setMode('live');
-              router.replace('/login');
+              // With demo access the live launcher needs no login.
+              router.replace(DEMO_ACCESS ? '/' : '/login');
             }}
           >
             Exit offline demo
@@ -98,6 +105,155 @@ function Launcher() {
       <Txt size={12} muted style={{ lineHeight: 18 }}>
         Demo mode: all four roles share this device's state. Prices, suppliers and research are sample data.
       </Txt>
+    </Screen>
+  );
+}
+
+// ---------------------------------------------------------------------------
+// Live launcher (demo access): every side opens without a password
+// ---------------------------------------------------------------------------
+
+interface LiveCard {
+  /** testID `launch-<key>`. */
+  key: DemoAccount | 'signup';
+  title: string;
+  sub: string;
+  who: string;
+}
+
+const LIVE_CARDS: readonly LiveCard[] = [
+  { key: 'homeowner', title: 'Homeowner app', sub: 'Track visits, choose coverage, request add-on quotes.', who: 'Elena Alvarez · 12 Linden Court' },
+  { key: 'signup', title: 'New customer', sub: 'Sign up and set up a home: address, appliances, a plan.', who: 'Starts a new sign-up' },
+  { key: 'tech', title: 'Technician app', sub: "Today's route, start driving, photo checklist, send the report.", who: 'Marcus Reyes' },
+  { key: 'vendor', title: 'Vendor quote portal', sub: 'Bid on add-on requests from Premium Home clients.', who: 'Evergreen Outdoor Co.' },
+  { key: 'office', title: 'Office console', sub: 'Tier pricing calculator, dispatch and brokered quotes.', who: 'Avery Brooks' },
+];
+
+/**
+ * Live mode's launcher: the same layout as the offline one, on live data.
+ * Tapping a side switches this tab to its demo account (see lib/demoAccess)
+ * and opens it; "‹ All apps" in any app comes back here.
+ */
+function LiveLauncher() {
+  const { switchTo } = useDemoAccess();
+  const { setMode } = useMode();
+  const { dark, set } = useApp(useShallow((s) => ({ dark: s.dark, set: s.set })));
+  const c = usePalette();
+  const [opening, setOpening] = useState<DemoAccount | null>(null);
+  const [failed, setFailed] = useState<{ key: DemoAccount; message: string } | null>(null);
+  // The latest tap wins: an earlier tap's switch that finishes late never navigates.
+  const lastTap = useRef<LiveCard['key'] | null>(null);
+  const alive = useRef(true);
+  useEffect(
+    () => () => {
+      alive.current = false;
+    },
+    [],
+  );
+
+  const open = (key: LiveCard['key']) => {
+    lastTap.current = key;
+    setFailed(null);
+    if (key === 'signup') {
+      setOpening(null);
+      router.push('/signup');
+      return;
+    }
+    setOpening(key);
+    void switchTo(key).then((r) => {
+      if (!alive.current || lastTap.current !== key || r.superseded) return;
+      setOpening(null);
+      if (r.error) {
+        setFailed({ key, message: r.error });
+        return;
+      }
+      router.replace(ROLE_HOME[DEMO_ACCOUNTS[key].role]);
+    });
+  };
+
+  return (
+    <Screen>
+      <View style={{ gap: 6, marginTop: 8 }}>
+        <Row>
+          <Mono size={11} medium tracking={0.12} muted>
+            PREMIUM HOME PARTNERS
+          </Mono>
+          <LqBadge tone="forest">LIVE</LqBadge>
+        </Row>
+        <Display size={40}>One home, four apps</Display>
+        <Txt size={14} muted style={{ lineHeight: 21 }}>
+          Every app runs on live data. What you do in one shows up in the others within seconds, on this device or any other.
+        </Txt>
+      </View>
+      <Row style={{ gap: 10, justifyContent: 'flex-start', flexWrap: 'wrap' }}>
+        <LqButton variant="ghost" onPress={() => set({ dark: !dark })}>
+          {dark ? 'Light mode' : 'Dark mode'}
+        </LqButton>
+      </Row>
+      {LIVE_CARDS.map((card) => {
+        const busy = card.key !== 'signup' && opening === card.key;
+        const err = failed && failed.key === card.key ? failed : null;
+        return (
+          <View key={card.key} style={{ gap: 10 }}>
+            <Pressable
+              testID={`launch-${card.key}`}
+              onPress={() => open(card.key)}
+              accessibilityRole="link"
+              accessibilityState={{ busy }}
+              accessibilityLabel={`${card.title}: ${busy ? 'Opening…' : card.who}`}
+            >
+              <LqCard style={{ gap: 6 }}>
+                <Row>
+                  <Txt size={16} weight="600">
+                    {card.title}
+                  </Txt>
+                  <Txt accent size={16}>
+                    ›
+                  </Txt>
+                </Row>
+                <Txt size={13} muted style={{ lineHeight: 19 }}>
+                  {card.sub}
+                </Txt>
+                <LqBadge tone={busy ? 'ochre' : 'slate'}>{busy ? 'Opening…' : card.who}</LqBadge>
+              </LqCard>
+            </Pressable>
+            {err ? (
+              <View testID="launch-error" style={{ gap: 8 }}>
+                <ErrorState title={`We couldn't open the ${card.title}`} message={err.message} onRetry={() => open(err.key)} />
+                <Txt size={12} muted style={{ lineHeight: 18 }}>
+                  No connection? Turn on Offline demo mode below to run all four apps on this device.
+                </Txt>
+              </View>
+            ) : null}
+          </View>
+        );
+      })}
+      <View style={{ borderRadius: 14, backgroundColor: c.glassStrong, borderWidth: 1, borderColor: c.rule }}>
+        <Pressable
+          testID="demo-mode-toggle"
+          accessibilityRole="switch"
+          accessibilityState={{ checked: false }}
+          accessibilityLabel="Offline demo mode"
+          onPress={() => {
+            setMode('demo');
+            router.replace('/');
+          }}
+        >
+          <Row style={{ paddingVertical: 12, paddingHorizontal: 14, gap: 12 }}>
+            <View style={{ flex: 1, gap: 2 }}>
+              <Txt>Offline demo mode</Txt>
+              <Txt size={12} muted style={{ lineHeight: 17 }}>
+                All four apps on this device, no account or connection needed.
+              </Txt>
+            </View>
+            <Toggle on={false} />
+          </Row>
+        </Pressable>
+      </View>
+      <Txt size={12} muted style={{ lineHeight: 18 }}>
+        Each app signs in to its demo account for you. Use ‹ All apps inside any app to come back here.
+      </Txt>
+      <TextLink onPress={() => router.push('/login')}>Sign in with email</TextLink>
     </Screen>
   );
 }
