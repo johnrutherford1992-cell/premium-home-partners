@@ -6,9 +6,10 @@ import { ROLE_HOME, useSession } from '../lib/auth';
 import { DEMO_ACCESS } from '../lib/demoAccess';
 import { useMode } from '../lib/mode';
 import { useApp } from '../store/app';
-import { STATUS } from '../theme/tokens';
+import { BrandHeader } from '../components/brand/BrandHeader';
+import { FONT, RADIUS } from '../theme/tokens';
 import { Row, Screen, Toggle } from '../ui/controls';
-import { Display, Eyebrow, LqButton, LqCard, Mono, Txt } from '../ui/primitives';
+import { Eyebrow, LqButton, LqCard, Mono, Txt } from '../ui/primitives';
 import { usePalette } from '../ui/theme';
 
 const DEMO_PASSWORD = 'phpdemo2026';
@@ -41,7 +42,7 @@ const Field = ({ label, inputRef, ...input }: TextInputProps & { label: string; 
         accessibilityLabel={label}
         placeholderTextColor={c.muted}
         {...input}
-        style={{ padding: 14, borderRadius: 14, backgroundColor: c.glassStrong, borderWidth: 1, borderColor: c.rule, fontSize: 16, color: c.ink }}
+        style={{ padding: 14, borderRadius: RADIUS.field, backgroundColor: c.glassStrong, borderWidth: 1, borderColor: c.line, fontSize: 16, fontFamily: FONT.sans, color: c.ink }}
       />
     </View>
   );
@@ -86,12 +87,12 @@ function SignIn() {
 
   return (
     <Screen>
-      <View style={{ gap: 6, marginTop: 8 }}>
-        <Mono size={12} medium tracking={0.14} accent>
-          PREMIUM HOME PARTNERS
-        </Mono>
-        <Display size={40}>Welcome back.</Display>
-      </View>
+      <BrandHeader
+        eyebrow="Client sign in"
+        title="Enjoy your home, not the hassle."
+        titleSize={36}
+        sub="Sign in to your private home concierge: upcoming visits, photo reports and your care plan, in one place."
+      />
 
       <Field
         label="EMAIL"
@@ -137,7 +138,7 @@ function SignIn() {
       </View>
 
       {error ? (
-        <Txt testID="login-error" accessibilityRole="alert" size={13} color={STATUS.brick} style={{ lineHeight: 19 }}>
+        <Txt testID="login-error" accessibilityRole="alert" size={13} color={c.status.brick} style={{ lineHeight: 19 }}>
           {error}
         </Txt>
       ) : null}
@@ -175,7 +176,7 @@ function SignIn() {
         </LqCard>
       ) : null}
 
-      <View style={{ borderRadius: 14, backgroundColor: c.glassStrong, borderWidth: 1, borderColor: c.rule }}>
+      <View style={{ borderRadius: RADIUS.card, backgroundColor: c.glassStrong, borderWidth: 1, borderColor: c.rule }}>
         <Pressable
           testID="demo-mode-toggle"
           accessibilityRole="switch"
