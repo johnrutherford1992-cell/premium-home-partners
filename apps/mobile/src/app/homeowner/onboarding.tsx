@@ -14,6 +14,7 @@ import {
   nextSampleIndex,
   readPlatePhoto,
   readSamplePlate,
+  ensureHome,
   saveHomeAndBuild,
   startPlan,
   useDraftTiers,
@@ -758,15 +759,17 @@ function LiveResearch({ draft }: { draft: Draft }) {
 
   const retry = async () => {
     if (retrying) return;
-    if (!draft.homeId) {
-      draft.set({ step: 3 });
+    if (!draft.name.trim() || !draft.addr.trim()) {
+      draft.set({ step: 1 });
       return;
     }
     setRetrying(true);
     setRetryError(null);
     try {
-      const id = await buildPlan(draft.homeId);
-      draft.set({ buildId: id }); // remounts this screen for the new build
+      // Re-save first: a demo reset may have deleted the home this draft points at.
+      const homeId = await ensureHome(draft);
+      const id = await buildPlan(homeId);
+      draft.set({ homeId, buildId: id }); // remounts this screen for the new build
     } catch (e) {
       setRetryError(friendlyError(e));
       setRetrying(false);
@@ -815,14 +818,17 @@ function LiveTiers({ draft }: { draft: Draft }) {
 
   const onStart = async () => {
     if (starting) return;
-    if (!draft.homeId) {
-      setError('Your home details are missing. Go back a step and tap Build my plan.');
+    if (!draft.name.trim() || !draft.addr.trim()) {
+      setError('Your home details are missing. Go back to the start and add your address.');
       return;
     }
     setStarting(true);
     setError(null);
     try {
-      await startPlan({ userId, homeId: draft.homeId, tierIndex: selected, tier: tiers[selected], inputs, home });
+      // Re-save first: a demo reset may have deleted the home this draft points at.
+      const homeId = await ensureHome(draft);
+      draft.set({ homeId });
+      await startPlan({ userId, homeId, tierIndex: selected, tier: tiers[selected], inputs, home });
       router.replace('/homeowner/home');
       clearOnboardingDraft(userId);
     } catch (e) {

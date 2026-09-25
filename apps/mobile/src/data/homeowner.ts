@@ -1156,6 +1156,17 @@ export async function lookupTypedAppliance(input: { brand: string; model: string
  * build. Returns the home and build ids. Throws a FriendlyError.
  */
 export async function saveHomeAndBuild(d: OnboardingDraft): Promise<{ homeId: string; buildId: string }> {
+  const homeId = await ensureHome(d);
+  const buildId = await buildPlan(homeId);
+  return { homeId, buildId };
+}
+
+/**
+ * Save (upsert) the caller's home and its appliances from the draft and return
+ * the home id. Safe to repeat: onboarding calls it again before a retry or
+ * Start plan, so a demo reset that deleted the home just recreates it.
+ */
+export async function ensureHome(d: OnboardingDraft): Promise<string> {
   const home = await rpc<{ id: string } | null>('save_home', {
     p_full_name: d.name.trim(),
     p_address: d.addr.trim(),
@@ -1171,8 +1182,7 @@ export async function saveHomeAndBuild(d: OnboardingDraft): Promise<{ homeId: st
   if (!home?.id) throw new Error("We couldn't save your home. Try again.");
   void invalidateTables(['profiles', 'homes']);
   await setAppliances(home.id, d.appliances);
-  const buildId = await buildPlan(home.id);
-  return { homeId: home.id, buildId };
+  return home.id;
 }
 
 /** `set_home_appliances`: replaces the home's appliances. */
