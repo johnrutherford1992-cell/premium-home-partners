@@ -8,7 +8,7 @@ import { useMode } from '../lib/mode';
 import { useApp } from '../store/app';
 import { BrandHeader } from '../components/brand/BrandHeader';
 import { FONT, RADIUS } from '../theme/tokens';
-import { Row, Screen, Toggle } from '../ui/controls';
+import { Row, Screen, TextLink, Toggle } from '../ui/controls';
 import { Eyebrow, LqButton, LqCard, Mono, Txt } from '../ui/primitives';
 import { usePalette } from '../ui/theme';
 
@@ -89,8 +89,15 @@ function SignIn() {
     <Screen>
       <BrandHeader
         eyebrow="Client sign in"
-        title="Enjoy your home, not the hassle."
+        title={'Enjoy your home,\nnot the hassle.'}
         titleSize={36}
+        right={
+          DEMO_ACCESS ? (
+            <View testID="login-back">
+              <TextLink onPress={() => router.replace('/')}>‹ All apps</TextLink>
+            </View>
+          ) : undefined
+        }
         sub="Sign in to your private home concierge: upcoming visits, photo reports and your care plan, in one place."
       />
 

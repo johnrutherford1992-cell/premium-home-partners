@@ -4,7 +4,7 @@
 import { useEffect, useRef, useState } from 'react';
 import { Animated, Easing, Platform, View } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
-import { STATUS } from '../theme/tokens';
+import { RADIUS, STATUS } from '../theme/tokens';
 import { LqGlass, Txt } from '../ui/primitives';
 import { usePalette } from '../ui/theme';
 
@@ -65,7 +65,7 @@ export function ToastHost() {
       <Animated.View
         style={{ opacity: v, transform: [{ translateY: v.interpolate({ inputRange: [0, 1], outputRange: [12, 0] }) }], maxWidth: 400 }}
       >
-        <LqGlass strong style={{ borderRadius: 999, boxShadow: `0 8px 24px -10px ${c.sh}` }}>
+        <LqGlass strong style={{ borderRadius: RADIUS.card, boxShadow: `0 8px 24px -10px ${c.sh}` }}>
           <View
             testID="toast"
             accessibilityRole="alert"

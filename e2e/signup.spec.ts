@@ -28,7 +28,7 @@ test.describe.serial('sign-up: a new customer from the launcher', () => {
 
     const field = (id: string) => shown(page.getByTestId(id));
     const submit = field('signup-submit');
-    await expect(submit).toHaveText('Create account');
+    await expect(submit).toHaveText('Create my account');
 
     // Nothing is sent until the required fields are right.
     await submit.click();

@@ -2,6 +2,7 @@ import { Redirect, router } from 'expo-router';
 import { useEffect, useRef, useState } from 'react';
 import { Pressable, View } from 'react-native';
 import { useShallow } from 'zustand/react/shallow';
+import { BrandHeader } from '../components/brand/BrandHeader';
 import { BlankField, SessionErrorScreen } from '../components/RoleGate';
 import { ErrorState } from '../components/States';
 import { ROLE_HOME, useSession } from '../lib/auth';
@@ -10,8 +11,9 @@ import { useMode } from '../lib/mode';
 import { isSupabaseConfigured } from '../lib/supabase';
 import { useApp } from '../store/app';
 import { useHomeNames, useTiers } from '../store/derived';
+import { RADIUS } from '../theme/tokens';
 import { Row, Screen, TextLink, Toggle } from '../ui/controls';
-import { Display, LqBadge, LqButton, LqCard, Mono, Txt } from '../ui/primitives';
+import { LqBadge, LqButton, LqCard, Txt } from '../ui/primitives';
 import { usePalette } from '../ui/theme';
 
 const ROLES = [
@@ -50,19 +52,13 @@ function Launcher() {
   };
   return (
     <Screen>
-      <View style={{ gap: 6, marginTop: 8 }}>
-        <Row>
-          <Mono size={11} medium tracking={0.12} muted>
-            PREMIUM HOME PARTNERS
-          </Mono>
-          <LqBadge tone="ochre">OFFLINE DEMO</LqBadge>
-        </Row>
-        <Display size={40}>One home, four apps</Display>
-        <Txt size={14} muted style={{ lineHeight: 21 }}>
-          What you do in one app shows up in the others. Onboard a home, start a visit from the Technician app, bid from the Vendor
-          app, and change labor rates in the Office. Prices update everywhere.
-        </Txt>
-      </View>
+      <BrandHeader
+        eyebrow="Your private home concierge"
+        title="One home, four apps"
+        titleSize={34}
+        right={<LqBadge tone="ochre">OFFLINE DEMO</LqBadge>}
+        sub="What you do in one app shows up in the others. Onboard a home, start a visit from the Technician app, bid from the Vendor app, and change labor rates in the Office. Prices update everywhere."
+      />
       <Row style={{ gap: 10, justifyContent: 'flex-start', flexWrap: 'wrap' }}>
         <LqButton variant="ghost" onPress={() => set({ dark: !dark })}>
           {dark ? 'Light mode' : 'Dark mode'}
@@ -173,18 +169,13 @@ function LiveLauncher() {
 
   return (
     <Screen>
-      <View style={{ gap: 6, marginTop: 8 }}>
-        <Row>
-          <Mono size={11} medium tracking={0.12} muted>
-            PREMIUM HOME PARTNERS
-          </Mono>
-          <LqBadge tone="forest">LIVE</LqBadge>
-        </Row>
-        <Display size={40}>One home, four apps</Display>
-        <Txt size={14} muted style={{ lineHeight: 21 }}>
-          Every app runs on live data. What you do in one shows up in the others within seconds, on this device or any other.
-        </Txt>
-      </View>
+      <BrandHeader
+        eyebrow="Your private home concierge"
+        title="One home, four apps"
+        titleSize={34}
+        right={<LqBadge tone="forest">LIVE</LqBadge>}
+        sub="Every app runs on live data. What you do in one shows up in the others within seconds, on this device or any other."
+      />
       <Row style={{ gap: 10, justifyContent: 'flex-start', flexWrap: 'wrap' }}>
         <LqButton variant="ghost" onPress={() => set({ dark: !dark })}>
           {dark ? 'Light mode' : 'Dark mode'}
@@ -228,7 +219,7 @@ function LiveLauncher() {
           </View>
         );
       })}
-      <View style={{ borderRadius: 14, backgroundColor: c.glassStrong, borderWidth: 1, borderColor: c.rule }}>
+      <View style={{ borderRadius: RADIUS.card, backgroundColor: c.glassStrong, borderWidth: 1, borderColor: c.rule }}>
         <Pressable
           testID="demo-mode-toggle"
           accessibilityRole="switch"
