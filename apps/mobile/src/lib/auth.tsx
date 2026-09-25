@@ -3,9 +3,10 @@
 
 import { useQuery } from '@tanstack/react-query';
 import { createContext, useCallback, useContext, useEffect, useMemo, useRef, useState, type ReactNode } from 'react';
-import { FriendlyError, SIGN_IN_MSG, friendlyError, isAuthExpiredError, isNetworkError, signInErrorMessage } from './errors';
+import type { SupabaseClient } from '@supabase/supabase-js';
+import { FriendlyError, SIGN_IN_MSG, friendlyError, isAuthExpiredError, isNetworkError, signInErrorMessage, toFriendlyError } from './errors';
 import { queryClient } from './queryClient';
-import { supabase } from './supabase';
+import { clearStoredSession, supabase } from './supabase';
 
 export type Role = 'homeowner' | 'tech' | 'vendor' | 'office';
 export type RoleHome = '/homeowner' | '/tech' | '/vendor' | '/office';
@@ -73,10 +74,50 @@ function withTimeout<T>(p: Promise<T>, ms: number): Promise<T> {
   });
 }
 
+// ---------------------------------------------------------------------------
+// Sign-out
+// ---------------------------------------------------------------------------
+//
+// Sign-out is local only: it never waits on the network. supabase-js's
+// signOut({ scope: 'local' }) still POSTs /logout first and only then removes
+// "the current session" from storage. If that request is slow, a sign-in made
+// meanwhile has already saved a new session, and the late removal deletes the
+// NEW user's session and emits SIGNED_OUT (which clears the query cache): you
+// sign in as the vendor and land back on /login. So we
+//   1. remove the stored session ourselves (clearStoredSession, no network);
+//   2. call signOut({ scope: 'local' }), which now finds no session, skips the
+//      /logout request and just clears auth-js's state and emits SIGNED_OUT;
+//   3. keep that promise in `signingOut`; signIn waits for it before it
+//      signs in, so nothing from the old session can touch the new one.
+// The server-side revoke is skipped on purpose: the refresh token is gone from
+// this device either way, the demo accounts are shared, and it keeps a stage
+// network hiccup out of the sign-out path. (Revoking would also end a
+// duplicated tab's copy of the same session.)
+
+let signingOut: Promise<void> | null = null;
+
+function localSignOut(sb: SupabaseClient): Promise<void> {
+  const run: Promise<void> = (async () => {
+    await clearStoredSession();
+    await sb.auth.signOut({ scope: 'local' });
+  })()
+    .catch(() => {
+      // Storage is already cleared; auth-js state resets on its next read.
+    })
+    .finally(() => {
+      if (signingOut === run) signingOut = null;
+    });
+  signingOut = run;
+  return run;
+}
+
+/** How long a sign-in waits for a sign-out still in progress (it is local, so normally milliseconds). */
+const SIGN_OUT_WAIT_MS = 12_000;
+
 async function fetchProfile(userId: string): Promise<Profile> {
   if (!supabase) throw new FriendlyError('Supabase is not configured.');
   const { data, error, status } = await supabase.from('profiles').select('id, role, full_name, email').eq('id', userId).maybeSingle();
-  if (error) throw new FriendlyError(friendlyError(status === 0 ? { ...error, status: 0 } : error));
+  if (error) throw toFriendlyError(status === 0 ? { ...error, status: 0 } : error);
   if (!data) throw new FriendlyError("Your account isn't set up yet. Ask the office to finish it.");
   const role = ROLES.includes(data.role as Role) ? (data.role as Role) : 'homeowner';
   const email = typeof data.email === 'string' ? data.email : '';
@@ -140,7 +181,7 @@ export function SessionProvider({ children }: { children: ReactNode }) {
       if (now - last < 10_000) return;
       last = now;
       void sb.auth.refreshSession().then(({ error }) => {
-        if (error && !isNetworkError(error)) void sb.auth.signOut({ scope: 'local' });
+        if (error && !isNetworkError(error)) void localSignOut(sb);
       });
     });
   }, []);
@@ -150,8 +191,18 @@ export function SessionProvider({ children }: { children: ReactNode }) {
     const e = email.trim().toLowerCase();
     if (!e || !password) return { error: SIGN_IN_MSG.missing };
     if (!sb) return { error: SIGN_IN_MSG.network };
+    // Finish a sign-out still in progress first (the button keeps saying "Signing in…").
+    const pending = signingOut;
+    if (pending) {
+      try {
+        await withTimeout(pending, SIGN_OUT_WAIT_MS);
+      } catch {
+        return { error: SIGN_IN_MSG.generic };
+      }
+    }
     try {
-      const { data, error } = await withTimeout(sb.auth.signInWithPassword({ email: e, password }), 15_000);
+      // Requests time out after 15 s (timeoutFetch in ./supabase); this is only a backstop.
+      const { data, error } = await withTimeout(sb.auth.signInWithPassword({ email: e, password }), 20_000);
       if (error) return { error: signInErrorMessage(error) };
       if (data.session?.user?.id) setUserId(data.session.user.id);
       return {};
@@ -166,10 +217,10 @@ export function SessionProvider({ children }: { children: ReactNode }) {
     setUserId(null);
     if (sb) {
       try {
-        // Local scope: other devices signed in to the same demo account stay signed in.
-        await withTimeout(sb.auth.signOut({ scope: 'local' }), 4000);
+        // Local only (see localSignOut): other devices and tabs on the same demo account stay signed in.
+        await withTimeout(localSignOut(sb), 4000);
       } catch {
-        // The local session is removed even when the server can't be reached.
+        // Still finishing in the background; signIn waits for it.
       }
     }
     setTimeout(() => queryClient.clear(), 0);

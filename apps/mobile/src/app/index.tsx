@@ -33,7 +33,7 @@ function LiveHome() {
 /** Offline demo: the four apps on one device, sharing the local store. */
 function Launcher() {
   const { dark, set, reset, step, tech, reqs } = useApp();
-  const { setMode } = useMode();
+  const { setMode, forced } = useMode();
   const { cur } = useTiers();
   const { street } = useHomeNames();
   const status: Record<string, string> = {
@@ -64,7 +64,8 @@ function Launcher() {
         <LqButton variant="ghost" onPress={reset}>
           Reset demo
         </LqButton>
-        {isSupabaseConfigured ? (
+        {/* Only when live mode is possible: a forced demo (no project, or EXPO_PUBLIC_DEMO_MODE=1) has nowhere to exit to. */}
+        {isSupabaseConfigured && !forced ? (
           <LqButton
             variant="ghost"
             onPress={() => {

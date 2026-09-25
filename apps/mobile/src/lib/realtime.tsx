@@ -113,11 +113,13 @@ export function RealtimeBridge() {
           // After a reconnect, catch up on anything that changed while the socket was down.
           if (wasLive) void invalidateTables([...REALTIME_TABLES]);
           wasLive = true;
-        } else if (st === 'CHANNEL_ERROR' || st === 'TIMED_OUT') {
+        } else if (st === 'CHANNEL_ERROR' || st === 'TIMED_OUT' || st === 'CLOSED') {
+          // CLOSED here is the server closing our channel (a realtime node
+          // restart, a kick): our own teardown sets `channel` to null first, so
+          // it never reaches this line. realtime-js won't rejoin a closed
+          // channel, so resubscribe with backoff, the same as an error.
           setRealtimeStatus('offline');
           scheduleRetry();
-        } else if (st === 'CLOSED') {
-          setRealtimeStatus('offline');
         }
       });
     };

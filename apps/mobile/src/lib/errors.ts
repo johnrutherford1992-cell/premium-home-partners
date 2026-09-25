@@ -62,10 +62,15 @@ export function isNetworkError(e: unknown): boolean {
   return NETWORK_RE.test(message);
 }
 
-/** True when the error means the JWT is no longer valid. */
+/**
+ * True when the error means the JWT is no longer valid. Also true for a
+ * FriendlyError that already carries MSG.expired: fetchers throw wrapped
+ * errors, and that is what the query cache's expired-session listener sees.
+ */
 export function isAuthExpiredError(e: unknown): boolean {
   if (!e || typeof e !== 'object') return false;
   const { code, message } = parts(e);
+  if (e instanceof FriendlyError && message === MSG.expired) return true;
   return code === 'PGRST301' || code === 'PGRST303' || EXPIRED_RE.test(message);
 }
 
@@ -94,6 +99,17 @@ export function friendlyError(e: unknown): string {
   const libError = /^(Postgrest|Auth|Functions|Storage)/.test(name) || code !== '';
   if (!libError && name === 'Error' && message && message.length < 160) return message;
   return MSG.generic;
+}
+
+/**
+ * Wrap any error for users: the friendlyError() message, keeping the original
+ * `code` and `status` so callers can still tell an expired JWT (PGRST303) or a
+ * transport failure (status 0) apart. A FriendlyError passes through as is.
+ */
+export function toFriendlyError(e: unknown): FriendlyError {
+  if (e instanceof FriendlyError) return e;
+  const { code, status } = parts(e);
+  return new FriendlyError(friendlyError(e), { code: code || undefined, status });
 }
 
 /** Sign-in failures, from supabase-js AuthError shapes (or a thrown timeout). */

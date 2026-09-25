@@ -135,7 +135,7 @@ signed in): one channel subscribed to `postgres_changes` (`event: '*'`,
 - `realtimeHealthy(): boolean`, true only while the channel is `SUBSCRIBED`;
 - `useRealtimeStatus(): 'connecting' | 'live' | 'offline'`.
 
-On `CHANNEL_ERROR` or `TIMED_OUT` it resubscribes with backoff (1 s, 2 s, 4 s,
+On `CHANNEL_ERROR`, `TIMED_OUT` or an unexpected `CLOSED` it resubscribes with backoff (1 s, 2 s, 4 s,
 capped at 10 s). On sign-in or out it tears down and rebuilds, so RLS uses the
 new JWT.
 

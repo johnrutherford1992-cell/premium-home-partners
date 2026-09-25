@@ -69,9 +69,15 @@ function backend(): BackendConfig {
   return cfg;
 }
 
-/** supabase-js's default storage key for this project: sb-<project ref>-auth-token. */
-export function authStorageKey(url: string = backend().url): string {
-  return `sb-${new URL(url).hostname.split('.')[0]}-auth-token`;
+/**
+ * On web the app keeps one session per browser tab, in sessionStorage
+ * (apps/mobile/src/lib/supabase.ts): the tab's id under `php-tab-id`, and the
+ * session under `sb-php-auth-<tab id>`. Keep these two in step with TAB_ID_KEY
+ * and webAuthStorageKey() there.
+ */
+export const TAB_ID_KEY = 'php-tab-id';
+export function webAuthStorageKey(tabId: string): string {
+  return `sb-php-auth-${tabId}`;
 }
 
 // ---------------------------------------------------------------------------
@@ -81,7 +87,8 @@ export function authStorageKey(url: string = backend().url): string {
 // Supabase allows 30 password sign-ins per 5 minutes per IP by default, and
 // the bar is 3 full runs in a row. So only auth.spec signs in through the UI;
 // every other spec signs each role in once over the API and hands that session
-// to the browser (the same localStorage entry the app itself writes). Sessions
+// to the browser (the same per-tab sessionStorage entries the app itself
+// writes; see injectSession). Sessions
 // are cached in e2e/output/.auth (git-ignored, never uploaded by e2e.yml) and
 // reused across runs while they have 20+ minutes left. The browser never needs
 // to refresh them, so contexts sharing one session don't race on refresh-token
@@ -206,11 +213,28 @@ export interface RolePage {
   page: Page;
 }
 
-function sessionState(session: Session): BrowserContextOptions['storageState'] {
-  return {
-    cookies: [],
-    origins: [{ origin: new URL(BASE_URL).origin, localStorage: [{ name: authStorageKey(), value: JSON.stringify(session) }] }],
-  };
+/**
+ * Sign every page (browser tab) this context opens in with `session`: on a
+ * tab's first load, give it a tab id and the session under that tab's key,
+ * exactly as the app stores it. Later loads in the same tab (reloads,
+ * page.goto) keep whatever the app has written since, so a sign-out sticks.
+ * Each tab gets its own id, as real tabs do; the app treats a second live tab
+ * with the same id as a duplicate and signs it out.
+ */
+async function injectSession(context: BrowserContext, session: Session): Promise<void> {
+  await context.addInitScript(
+    ({ value, tabIdKey, keyPrefix }) => {
+      try {
+        if (sessionStorage.getItem(tabIdKey)) return;
+        const id = `e2e-${Math.random().toString(36).slice(2, 10)}`;
+        sessionStorage.setItem(tabIdKey, id);
+        sessionStorage.setItem(keyPrefix + id, value);
+      } catch {
+        // about:blank and other opaque origins have no sessionStorage.
+      }
+    },
+    { value: JSON.stringify(session), tabIdKey: TAB_ID_KEY, keyPrefix: webAuthStorageKey('') },
+  );
 }
 
 /**
@@ -235,8 +259,8 @@ export async function openAs(
   const context = await browser.newContext({
     ...(opts.device ?? deviceFor(account)),
     baseURL: BASE_URL,
-    ...(session ? { storageState: sessionState(session) } : {}),
   });
+  if (session) await injectSession(context, session);
   guardConsole(context, account);
   await opts.setup?.(context);
   const page = await context.newPage();

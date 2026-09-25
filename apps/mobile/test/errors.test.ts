@@ -1,7 +1,16 @@
 /// <reference types="node" />
 import assert from 'node:assert/strict';
 import { test } from 'node:test';
-import { FriendlyError, MSG, SIGN_IN_MSG, friendlyError, isAuthExpiredError, isNetworkError, signInErrorMessage } from '../src/lib/errors';
+import {
+  FriendlyError,
+  MSG,
+  SIGN_IN_MSG,
+  friendlyError,
+  isAuthExpiredError,
+  isNetworkError,
+  signInErrorMessage,
+  toFriendlyError,
+} from '../src/lib/errors';
 
 test('network failures read as "Can\'t reach the server"', () => {
   // postgrest-js turns a rejected fetch into this shape
@@ -52,4 +61,47 @@ test('sign-in errors', () => {
   assert.equal(signInErrorMessage(undefined), SIGN_IN_MSG.generic);
   assert.equal(SIGN_IN_MSG.mismatch, "That email and password don't match.");
   assert.equal(SIGN_IN_MSG.network, "Can't reach the server. Check your connection or switch to offline demo mode.");
+});
+
+test('an expired JWT is still recognised after fetchers wrap it (the query-cache listener sees the wrapped error)', () => {
+  // What PostgREST returns for an expired token, and what unwrap()/rpc() now throw for it.
+  const pg = { code: 'PGRST303', message: 'JWT expired', details: null, hint: null };
+  const wrapped = toFriendlyError({ ...pg, status: 401 });
+  assert.ok(wrapped instanceof FriendlyError);
+  assert.equal(wrapped.message, MSG.expired);
+  assert.equal(wrapped.code, 'PGRST303');
+  assert.equal(wrapped.status, 401);
+  assert.equal(isAuthExpiredError(wrapped), true);
+  // Older call sites wrap with the message only (no code): the message alone is enough.
+  assert.equal(isAuthExpiredError(new FriendlyError(friendlyError(pg))), true);
+  // A FriendlyError passes through toFriendlyError untouched.
+  const own = new FriendlyError('Pick a day first.', { code: 'x' });
+  assert.equal(toFriendlyError(own), own);
+  // Other wrapped errors are not mistaken for an expired session.
+  assert.equal(isAuthExpiredError(toFriendlyError({ code: '42501', message: 'permission denied for table visits' })), false);
+  assert.equal(isAuthExpiredError(new FriendlyError(MSG.network, { status: 0 })), false);
+});
+
+test('request timeouts and aborts read as "Can\'t reach the server"', () => {
+  // timeoutFetch (lib/supabase.ts) aborts with an Error named TimeoutError; each client reports it its own way.
+  const timeout = new Error('Request timed out');
+  timeout.name = 'TimeoutError';
+  assert.equal(friendlyError(timeout), MSG.network);
+  // postgrest-js: { message: `${name}: ${message}`, code: '' } with status 0 (unwrap adds the status)
+  assert.equal(friendlyError({ message: 'TimeoutError: Request timed out', details: '', hint: '', code: '', status: 0 }), MSG.network);
+  assert.equal(friendlyError({ message: 'AbortError: signal is aborted without reason', code: '' }), MSG.network);
+  // auth-js, functions-js, storage-js
+  assert.equal(friendlyError({ name: 'AuthRetryableFetchError', message: 'Request timed out', status: 0 }), MSG.network);
+  assert.equal(friendlyError({ name: 'FunctionsFetchError', message: 'Failed to send a request to the Edge Function' }), MSG.network);
+  assert.equal(friendlyError({ name: 'StorageUnknownError', message: 'Request timed out' }), MSG.network);
+  // React Native's fetch polyfill rejects an aborted request with a plain AbortError.
+  const rnAbort = new Error('Aborted');
+  rnAbort.name = 'AbortError';
+  assert.equal(friendlyError(rnAbort), MSG.network);
+  // Wrapped, it keeps status 0 and still counts as a network error.
+  const wrapped = toFriendlyError({ message: 'TimeoutError: Request timed out', code: '', status: 0 });
+  assert.equal(wrapped.message, MSG.network);
+  assert.equal(wrapped.status, 0);
+  assert.equal(isNetworkError(wrapped), true);
+  assert.equal(signInErrorMessage({ name: 'AuthRetryableFetchError', message: 'Request timed out', status: 0 }), SIGN_IN_MSG.network);
 });
