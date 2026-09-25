@@ -16,12 +16,12 @@ export type Account = 'homeowner' | 'newhome' | 'tech' | 'vendor' | 'office';
 
 export const PASSWORD = 'phpdemo2026';
 
-export const ACCOUNTS: Record<Account, { email: string; name: string; landingPath: string; landing: RegExp }> = {
-  homeowner: { email: 'homeowner@php.test', name: 'Elena Alvarez', landingPath: '/homeowner', landing: /\/homeowner\/home\/?$/ },
-  newhome: { email: 'newhome@php.test', name: 'Jordan Lee', landingPath: '/homeowner', landing: /\/homeowner\/onboarding\/?$/ },
-  tech: { email: 'tech@php.test', name: 'Marcus Reyes', landingPath: '/tech', landing: /\/tech\/?$/ },
-  vendor: { email: 'vendor@php.test', name: 'Sam Ortiz', landingPath: '/vendor', landing: /\/vendor\/?$/ },
-  office: { email: 'office@php.test', name: 'Avery Brooks', landingPath: '/office', landing: /\/office\/pricing\/?$/ },
+export const ACCOUNTS: Record<Account, { email: string; name: string; userId: string; landingPath: string; landing: RegExp }> = {
+  homeowner: { email: 'homeowner@php.test', name: 'Elena Alvarez', userId: 'a0000000-0000-4000-8000-000000000005', landingPath: '/homeowner', landing: /\/homeowner\/home\/?$/ },
+  newhome: { email: 'newhome@php.test', name: 'Jordan Lee', userId: 'a0000000-0000-4000-8000-000000000006', landingPath: '/homeowner', landing: /\/homeowner\/onboarding\/?$/ },
+  tech: { email: 'tech@php.test', name: 'Marcus Reyes', userId: 'a0000000-0000-4000-8000-000000000002', landingPath: '/tech', landing: /\/tech\/?$/ },
+  vendor: { email: 'vendor@php.test', name: 'Sam Ortiz', userId: 'a0000000-0000-4000-8000-000000000004', landingPath: '/vendor', landing: /\/vendor\/?$/ },
+  office: { email: 'office@php.test', name: 'Avery Brooks', userId: 'a0000000-0000-4000-8000-000000000001', landingPath: '/office', landing: /\/office\/pricing\/?$/ },
 };
 
 /** Fixed ids created by seed_demo() (supabase/migrations/20260925000000_live.sql). */
@@ -78,6 +78,11 @@ function backend(): BackendConfig {
 export const TAB_ID_KEY = 'php-tab-id';
 export function webAuthStorageKey(tabId: string): string {
   return `sb-php-auth-${tabId}`;
+}
+
+/** The tab's demo-access session cache (apps/mobile/src/lib/demoAccess.tsx): `{ [account]: tokens }`. */
+export function demoSessionsKey(tabId: string): string {
+  return `php-demo-sessions-${tabId}`;
 }
 
 // ---------------------------------------------------------------------------
@@ -172,15 +177,50 @@ export function chicagoDate(days = 0): string {
 // ---------------------------------------------------------------------------
 // UI sign-in
 // ---------------------------------------------------------------------------
+//
+// The live app opens every side without a login (demo access): the launcher
+// at / and every role's screens switch the tab to that role's default demo
+// account (/homeowner → Elena). So a page that must be a *specific* account
+// (Jordan) signs in through /login explicitly, or gets an injected session,
+// and expectAccount() checks who the tab really is.
 
-/** Wait for the account's landing screen: its URL and the Sign out link (testID app-exit). */
+/** The user id this tab is signed in as, from the app's per-tab auth storage (null when signed out). */
+export async function signedInUserId(page: Page): Promise<string | null> {
+  return page.evaluate(
+    ({ tabIdKey, prefix }) => {
+      try {
+        const id = sessionStorage.getItem(tabIdKey);
+        const raw = id ? sessionStorage.getItem(prefix + id) : null;
+        const s = raw ? (JSON.parse(raw) as { user?: { id?: string } }) : null;
+        return s?.user?.id ?? null;
+      } catch {
+        return null;
+      }
+    },
+    { tabIdKey: TAB_ID_KEY, prefix: webAuthStorageKey('') },
+  );
+}
+
+/** The tab is signed in as exactly this demo account (not just the right role). */
+export async function expectAccount(page: Page, account: Account): Promise<void> {
+  const a = ACCOUNTS[account];
+  await expect
+    .poll(() => signedInUserId(page), { timeout: 30_000, message: `this tab should be signed in as ${a.email}` })
+    .toBe(a.userId);
+}
+
+/** Wait for the account's landing screen: its URL and the app-exit link ("‹ All apps", or "Sign out" when login-gated). */
 export async function expectLanding(page: Page, account: Account): Promise<void> {
   const a = ACCOUNTS[account];
   await expect(page, `${a.email} should land on ${a.landing}`).toHaveURL(a.landing, { timeout: 30_000 });
-  await expect(page.getByTestId('app-exit')).toBeVisible();
+  await expect(shown(page.getByTestId('app-exit'))).toBeVisible();
 }
 
-/** Sign in through the real login screen (login-email / login-password / login-submit). */
+/**
+ * Sign in through the real login screen (login-email / login-password /
+ * login-submit), always at /login itself: a guarded screen would switch to
+ * the role's default account instead.
+ */
 export async function login(page: Page, account: Account): Promise<void> {
   const a = ACCOUNTS[account];
   await page.goto('/login');
@@ -201,6 +241,7 @@ export async function login(page: Page, account: Account): Promise<void> {
     .not.toBe('pending');
   if (await loginError.isVisible()) throw new Error(`Sign-in as ${a.email} failed: ${await loginError.innerText()}`);
   await expectLanding(page, account);
+  await expectAccount(page, account);
 }
 
 // ---------------------------------------------------------------------------
@@ -238,10 +279,12 @@ async function injectSession(context: BrowserContext, session: Session): Promise
 }
 
 /**
- * A signed-in device for this account: its own browser context (office on a
- * 1280×900 desktop, everyone else on a 390×844 phone) with the console guard
- * attached. Opens `path` (default: the account's landing screen) and waits for
- * `ready` (default: the Sign out link).
+ * A signed-in device for exactly this account: its own browser context
+ * (office on a 1280×900 desktop, everyone else on a 390×844 phone) with the
+ * console guard attached. Opens `path` (default: the account's landing
+ * screen), waits for `ready` (default: the app-exit link), then checks the
+ * tab is this account and not a role default the app switched to (e.g. Elena
+ * instead of Jordan, if the injected session had been refused).
  */
 export async function openAs(
   browser: Browser,
@@ -280,6 +323,13 @@ export async function openAs(
     );
   }
   await expect(ready).toBeVisible();
+  const who = await signedInUserId(page);
+  if (who !== ACCOUNTS[account].userId) {
+    throw new Error(
+      `${account}: the tab is signed in as ${who ?? 'nobody'}, not ${ACCOUNTS[account].email} (${ACCOUNTS[account].userId}). ` +
+        `The app did not accept the ${session ? 'injected session' : 'form sign-in'}; check that ${BASE_URL} was built against ${backend().url}.`,
+    );
+  }
   return { account, context, page };
 }
 

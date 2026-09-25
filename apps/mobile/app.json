@@ -1,6 +1,7 @@
 {
   "expo": {
     "name": "Premium Home Partners",
+    "description": "Your private home concierge: maintenance, coordination, and ongoing care, handled.",
     "slug": "premium-home-partners",
     "version": "1.0.0",
     "orientation": "portrait",
@@ -12,7 +13,7 @@
     },
     "android": {
       "adaptiveIcon": {
-        "backgroundColor": "#f4f7fb",
+        "backgroundColor": "#0D1E30",
         "foregroundImage": "./assets/android-icon-foreground.png",
         "backgroundImage": "./assets/android-icon-background.png",
         "monochromeImage": "./assets/android-icon-monochrome.png"
@@ -25,12 +26,22 @@
       "output": "single",
       "bundler": "metro",
       "name": "Premium Home Partners",
-      "themeColor": "#f4f7fb",
-      "backgroundColor": "#f4f7fb"
+      "themeColor": "#0D1E30",
+      "backgroundColor": "#0D1E30",
+      "shortName": "Premium Home"
     },
     "plugins": [
       "expo-router",
       "expo-font",
+      [
+        "expo-splash-screen",
+        {
+          "backgroundColor": "#0D1E30",
+          "image": "./assets/splash-icon.png",
+          "imageWidth": 200,
+          "resizeMode": "contain"
+        }
+      ],
       [
         "expo-camera",
         {

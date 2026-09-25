@@ -35,7 +35,7 @@ const REAL_KEYS = ['hvac', 'fridge', 'ice', 'dish', 'wh', 'dryer', 'smoke'];
 const BAD_SCHEDULE = "We couldn't build a schedule for that plan. Try again.";
 
 const homeArgs = {
-  p_full_name: 'Jordan Lee', p_address: '5 Elm St, Dallas, TX 75201', p_sqft: 1800, p_year: 2001, p_beds: 3, p_baths: 2,
+  p_full_name: 'Jordan Lee', p_address: '5 Elm St, Homewood, AL 35209', p_sqft: 1800, p_year: 2001, p_beds: 3, p_baths: 2,
   p_floors: 1, p_zones: 1, p_pets: false, p_water: 'city_hard',
 };
 const planArgs = (homeId, schedule) => ({

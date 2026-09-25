@@ -8,6 +8,7 @@ import type { VisitVM } from '../../data/visits';
 import { todayChicago } from '../../lib/dates';
 import { Row, Screen } from '../../ui/controls';
 import { Display, LqBadge, LqCard, LqStat, Mono, Txt } from '../../ui/primitives';
+import { RADIUS } from '../../theme/tokens';
 import { usePalette } from '../../ui/theme';
 
 export default function TechRoute() {
@@ -66,7 +67,7 @@ export default function TechRoute() {
             }
             const done = v.status === 'done';
             const card = (key?: string) => (
-              <View key={key} style={{ paddingVertical: 14, paddingHorizontal: 16, borderRadius: 18, borderWidth: 1, borderColor: c.rule, opacity: 0.7 }}>
+              <View key={key} style={{ paddingVertical: 14, paddingHorizontal: 16, borderRadius: RADIUS.card, borderWidth: 1, borderColor: c.rule, opacity: 0.7 }}>
                 <Row>
                   <Mono size={11} medium muted>
                     {when}

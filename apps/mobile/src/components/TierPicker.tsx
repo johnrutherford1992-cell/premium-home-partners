@@ -1,6 +1,7 @@
 import { Pressable, View } from 'react-native';
 import type { TierView } from '../data/pricing';
 import { Display, Txt } from '../ui/primitives';
+import { RADIUS } from '../theme/tokens';
 import { usePalette } from '../ui/theme';
 
 /**
@@ -41,7 +42,7 @@ export function TierPicker({
               gap: 14,
               paddingVertical: compact ? 11 : 14,
               paddingHorizontal: compact ? 14 : 16,
-              borderRadius: compact ? 14 : 18,
+              borderRadius: RADIUS.card,
               borderWidth: on ? 2 : 1,
               borderColor: on ? c.accent : c.rule,
               backgroundColor: on ? c.glassStrong : c.glass,

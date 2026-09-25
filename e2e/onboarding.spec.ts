@@ -5,7 +5,7 @@
 import { expect, test } from './fixtures';
 import { closeAll, expectRpc, openAs, requireBackend, resetDemo, type RolePage } from './helpers';
 
-const ADDRESS = '45 Maple Ave, Dallas, TX 75205';
+const ADDRESS = '45 Maple Ave, Homewood, AL 35209';
 
 test.describe.serial('onboarding: a new homeowner builds and starts a plan', () => {
   requireBackend();

@@ -1,5 +1,8 @@
-import { BarlowCondensed_500Medium, BarlowCondensed_600SemiBold, BarlowCondensed_700Bold } from '@expo-google-fonts/barlow-condensed';
-import { JetBrainsMono_400Regular, JetBrainsMono_500Medium } from '@expo-google-fonts/jetbrains-mono';
+// Per-weight imports: the package roots would bundle every weight and italic.
+import { LibreCaslonDisplay_400Regular } from '@expo-google-fonts/libre-caslon-display/400Regular';
+import { SourceSans3_400Regular } from '@expo-google-fonts/source-sans-3/400Regular';
+import { SourceSans3_600SemiBold } from '@expo-google-fonts/source-sans-3/600SemiBold';
+import { SourceSans3_700Bold } from '@expo-google-fonts/source-sans-3/700Bold';
 import { QueryClientProvider } from '@tanstack/react-query';
 import { useFonts } from 'expo-font';
 import { Stack } from 'expo-router';
@@ -20,11 +23,10 @@ const FONT_WAIT_MS = 6000;
 
 export default function RootLayout() {
   const [fontsLoaded, fontError] = useFonts({
-    BarlowCondensed_500Medium,
-    BarlowCondensed_600SemiBold,
-    BarlowCondensed_700Bold,
-    JetBrainsMono_400Regular,
-    JetBrainsMono_500Medium,
+    LibreCaslonDisplay_400Regular,
+    SourceSans3_400Regular,
+    SourceSans3_600SemiBold,
+    SourceSans3_700Bold,
   });
   // A font that fails or hangs (blocked CDN, flaky wifi) must never leave the
   // screen blank: render on error, or after FONT_WAIT_MS regardless. Text falls

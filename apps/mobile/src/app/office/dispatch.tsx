@@ -2,7 +2,6 @@ import { View } from 'react-native';
 import { EmptyState, ErrorState, LoadingState } from '../../components/States';
 import { Table } from '../../components/Table';
 import { useDispatch, useSendReminders, type DispatchTone } from '../../data/office';
-import { STATUS } from '../../theme/tokens';
 import { Row } from '../../ui/controls';
 import { Display, LqButton, Mono, Txt } from '../../ui/primitives';
 import { usePalette } from '../../ui/theme';
@@ -12,7 +11,7 @@ export default function OfficeDispatch() {
   const send = useSendReminders();
   const c = usePalette();
   const data = q.data;
-  const tone = (t: DispatchTone) => (t === 'forest' || t === 'ochre' ? STATUS[t] : c[t]);
+  const tone = (t: DispatchTone) => (t === 'forest' || t === 'ochre' ? c.status[t] : c[t]);
   const allSent = !!data?.allSent;
 
   return (

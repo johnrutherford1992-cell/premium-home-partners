@@ -47,7 +47,7 @@ export interface VendorRequestVM extends VendorViewInput {
   name: string;
   /** Scope line: the request's scope, else the add-on's. */
   sub: string;
-  /** `'12 Linden Court · Dallas 75205'`: street and city only, never the owner. */
+  /** `'12 Linden Court · Mountain Brook 35213'`: street and city only, never the owner. */
   area: string;
   /** `area` up to the first ' · '. */
   street: string;
@@ -236,7 +236,7 @@ function demoRequest(r: QuoteRequest, street: string, sqft: number): VendorReque
     category: r.id,
     name: r.name,
     sub: r.sub,
-    area: `${street} · Dallas 75205`,
+    area: `${street} · Mountain Brook 35213`,
     street,
     sqft,
     base: r.base,

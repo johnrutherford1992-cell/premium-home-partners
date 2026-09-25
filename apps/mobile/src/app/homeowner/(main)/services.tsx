@@ -3,7 +3,7 @@ import { Pressable, View } from 'react-native';
 import { ErrorState, LoadingState } from '../../../components/States';
 import { useBookBid, useQuoteRequests, useRequestQuote } from '../../../data/homeowner';
 import { ADD_ONS } from '../../../data/seed';
-import { STATUS } from '../../../theme/tokens';
+import { RADIUS, STATUS, STATUS_INK } from '../../../theme/tokens';
 import { Pill, Row, Screen } from '../../../ui/controls';
 import { Display, LqCard, Mono, Txt } from '../../../ui/primitives';
 import { Pulse } from '../../../ui/Pulse';
@@ -19,7 +19,7 @@ export default function ServicesTab() {
     <View>
       <Display>Add-on services</Display>
       <Txt size={14} muted style={{ marginTop: 6, lineHeight: 20 }}>
-        One tap. We gather quotes from vetted pros and coordinate the work.
+        One tap. We gather quotes from vetted service partners and coordinate the work, so you don't have to.
       </Txt>
     </View>
   );
@@ -45,7 +45,7 @@ export default function ServicesTab() {
           const booked = !!r?.booked;
           const label = asking ? 'Finding pros…' : !r ? 'Get quotes' : booked ? 'Booked ✓' : n ? `${n} quote${n > 1 ? 's' : ''}` : 'Finding pros…';
           const bg = asking ? c.rule : !r ? c.accent : booked ? STATUS.forest : n ? STATUS.slate : c.rule;
-          const ink = asking ? c.muted : !r ? c.accentInk : n || booked ? '#fff' : c.muted;
+          const ink = asking ? c.muted : !r ? c.accentInk : n || booked ? STATUS_INK : c.muted;
           return (
             <Pressable
               key={a.id}
@@ -56,7 +56,7 @@ export default function ServicesTab() {
               disabled={asking}
               accessibilityRole="button"
               accessibilityLabel={`${a.name}: ${label}`}
-              style={{ width: '47%', flexGrow: 1, gap: 8, padding: 12, borderRadius: 18, backgroundColor: c.glassStrong, borderWidth: 1, borderColor: c.rule }}
+              style={{ width: '47%', flexGrow: 1, gap: 8, padding: 12, borderRadius: RADIUS.card, backgroundColor: c.glassStrong, borderWidth: 1, borderColor: c.rule }}
             >
               <Txt weight="600">{a.name}</Txt>
               <Txt size={11} muted style={{ lineHeight: 14 }}>
@@ -102,7 +102,7 @@ export default function ServicesTab() {
                     <Pill
                       label={bk ? 'Booked ✓' : other ? '—' : booking ? 'Booking…' : 'Book'}
                       bg={bk ? STATUS.forest : other ? c.rule : c.accent}
-                      ink={bk ? '#fff' : other ? c.muted : c.accentInk}
+                      ink={bk ? STATUS_INK : other ? c.muted : c.accentInk}
                       onPress={!r.booked && !locked ? () => book.mutate(b.id) : undefined}
                     />
                   </View>
@@ -112,7 +112,7 @@ export default function ServicesTab() {
             {collecting ? (
               <Pulse period={1600}>
                 <Txt size={12} muted style={{ marginTop: 8 }}>
-                  Asking vetted pros near you…
+                  Asking vetted service partners near you…
                 </Txt>
               </Pulse>
             ) : null}

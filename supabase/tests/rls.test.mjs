@@ -137,7 +137,7 @@ describe('quote requests and bids', () => {
     await as(db, U.sam, async (tx) => {
       const reqs = await rows(tx, 'select id, area, home_sqft, bid_count from quote_requests order by created_at');
       assert.equal(reqs.length, 2);
-      assert.deepEqual(reqs.map((r) => r.area).sort(), ['12 Linden Court · Dallas 75205', '4410 Bryn Mawr Dr · Dallas 75225']);
+      assert.deepEqual(reqs.map((r) => r.area).sort(), ['12 Linden Court · Mountain Brook 35213', '4410 Bryn Mawr Dr · Homewood 35209']);
       assert.equal(await count(tx, 'bids'), 1);
       assert.equal(await count(tx, 'bids', 'vendor_id <> $1', ['e0000000-0000-4000-8000-000000000001']), 0);
       assert.equal(await count(tx, 'homes'), 0);

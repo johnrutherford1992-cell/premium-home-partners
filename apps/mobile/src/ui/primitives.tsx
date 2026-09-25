@@ -1,10 +1,10 @@
-// React Native port of the Liquid Glass primitives (@php/ui):
+// React Native primitives in the Premium Home Partners brand (the component
+// names are kept from the Liquid Glass era so every screen imports them unchanged):
 // LqGlass, LqCard, LqButton, LqBadge, LqStat, LqSectionTitle.
 
-import { BlurView } from 'expo-blur';
 import type { ReactNode } from 'react';
-import { Platform, Pressable, StyleSheet, Text, View, type StyleProp, type TextProps, type TextStyle, type ViewStyle } from 'react-native';
-import { FONT, RADIUS, STATUS, alpha, type Tone } from '../theme/tokens';
+import { Pressable, Text, View, type StyleProp, type TextProps, type TextStyle, type ViewStyle } from 'react-native';
+import { DISPLAY_TRACKING, FONT, RADIUS, alpha, type Tone } from '../theme/tokens';
 import { usePalette } from './theme';
 
 type TxtProps = TextProps & {
@@ -16,45 +16,61 @@ type TxtProps = TextProps & {
   style?: StyleProp<TextStyle>;
 };
 
-/** Body text in the sans stack. */
-export function Txt({ size = 14, weight, color, muted, accent, style, ...rest }: TxtProps) {
+/**
+ * Each Source Sans 3 weight is its own registered family, so a weight picks a
+ * family instead of setting fontWeight (which would fake-bold the loaded face on web).
+ */
+function sansFamily(weight: TextStyle['fontWeight']): string | undefined {
+  const w = weight == null || weight === 'normal' ? 400 : weight === 'bold' ? 700 : Number(weight);
+  if (w >= 700) return FONT.sansBold;
+  if (w >= 500) return FONT.sansSemiBold;
+  return FONT.sans;
+}
+
+/**
+ * Source Sans 3 sits smaller than the system sans it replaced (x-height ~0.49
+ * vs ~0.52), so body sizes scale up a step to keep every screen's proportions.
+ */
+const BODY_SCALE = 1.07;
+const half = (n: number) => Math.round(n * 2) / 2;
+
+/** Text at an exact size: the shared base of Txt, Display and Mono. */
+function BaseText({ size, weight, color, muted, accent, style, ...rest }: TxtProps & { size: number }) {
   const c = usePalette();
   return (
     <Text
       {...rest}
-      style={[
-        { fontSize: size, fontWeight: weight, fontFamily: FONT.sans, color: color ?? (accent ? c.accent : muted ? c.muted : c.ink) },
-        style,
-      ]}
+      style={[{ fontSize: size, fontFamily: sansFamily(weight), color: color ?? (accent ? c.accent : muted ? c.muted : c.ink) }, style]}
     />
   );
 }
 
-/** Barlow Condensed 600, uppercase. */
-export function Display({ size = 34, style, ...rest }: TxtProps) {
-  return (
-    <Txt
-      {...rest}
-      size={size}
-      style={[{ fontFamily: FONT.display, textTransform: 'uppercase', lineHeight: Math.round(size * (size >= 60 ? 0.92 : 1.02)) }, style]}
-    />
-  );
+/** Body text in Source Sans 3. */
+export function Txt({ size = 14, ...rest }: TxtProps) {
+  return <BaseText {...rest} size={half(size * BODY_SCALE)} />;
 }
 
-/** JetBrains Mono, used for eyebrows and figures. */
-export function Mono({ size = 11, tracking = 0, medium, upper, style, ...rest }: TxtProps & { tracking?: number; medium?: boolean; upper?: boolean }) {
+/** Libre Caslon Display 400, sentence case, tracked tight like the site's headings. */
+export function Display({ size = 32, style, ...rest }: TxtProps) {
+  const lineHeight = Math.round(size * (size >= 48 ? 1.08 : size >= 28 ? 1.14 : 1.22));
+  const tracking = size >= 22 ? DISPLAY_TRACKING : -0.02;
+  return <BaseText {...rest} size={size} style={[{ fontFamily: FONT.display, letterSpacing: tracking * size, lineHeight }, style]} />;
+}
+
+/**
+ * Labels and figures. The site has no monospace, so this is Source Sans 3 with
+ * tabular figures (SemiBold when `medium`), sized up to match the old mono's
+ * x-height. Uppercase + tracking gives the site's nav/eyebrow look.
+ */
+export function Mono({ size = 11, tracking = 0, medium, upper, weight, style, ...rest }: TxtProps & { tracking?: number; medium?: boolean; upper?: boolean }) {
+  const s = half(size * 1.1);
+  const face: TextStyle = weight ? {} : { fontFamily: medium ? FONT.monoMedium : FONT.mono };
   return (
-    <Txt
+    <BaseText
       {...rest}
-      size={size}
-      style={[
-        {
-          fontFamily: medium ? FONT.monoMedium : FONT.mono,
-          letterSpacing: tracking * size,
-          textTransform: upper ? 'uppercase' : undefined,
-        },
-        style,
-      ]}
+      weight={weight}
+      size={s}
+      style={[{ ...face, letterSpacing: tracking * s, textTransform: upper ? 'uppercase' : undefined, fontVariant: ['tabular-nums'] }, style]}
     />
   );
 }
@@ -67,7 +83,7 @@ export function Eyebrow({ children, accent, style }: { children: ReactNode; acce
   );
 }
 
-/** Raw frosted surface: blur + hairline + soft shadow. */
+/** Flat surface: solid fill, hairline border, square corners. */
 export function LqGlass({ style, children, strong }: { style?: StyleProp<ViewStyle>; children?: ReactNode; strong?: boolean }) {
   const c = usePalette();
   return (
@@ -79,14 +95,10 @@ export function LqGlass({ style, children, strong }: { style?: StyleProp<ViewSty
           borderColor: c.rule,
           backgroundColor: strong ? c.glassStrong : c.glass,
           overflow: 'hidden',
-          boxShadow: `0 1px 2px 0 ${alpha('#000000', 0.05)}`,
         },
         style,
       ]}
     >
-      {Platform.OS !== 'android' ? (
-        <BlurView intensity={40} tint={c.dark ? 'dark' : 'light'} style={StyleSheet.absoluteFill} />
-      ) : null}
       {children}
     </View>
   );
@@ -129,22 +141,22 @@ export function LqButton({
           alignItems: 'center',
           justifyContent: 'center',
           gap: 8,
-          borderRadius: RADIUS.glass,
-          paddingHorizontal: 16,
+          borderRadius: RADIUS.button,
+          paddingHorizontal: 18,
           paddingVertical: 8,
-          minHeight: 40,
-          backgroundColor: primary ? c.accent : hovered ? c.glass : 'transparent',
+          minHeight: 44,
+          backgroundColor: primary ? c.accent : hovered && !disabled ? alpha(c.ink, 0.06) : 'transparent',
           borderWidth: primary ? 0 : 1,
-          borderColor: c.rule,
-          opacity: disabled ? 0.5 : primary && hovered ? 0.9 : 1,
-          transform: [{ scale: pressed ? 0.98 : 1 }],
+          borderColor: c.line,
+          opacity: disabled ? 0.45 : primary && hovered ? 0.9 : 1,
+          transform: [{ scale: pressed ? 0.99 : 1 }],
         },
         full && { alignSelf: 'stretch', height: 50 },
         style,
       ]}
     >
       {typeof children === 'string' || Array.isArray(children) ? (
-        <Txt size={full ? 15 : 14} weight="500" color={primary ? c.paper : c.ink}>
+        <Txt size={full ? 15 : 14} weight="600" color={primary ? c.accentInk : c.ink} style={{ letterSpacing: 0.2 }}>
           {children}
         </Txt>
       ) : (
@@ -154,24 +166,25 @@ export function LqButton({
   );
 }
 
+/** Small uppercase status tag: square, tinted, tracked like the site's nav labels. */
 export function LqBadge({ tone = 'neutral', children }: { tone?: Tone; children: ReactNode }) {
   const c = usePalette();
-  const col = tone === 'neutral' ? null : STATUS[tone];
+  const col = tone === 'neutral' ? null : c.status[tone];
   return (
     <View
       style={{
         flexDirection: 'row',
         alignItems: 'center',
         alignSelf: 'flex-start',
-        borderRadius: 999,
+        borderRadius: RADIUS.pill,
         borderWidth: 1,
-        paddingHorizontal: 8,
-        paddingVertical: 2,
-        borderColor: col ? alpha(col, 0.4) : c.rule,
-        backgroundColor: col ? alpha(col, 0.1) : c.glass,
+        paddingHorizontal: 7,
+        paddingVertical: 3,
+        borderColor: col ? alpha(col, 0.45) : c.line,
+        backgroundColor: col ? alpha(col, 0.1) : 'transparent',
       }}
     >
-      <Txt size={12} weight="500" color={col ?? c.muted}>
+      <Txt size={10.5} weight="600" color={col ?? c.muted} style={{ textTransform: 'uppercase', letterSpacing: 0.7 }}>
         {children}
       </Txt>
     </View>
@@ -180,13 +193,9 @@ export function LqBadge({ tone = 'neutral', children }: { tone?: Tone; children:
 
 export function LqStat({ label, value, sub, style }: { label: string; value: string | number; sub?: string; style?: StyleProp<ViewStyle> }) {
   return (
-    <LqCard style={[{ gap: 4 }, style]}>
-      <Txt size={12} muted style={{ textTransform: 'uppercase', letterSpacing: 0.3 }}>
-        {label}
-      </Txt>
-      <Display size={30} style={{ lineHeight: 30, textTransform: 'none' }}>
-        {value}
-      </Display>
+    <LqCard style={[{ gap: 6 }, style]}>
+      <Eyebrow>{label}</Eyebrow>
+      <Display size={30}>{value}</Display>
       {sub ? (
         <Txt size={12} muted>
           {sub}
@@ -198,7 +207,7 @@ export function LqStat({ label, value, sub, style }: { label: string; value: str
 
 export function LqSectionTitle({ children, style }: { children: ReactNode; style?: StyleProp<TextStyle> }) {
   return (
-    <Display size={18} style={[{ letterSpacing: 0.45, lineHeight: 24 }, style]} accessibilityRole="header">
+    <Display size={22} style={style} accessibilityRole="header">
       {children}
     </Display>
   );

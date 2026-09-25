@@ -3,7 +3,6 @@ import { View } from 'react-native';
 import { ErrorState, LoadingState } from '../../components/States';
 import { Table } from '../../components/Table';
 import { useOfficeQuotes } from '../../data/office';
-import { STATUS } from '../../theme/tokens';
 import { Display, LqStat, Mono, Txt } from '../../ui/primitives';
 import { usePalette } from '../../ui/theme';
 
@@ -69,7 +68,7 @@ export default function OfficeQuotes() {
                 <Mono size={12} key="l">
                   low {r.lowest != null ? money(r.lowest) : '—'}
                 </Mono>,
-                <Txt size={13} weight="600" color={r.booked ? STATUS.forest : c.accent} key="s">
+                <Txt size={13} weight="600" color={r.booked ? c.status.forest : c.accent} key="s">
                   {r.booked ? (r.bookedVendor ? 'Booked · ' + r.bookedVendor.split(' ')[0] : 'Booked') : 'Collecting'}
                 </Txt>,
               ])}

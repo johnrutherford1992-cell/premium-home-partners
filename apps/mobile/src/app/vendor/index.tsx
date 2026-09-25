@@ -8,6 +8,7 @@ import { useVendorMe, useVendorRequests } from '../../data/vendor';
 import { useMode } from '../../lib/mode';
 import { Row, Screen } from '../../ui/controls';
 import { Display, LqStat, Mono, Txt } from '../../ui/primitives';
+import { RADIUS } from '../../theme/tokens';
 import { usePalette } from '../../ui/theme';
 
 const EMPTY_BODY = {
@@ -50,7 +51,7 @@ export default function VendorRequests() {
           testID={`vendor-request-${r.category}`}
           onPress={() => router.push({ pathname: '/vendor/[id]', params: { id: r.id } })}
           accessibilityRole="button"
-          style={{ gap: 4, paddingVertical: 14, paddingHorizontal: 16, borderRadius: 18, backgroundColor: c.glassStrong, borderWidth: 1, borderColor: c.rule }}
+          style={{ gap: 4, paddingVertical: 14, paddingHorizontal: 16, borderRadius: RADIUS.card, backgroundColor: c.glassStrong, borderWidth: 1, borderColor: c.rule }}
         >
           <Row>
             <Txt size={15} weight="600">

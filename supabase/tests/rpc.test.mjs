@@ -189,7 +189,7 @@ describe('brokerage: request_quote, submit_bid, book_bid', () => {
     assert.equal(req.category, 'lawn');
     assert.equal(req.scope, 'Weekly mow, edge and blow');
     assert.equal(Number(req.base), 65);
-    assert.equal(req.area, '12 Linden Court · Dallas 75205');
+    assert.equal(req.area, '12 Linden Court · Mountain Brook 35213');
     assert.equal(req.home_sqft, 3420);
     assert.equal(req.bid_count, 0);
     assert.equal(req.home_id, HOME.elena);
@@ -320,7 +320,7 @@ describe('office: send_48h_reminders, reset_demo', () => {
     assert.equal(await count(db, 'quote_bookings'), 1);
     await call(U.marcus, 'advance_visit', { p_visit: VISIT.whit });
     await call(U.jordan, 'save_home', {
-      p_full_name: 'Jordan Q. Lee', p_address: '5 Elm St, Dallas, TX 75201', p_sqft: 1800, p_year: 2001, p_beds: 3, p_baths: 2,
+      p_full_name: 'Jordan Q. Lee', p_address: '5 Elm St, Homewood, AL 35209', p_sqft: 1800, p_year: 2001, p_beds: 3, p_baths: 2,
       p_floors: 1, p_zones: 1, p_pets: false, p_water: 'city_hard',
     });
     await db.query(`update pricing_settings set labor_rate = 120, coordination_fee = 0.2 where id = 1`);
@@ -383,7 +383,7 @@ describe('onboarding: save_home, set_home_appliances, start_plan', () => {
   before(reset);
 
   const homeArgs = {
-    p_full_name: 'Jordan Lee', p_address: '5 Elm St, Dallas, TX 75201', p_sqft: 1800, p_year: 2001, p_beds: 3, p_baths: 2,
+    p_full_name: 'Jordan Lee', p_address: '5 Elm St, Homewood, AL 35209', p_sqft: 1800, p_year: 2001, p_beds: 3, p_baths: 2,
     p_floors: 1, p_zones: 1, p_pets: false, p_water: 'city_hard',
   };
 

@@ -246,7 +246,7 @@ On top of `20260924000000_init.sql`:
 - `appliance_models`: `name text` ("Carrier Infinity furnace"), `note text` ("Filter 16×25×4")
 - `plan_builds`: `step text`, `summary jsonb`, `error text`, `updated_at timestamptz default now()`
 - `visits`: `offered_slots jsonb` (array of `{"start": iso, "end": iso}`), `started_at`, `arrived_at`, `completed_at timestamptz`
-- `quote_requests`: `area text` (e.g. "12 Linden Court · Dallas 75205", no owner name), `home_sqft int`, `base numeric(10,2)`, `bid_count int not null default 0`
+- `quote_requests`: `area text` (e.g. "12 Linden Court · Mountain Brook 35213", no owner name), `home_sqft int`, `base numeric(10,2)`, `bid_count int not null default 0`
 - new table `quote_bookings(request_id pk, bid_id, coordination_fee numeric(10,2), booked_at)`: the booking money, readable only by the request's owner and office (vendors can't derive a rival's price from the fee)
 - `bids`: `vendor_name text`, `vendor_rating numeric(2,1)`, both copied from `vendors` by a `before insert` trigger
 - new table `service_categories(id text pk, name text, sub text, base numeric)`, seeded with the six add-ons from `apps/mobile/src/data/seed.ts` (`lawn, land, win, press, lights, tree`). Readable by any signed-in user.
@@ -382,7 +382,7 @@ Fixed user ids: `a0000000-0000-4000-8000-0000000000NN`, with NN = 01 office,
 02 Marcus, 03 Dana, 04 vendor Sam, 05 Elena, 06 Jordan, 07 David, 08
 Whitfields, 09 Priya, 10 Bells.
 
-**Elena's home.** 12 Linden Court, Dallas, TX 75205: 3,420 sq ft, built 2006,
+**Elena's home.** 12 Linden Court, Mountain Brook, AL 35213: 3,420 sq ft, built 2006,
 4 bd / 3.5 ba, 2 floors, 2 zones, pets, city · hard water. Notes: "Gate code
 4471. Heater in garage, back left." Her five appliances are the `APPLIANCES` in
 `src/data/seed.ts`, all linked to `appliance_models`. She has an active plan
@@ -393,10 +393,10 @@ Whitfields, 09 Priya, 10 Bells.
 | Client | Day, time | Tech | Plan | Tasks | Status |
 |---|---|---|---|---|---|
 | Elena | today 9:00–11:00 AM | Marcus | recommended | all 7 | scheduled, unconfirmed |
-| David Okafor, 4410 Bryn Mawr Dr, Dallas, TX 75225 | today 12:00–2:00 PM | Marcus | medium | medium baseline | confirmed |
-| The Whitfields, 88 Beverly Dr, Dallas, TX 75205 | today 3:00–5:00 PM | Marcus | high | all 7 | confirmed |
-| Priya Shah, 17 Stonebridge Dr, Dallas, TX 75204 | tomorrow 9:00 AM | Dana | recommended | | awaiting (unconfirmed) |
-| Mark & Jo Bell, 203 Lakewood Blvd, Dallas, TX 75214 | today +2, 10:00 AM | Dana | low | | confirmed |
+| David Okafor, 4410 Bryn Mawr Dr, Homewood, AL 35209 | today 12:00–2:00 PM | Marcus | medium | medium baseline | confirmed |
+| The Whitfields, 88 Beverly Dr, Mountain Brook, AL 35223 | today 3:00–5:00 PM | Marcus | high | all 7 | confirmed |
+| Priya Shah, 17 Stonebridge Dr, Vestavia Hills, AL 35216 | tomorrow 9:00 AM | Dana | recommended | | awaiting (unconfirmed) |
+| Mark & Jo Bell, 203 Lakewood Blvd, Birmingham, AL 35205 | today +2, 10:00 AM | Dana | low | | confirmed |
 
 Elena's `offered_slots` are today 9–11 AM, tomorrow 1–3 PM, and today +3 8–10 AM.
 

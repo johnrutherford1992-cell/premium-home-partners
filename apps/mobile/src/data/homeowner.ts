@@ -1027,15 +1027,53 @@ export function useOnboardingDraft(): { draft: OnboardingDraft & DraftActions; h
   return { draft, hydrated: !!store && (persisted || timedOut) };
 }
 
-/** Remove the persisted draft (after the plan starts). */
+const draftStorageKey = (userId: string) => `php-onboarding-${userId}`;
+
+/** Remove the persisted draft (after the plan starts, or for a new sign-up). */
 export function clearOnboardingDraft(userId: string | null) {
   if (!userId) return;
   const s = draftStores.get(userId);
-  if (!s) return;
   // No setState: the screen that's leaving keeps its last frame, and the next
   // visit to onboarding builds a fresh store from the (now empty) storage.
   draftStores.delete(userId);
-  s.persist.clearStorage();
+  if (s) s.persist.clearStorage();
+  // A draft saved in an earlier session has no store in memory yet: remove it from storage directly.
+  else void AsyncStorage.removeItem(draftStorageKey(userId)).catch(() => {});
+}
+
+/**
+ * Start `userId`'s onboarding over for a new customer: the old draft is
+ * discarded and the new one opens on step 1 ("Where's home?") with `fullName`
+ * filled in. Resolves once the draft is stored, so onboarding opens on it.
+ */
+export async function resetOnboardingDraft(userId: string, fullName: string): Promise<void> {
+  const old = draftStores.get(userId);
+  draftStores.delete(userId);
+  try {
+    old?.persist.clearStorage();
+    await AsyncStorage.removeItem(draftStorageKey(userId));
+  } catch {
+    // Storage unavailable: the new store below still starts empty in memory.
+  }
+  const s = draftStore(userId, fullName);
+  // Storage is empty now, so hydration only confirms the defaults; wait for it
+  // so it can't overwrite the state set below. Never block on a stuck storage.
+  if (!s.persist.hasHydrated()) {
+    await new Promise<void>((resolve) => {
+      const t = setTimeout(resolve, 1500);
+      const unsub = s.persist.onFinishHydration(() => {
+        clearTimeout(t);
+        unsub();
+        resolve();
+      });
+      if (s.persist.hasHydrated()) {
+        clearTimeout(t);
+        unsub();
+        resolve();
+      }
+    });
+  }
+  s.setState({ ...initialDraft(fullName), step: 1 });
 }
 
 export interface LookupAppliance {
