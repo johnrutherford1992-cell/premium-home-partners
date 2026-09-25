@@ -54,18 +54,24 @@ export const MIGRATIONS = readdirSync(join(supabaseDir, 'migrations'))
   .filter((f) => f.endsWith('.sql'))
   .sort();
 
-/** Fresh database: stubs, every migration, then seed.sql. */
-export async function createDb({ seed = true } = {}) {
+/** Run one migration file (by name) against db. */
+export async function applyMigration(db, f) {
+  try {
+    await db.exec(read('migrations', f));
+  } catch (e) {
+    e.message = `${f}: ${e.message}`;
+    throw e;
+  }
+}
+
+/**
+ * Fresh database: stubs, every migration (or just `migrations`, in order), then
+ * seed.sql. Pass `migrations` to build an older schema and upgrade it by hand.
+ */
+export async function createDb({ seed = true, migrations = MIGRATIONS } = {}) {
   const db = await PGlite.create({ extensions: { pgcrypto } });
   await db.exec(read('tests', 'supabase-stubs.sql'));
-  for (const f of MIGRATIONS) {
-    try {
-      await db.exec(read('migrations', f));
-    } catch (e) {
-      e.message = `${f}: ${e.message}`;
-      throw e;
-    }
-  }
+  for (const f of migrations) await applyMigration(db, f);
   if (seed) await db.exec(read('seed.sql'));
   return db;
 }
@@ -127,7 +133,7 @@ export async function count(tx, table, where = 'true', params = []) {
 export const TABLES = [
   'profiles', 'homes', 'appliances', 'appliance_models', 'model_tasks', 'parts', 'part_prices',
   'pricing_settings', 'task_defaults', 'plan_builds', 'plans', 'visits', 'visit_tasks', 'visit_photos',
-  'reports', 'notices', 'vendors', 'quote_requests', 'bids', 'service_categories',
+  'reports', 'notices', 'vendors', 'quote_requests', 'quote_bookings', 'bids', 'service_categories',
 ];
 
 /** Row counts of every public table plus auth users/identities (as the database owner). */
@@ -157,6 +163,7 @@ export const SEED_COUNTS = {
   notices: 5,
   vendors: 3,
   quote_requests: 0,
+  quote_bookings: 0,
   bids: 0,
   service_categories: 6,
   'auth.users': 10,

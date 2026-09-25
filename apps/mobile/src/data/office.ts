@@ -342,14 +342,16 @@ interface QuoteRow {
   created_at: string | null;
   booked_bid_id: string | null;
   bid_count: number | null;
-  coordination_fee: unknown;
+  /** One-to-one on request_id (PostgREST returns an object or null; an array is tolerated too). */
+  quote_bookings?: One<{ coordination_fee: unknown }>;
   homes?: One<{ owner?: One<{ full_name: string | null }> }>;
   bids?: { id: string; price: unknown; vendor_name: string | null }[] | null;
 }
 
+// The coordination fee lives in quote_bookings (owner + office only), never on the request vendors read.
 const QUOTES_SELECT =
-  'id,category,status,created_at,booked_bid_id,bid_count,coordination_fee,homes(owner:profiles!homes_owner_id_fkey(full_name)),bids(id,price,vendor_name)';
-const QUOTES_TABLES = ['quote_requests', 'bids', 'homes', 'profiles', 'vendors'];
+  'id,category,status,created_at,booked_bid_id,bid_count,quote_bookings(coordination_fee),homes(owner:profiles!homes_owner_id_fkey(full_name)),bids(id,price,vendor_name)';
+const QUOTES_TABLES = ['quote_requests', 'quote_bookings', 'bids', 'homes', 'profiles', 'vendors'];
 
 /** Request rows → the office table and stats (pure). */
 export function toOfficeQuotes(rows: QuoteRow[], vettedVendors: number): OfficeQuotesData {
@@ -375,7 +377,7 @@ export function toOfficeQuotes(rows: QuoteRow[], vettedVendors: number): OfficeQ
     rows: out,
     open: rows.filter((r) => r.status === 'open').length,
     booked: booked.length,
-    fees: Math.round(booked.reduce((a, r) => a + num(r.coordination_fee), 0) * 100) / 100,
+    fees: Math.round(booked.reduce((a, r) => a + num(one(r.quote_bookings)?.coordination_fee), 0) * 100) / 100,
     vettedVendors,
   };
 }

@@ -24,7 +24,7 @@ async function visible(userId, tables) {
 
 const ALL = [
   'profiles', 'homes', 'appliances', 'plans', 'plan_builds', 'visits', 'visit_tasks', 'visit_photos', 'reports',
-  'notices', 'vendors', 'quote_requests', 'bids', 'service_categories', 'appliance_models', 'model_tasks',
+  'notices', 'vendors', 'quote_requests', 'quote_bookings', 'bids', 'service_categories', 'appliance_models', 'model_tasks',
   'parts', 'part_prices', 'pricing_settings', 'task_defaults',
 ];
 
@@ -34,7 +34,7 @@ describe('select visibility after seeding', () => {
   test('homeowner Elena sees her home, visit, tasks, notices and her tech only', async () => {
     assert.deepEqual(await visible(U.elena, ALL), {
       profiles: 2, homes: 1, appliances: 5, plans: 1, plan_builds: 0, visits: 1, visit_tasks: 7, visit_photos: 0,
-      reports: 0, notices: 1, vendors: 0, quote_requests: 0, bids: 0, ...REFERENCE,
+      reports: 0, notices: 1, vendors: 0, quote_requests: 0, quote_bookings: 0, bids: 0, ...REFERENCE,
     });
     const profiles = await as(db, U.elena, (tx) => rows(tx, 'select id, role from profiles order by id'));
     assert.deepEqual(profiles.map((p) => p.id), [U.marcus, U.elena]);
@@ -54,14 +54,14 @@ describe('select visibility after seeding', () => {
   test('homeowner Jordan (no home yet) sees only himself and reference data', async () => {
     assert.deepEqual(await visible(U.jordan, ALL), {
       profiles: 1, homes: 0, appliances: 0, plans: 0, plan_builds: 0, visits: 0, visit_tasks: 0, visit_photos: 0,
-      reports: 0, notices: 0, vendors: 0, quote_requests: 0, bids: 0, ...REFERENCE,
+      reports: 0, notices: 0, vendors: 0, quote_requests: 0, quote_bookings: 0, bids: 0, ...REFERENCE,
     });
   });
 
   test('tech Marcus sees only his three visits and those clients', async () => {
     assert.deepEqual(await visible(U.marcus, ALL), {
       profiles: 4, homes: 3, appliances: 5, plans: 3, plan_builds: 0, visits: 3, visit_tasks: 21, visit_photos: 0,
-      reports: 0, notices: 3, vendors: 0, quote_requests: 0, bids: 0, ...REFERENCE,
+      reports: 0, notices: 3, vendors: 0, quote_requests: 0, quote_bookings: 0, bids: 0, ...REFERENCE,
     });
     await as(db, U.marcus, async (tx) => {
       const ids = (await rows(tx, 'select id from visits order by window_start')).map((r) => r.id);
@@ -82,14 +82,14 @@ describe('select visibility after seeding', () => {
   test('vendor Sam sees no homeowner homes/profiles/visits, only his own vendor row', async () => {
     assert.deepEqual(await visible(U.sam, ALL), {
       profiles: 1, homes: 0, appliances: 0, plans: 0, plan_builds: 0, visits: 0, visit_tasks: 0, visit_photos: 0,
-      reports: 0, notices: 0, vendors: 1, quote_requests: 0, bids: 0, ...REFERENCE,
+      reports: 0, notices: 0, vendors: 1, quote_requests: 0, quote_bookings: 0, bids: 0, ...REFERENCE,
     });
   });
 
   test('office sees everything', async () => {
     assert.deepEqual(await visible(U.office, ALL), {
       profiles: 10, homes: 5, appliances: 5, plans: 5, plan_builds: 0, visits: 5, visit_tasks: 34, visit_photos: 0,
-      reports: 0, notices: 5, vendors: 3, quote_requests: 0, bids: 0, ...REFERENCE,
+      reports: 0, notices: 5, vendors: 3, quote_requests: 0, quote_bookings: 0, bids: 0, ...REFERENCE,
     });
   });
 
@@ -146,7 +146,7 @@ describe('quote requests and bids', () => {
   });
 
   test('tech sees no requests or bids', async () => {
-    assert.deepEqual(await visible(U.marcus, ['quote_requests', 'bids', 'vendors']), { quote_requests: 0, bids: 0, vendors: 0 });
+    assert.deepEqual(await visible(U.marcus, ['quote_requests', 'quote_bookings', 'bids', 'vendors']), { quote_requests: 0, quote_bookings: 0, bids: 0, vendors: 0 });
   });
 
   test('office sees all requests and bids', async () => {
@@ -246,8 +246,8 @@ describe('realtime publication', () => {
   test('includes every live table', async () => {
     const t = (await db.query(`select tablename from pg_publication_tables where pubname = 'supabase_realtime' order by 1`)).rows.map((r) => r.tablename);
     assert.deepEqual(t, [
-      'bids', 'notices', 'plan_builds', 'pricing_settings', 'quote_requests', 'reports', 'task_defaults', 'visit_photos',
-      'visit_tasks', 'visits',
+      'bids', 'notices', 'plan_builds', 'pricing_settings', 'quote_bookings', 'quote_requests', 'reports', 'task_defaults',
+      'visit_photos', 'visit_tasks', 'visits',
     ]);
   });
 });

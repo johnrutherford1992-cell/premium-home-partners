@@ -39,13 +39,16 @@ const FALLBACK_BETA = 'server-side-fallback-2026-07-01';
 let fallbackAccepted = true;
 
 const apiKey = () => Deno.env.get('ANTHROPIC_API_KEY')?.trim() || null;
+// Needed only for keys that aren't scoped to a workspace: the API then requires
+// the anthropic-workspace-id header. Workspace-scoped keys don't need it.
+const workspaceId = () => Deno.env.get('ANTHROPIC_WORKSPACE_ID')?.trim() || null;
 
 Deno.serve(async (req) => {
   const early = preflight(req) ?? allowMethods(req, ['GET', 'POST']);
   if (early) return early;
 
   // Pre-demo check: is plate reading configured? Never reveals the key.
-  if (req.method === 'GET') return json({ ok: true, ai: apiKey() !== null });
+  if (req.method === 'GET') return json({ ok: true, ai: apiKey() !== null, workspace: workspaceId() !== null });
 
   try {
     const caller = await requireCaller(req);
@@ -190,7 +193,13 @@ async function readPlate(
   mediaType: ImageType,
   hints: { brand?: unknown; model?: unknown; serial?: unknown },
 ): Promise<ReadOutcome> {
-  const client = new Anthropic({ apiKey: key, maxRetries: 0, timeout: AI_TIMEOUT_MS });
+  const ws = workspaceId();
+  const client = new Anthropic({
+    apiKey: key,
+    maxRetries: 0,
+    timeout: AI_TIMEOUT_MS,
+    ...(ws ? { defaultHeaders: { 'anthropic-workspace-id': ws } } : {}),
+  });
   const controller = new AbortController();
   const timer = setTimeout(() => controller.abort(), AI_TIMEOUT_MS);
   const params = {

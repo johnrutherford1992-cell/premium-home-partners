@@ -257,17 +257,24 @@ describe('brokerage: request_quote, submit_bid, book_bid', () => {
     await fails(call(U.elena, 'book_bid', { p_bid: '00000000-0000-4000-8000-000000000000' }), "We couldn't find that bid.");
   });
 
-  test('book_bid: first booking wins, fee = 10% of price', async () => {
+  test('book_bid: first booking wins, fee = 10% of price (recorded in quote_bookings)', async () => {
     const booked = await call(U.elena, 'book_bid', { p_bid: summitBid.id });
     assert.equal(booked.status, 'booked');
     assert.equal(booked.booked_bid_id, summitBid.id);
-    assert.ok(booked.booked_at);
-    assert.equal(Number(booked.coordination_fee), 5.7);
+    // The money is no longer on the request row vendors can read.
+    assert.equal('coordination_fee' in booked, false);
+    assert.equal('booked_at' in booked, false);
+    const booking = await one(db, 'select bid_id, coordination_fee, booked_at from quote_bookings where request_id = $1', [req.id]);
+    assert.equal(booking.bid_id, summitBid.id);
+    assert.equal(Number(booking.coordination_fee), 5.7);
+    assert.ok(booking.booked_at);
     // Same bid again (double tap) returns the booking; another bid loses.
     assert.equal((await call(U.elena, 'book_bid', { p_bid: summitBid.id })).booked_bid_id, summitBid.id);
     await fails(call(U.elena, 'book_bid', { p_bid: samBid.id }), 'This request was already booked.');
-    const after = await one(db, 'select booked_bid_id, coordination_fee from quote_requests where id = $1', [req.id]);
+    const after = await one(db, 'select booked_bid_id from quote_requests where id = $1', [req.id]);
     assert.equal(after.booked_bid_id, summitBid.id);
+    assert.deepEqual(await rows(db, 'select bid_id, coordination_fee::text as fee from quote_bookings where request_id = $1', [req.id]),
+      [{ bid_id: summitBid.id, fee: '5.70' }]);
   });
 
   test('a booked request is closed to new bids and still returned by request_quote', async () => {
@@ -308,7 +315,9 @@ describe('office: send_48h_reminders, reset_demo', () => {
     await fails(call(U.sam, 'reset_demo', {}), NO_ACCESS);
     // Make a mess across every table.
     const r = await call(U.elena, 'request_quote', { p_category: 'press' });
-    await call(U.sam, 'submit_bid', { p_request: r.id, p_price: 300, p_available_on: '2026-10-16' });
+    const b = await call(U.sam, 'submit_bid', { p_request: r.id, p_price: 300, p_available_on: '2026-10-16' });
+    await call(U.elena, 'book_bid', { p_bid: b.id });
+    assert.equal(await count(db, 'quote_bookings'), 1);
     await call(U.marcus, 'advance_visit', { p_visit: VISIT.whit });
     await call(U.jordan, 'save_home', {
       p_full_name: 'Jordan Q. Lee', p_address: '5 Elm St, Dallas, TX 75201', p_sqft: 1800, p_year: 2001, p_beds: 3, p_baths: 2,

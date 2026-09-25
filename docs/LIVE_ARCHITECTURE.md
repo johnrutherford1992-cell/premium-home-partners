@@ -246,7 +246,8 @@ On top of `20260924000000_init.sql`:
 - `appliance_models`: `name text` ("Carrier Infinity furnace"), `note text` ("Filter 16×25×4")
 - `plan_builds`: `step text`, `summary jsonb`, `error text`, `updated_at timestamptz default now()`
 - `visits`: `offered_slots jsonb` (array of `{"start": iso, "end": iso}`), `started_at`, `arrived_at`, `completed_at timestamptz`
-- `quote_requests`: `area text` (e.g. "12 Linden Court · Dallas 75205", no owner name), `home_sqft int`, `base numeric(10,2)`, `bid_count int not null default 0`, `coordination_fee numeric(10,2)`, `booked_at timestamptz`
+- `quote_requests`: `area text` (e.g. "12 Linden Court · Dallas 75205", no owner name), `home_sqft int`, `base numeric(10,2)`, `bid_count int not null default 0`
+- new table `quote_bookings(request_id pk, bid_id, coordination_fee numeric(10,2), booked_at)`: the booking money, readable only by the request's owner and office (vendors can't derive a rival's price from the fee)
 - `bids`: `vendor_name text`, `vendor_rating numeric(2,1)`, both copied from `vendors` by a `before insert` trigger
 - new table `service_categories(id text pk, name text, sub text, base numeric)`, seeded with the six add-ons from `apps/mobile/src/data/seed.ts` (`lawn, land, win, press, lights, tree`). Readable by any signed-in user.
 - partial unique index: one active request per home and category, `unique (home_id, category) where status in ('open','booked')`
@@ -275,7 +276,10 @@ On top of `20260924000000_init.sql`:
 
 **Realtime publication**: the existing `visits, visit_tasks, quote_requests,
 bids, plan_builds` plus `pricing_settings, task_defaults, reports,
-visit_photos, notices`.
+visit_photos, notices, quote_bookings`.
+
+Vendors see a quote request only while it is open or once they have bid on it
+(`supabase/migrations/20260925020000_review_fixes.sql`).
 
 ### RPC catalog
 
@@ -293,7 +297,7 @@ All RPCs are `security definer set search_path = public`, granted to
 | `complete_visit(p_visit uuid) returns reports` | assigned tech | the visit must be `onsite` with every task done. Sets `status = 'done'` and `completed_at`, inserts the report (`health_score` 86, and `findings` `[{"text":"Anode rod 70% depleted","tone":"ochre","badge":"Quote $185"},{"text":"Dryer vent airflow normal","tone":"forest","badge":"Good"}]` when the home has a water heater or dryer, else `[]`), and inserts notice `report`/`push`. Idempotent: a second call returns the existing report. |
 | `request_quote(p_category text) returns quote_requests` | homeowner with a home | idempotent. If the home already has an open or booked request for that category, return it. Otherwise insert one with `scope` and `base` from `service_categories`, `area` = street · city ZIP, and `home_sqft`. |
 | `submit_bid(p_request uuid, p_price numeric, p_available_on date) returns bids` | vendor | the caller's vetted vendor row must include the category and the request must be open. Errors: "This request is closed." and "Enter a price above $0." One bid per vendor: a repeat call returns the existing bid. |
-| `book_bid(p_bid uuid) returns quote_requests` | owner | the request must be open (first booking wins): `status = 'booked'`, `booked_bid_id`, `booked_at`, `coordination_fee = round(price * pricing_settings.coordination_fee, 2)`. Error: "This request was already booked." |
+| `book_bid(p_bid uuid) returns quote_requests` | owner | the request must be open (first booking wins): `status = 'booked'`, `booked_bid_id`, and a `quote_bookings` row with `coordination_fee = round(price * pricing_settings.coordination_fee, 2)`. Error: "This request was already booked." |
 | `send_48h_reminders() returns int` | office | inserts notice `48h`/`push` for every visit in the next 7 days that isn't done and has no `48h` notice yet; returns the count |
 | `set_plan_tier(p_tier tier_key, p_monthly numeric, p_annual numeric, p_materials numeric, p_labor numeric, p_next_tasks text[]) returns plans` | owner | updates the active plan. If the current visit is still `scheduled` with no tasks done, replaces its `visit_tasks` with `p_next_tasks`, taking names from `task_defaults`. |
 | `save_home(p_full_name text, p_address text, p_sqft int, p_year int, p_beds numeric, p_baths numeric, p_floors int, p_zones int, p_pets boolean, p_water text) returns homes` | homeowner | upserts the caller's single home and sets `profiles.full_name` |

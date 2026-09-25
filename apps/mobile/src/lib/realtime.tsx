@@ -22,6 +22,7 @@ export const REALTIME_TABLES = [
   'reports',
   'visit_photos',
   'notices',
+  'quote_bookings',
 ] as const;
 
 /**
