@@ -1,0 +1,1933 @@
+{
+  "origin": "https://www.premiumhomepartners.com",
+  "pages": [
+    {
+      "url": "https://www.premiumhomepartners.com/",
+      "name": "home",
+      "title": "Premium Home Partners",
+      "description": "",
+      "colors": [
+        {
+          "value": "rgb(250, 250, 250)",
+          "count": 133,
+          "where": [
+            "text:body",
+            "text:header/nav",
+            "text:link/button",
+            "text:heading",
+            "text:footer"
+          ]
+        },
+        {
+          "value": "rgb(13, 30, 48)",
+          "count": 48,
+          "where": [
+            "text:link/button",
+            "text:body",
+            "bg:body",
+            "text:heading",
+            "bg:footer"
+          ]
+        },
+        {
+          "value": "rgb(220, 220, 220)",
+          "count": 24,
+          "where": [
+            "bg:link/button",
+            "text:link/button",
+            "text:header/nav",
+            "bg:header/nav",
+            "text:heading",
+            "bg:body"
+          ]
+        },
+        {
+          "value": "rgb(0, 0, 0)",
+          "count": 14,
+          "where": [
+            "text:link/button",
+            "text:header/nav"
+          ]
+        },
+        {
+          "value": "rgb(255, 255, 255)",
+          "count": 1,
+          "where": [
+            "text:body"
+          ]
+        },
+        {
+          "value": "rgba(13, 30, 48, 0.14)",
+          "count": 1,
+          "where": [
+            "bg:body"
+          ]
+        }
+      ],
+      "fonts": [
+        {
+          "value": "\"Source Sans Pro\" | 400 | 16px",
+          "count": 178,
+          "where": [
+            "body",
+            "link/button",
+            "header/nav",
+            "footer"
+          ]
+        },
+        {
+          "value": "sans-serif | 400 | 16px",
+          "count": 8,
+          "where": [
+            "body"
+          ]
+        },
+        {
+          "value": "\"Source Sans Pro\" | 400 | 0px",
+          "count": 6,
+          "where": [
+            "header/nav",
+            "link/button"
+          ]
+        },
+        {
+          "value": "\"Libre Caslon Display\" | 400 | 36.736px | ls -1.46944px",
+          "count": 3,
+          "where": [
+            "heading"
+          ]
+        },
+        {
+          "value": "\"Source Sans Pro\" | 400 | 10px",
+          "count": 2,
+          "where": [
+            "body"
+          ]
+        },
+        {
+          "value": "\"Libre Caslon Display\" | 400 | 67.84px | ls -2.7136px",
+          "count": 2,
+          "where": [
+            "heading",
+            "body"
+          ]
+        },
+        {
+          "value": "\"Source Sans Pro\" | 400 | 24.64px",
+          "count": 2,
+          "where": [
+            "body"
+          ]
+        },
+        {
+          "value": "\"Source Sans Pro\" | 400 | 12.544px | uppercase | ls 0.75264px",
+          "count": 1,
+          "where": [
+            "link/button"
+          ]
+        },
+        {
+          "value": "\"Source Sans Pro\" | 400 | 16px | ls 0.32px",
+          "count": 1,
+          "where": [
+            "link/button"
+          ]
+        }
+      ],
+      "imgs": [
+        {
+          "tag": "svg",
+          "src": null,
+          "alt": null,
+          "cls": "icon icon--cart",
+          "inHeader": false,
+          "w": 0,
+          "h": 0,
+          "svg": "<svg class=\"icon icon--cart\" width=\"61\" height=\"49\" viewBox=\"0 0 61 49\">\n  <path fill-rule=\"evenodd\" clip-rule=\"evenodd\" d=\"M0.5 2C0.5 1.17157 1.17157 0.5 2 0.5H13.6362C14.3878 0.5 15.0234 1.05632 15.123 1.80135L16.431 11.5916H59C59.5122 11.5916 59.989 11.8529 60.2645 12.2847C60.54 12.7165 60.5762 13.2591 60.3604 13.7236L50.182 35.632C49.9361 36.1614 49.4054 36.5 48.8217 36.5H18.0453C17.2937 36.5 16.6581 35.9437 16.5585 35.1987L12.3233 3.5H2C1.17157 3.5 0.5 2.82843 0.5 2ZM16.8319 14.5916L19.3582 33.5H47.8646L56.6491 14.5916H16.8319Z\"></path>\n  <path d=\"M18.589 35H49.7083L60 13H16L18.589 35Z\"></path>\n  <path d=\"M21 49C23.2091 49 25 47.2091 25 45C25 42.7909 23.2091 41 21 41C18.7909 41 17 42.7909 17 45C17 47.2091 18.7909 49 21 49Z\"></path>\n  <path d=\"M45 49C47.2091 49 49 47.2091 49 45C49 42.7909 47.2091 41 45 41C42.7909 41 41 42.7909 41 45C41 47.2091 42.7909 49 45 49Z\"></path>\n</svg>"
+        },
+        {
+          "tag": "svg",
+          "src": null,
+          "alt": null,
+          "cls": null,
+          "inHeader": true,
+          "w": 0,
+          "h": 0,
+          "svg": "<svg style=\"display:none\" viewBox=\"0 0 22 22\" xmlns=\"http://www.w3.org/2000/svg\">\n  <symbol id=\"circle\">\n    <path d=\"M11.5 17C14.5376 17 17 14.5376 17 11.5C17 8.46243 14.5376 6 11.5 6C8.46243 6 6 8.46243 6 11.5C6 14.5376 8.46243 17 11.5 17Z\" fill=\"none\"></path>\n  </symbol>\n\n  <symbol id=\"circleFilled\">\n    <path d=\"M11.5 17C14.5376 17 17 14.5376 17 11.5C17 8.46243 14.5376 6 11.5 6C8.46243 6 6 8.46243 6 11.5C6 14.5376 8.46243 17 11.5 17Z\"></path>\n  </symbol>\n\n  <symbol id=\"dash\">\n    <path d=\"M11 11H19H3\"></path>\n  </symbol>\n\n  <symbol id=\"squareFilled\">\n    <rect x=\"6\" y=\"6\" width=\"11\" height=\"11\"></rect>\n  </symbol>\n\n  <symbol id=\"square\">\n    <rect x=\"7\" y=\"7\" width=\"9\" height=\"9\" fill=\"none\" stroke=\"inherit\"></rect>\n  </symbol>\n  \n  <symbol id=\"plus\">\n    <path d=\"M11 3V19\"></path>\n    <path d=\"M19 11L3 11\"></path>\n  </symbol>\n  \n  <symbol id=\"closedArrow\">\n    <path d=\"M11 11V2M11 18.1797L17 11.1477L5 11.1477L11 18.1797Z\" fill=\"none\"></path>\n  </symbol>\n  \n  <symbol id=\"closedArrowFilled\">\n    <path d=\"M11 11L11 2\" stroke=\"inherit\" fill=\"none\"></path>\n    <path fill-rule=\"evenodd\" clip-rule=\"evenodd\" d=\"M2.74695 9.38428L19.038 9.38428L10.8925 19.0846L2.74695 9.38428Z\" stroke-width=\"1\"></path>\n  </symbol>\n  \n  <symbol id=\"closedArrowHead\" viewBox=\"0 0 22 22\" xmlns=\"http://www.w3.org/2000/symbol\">\n    <path d=\"M18 7L11 15L4 7L18 7Z\" fill=\"none\" stroke=\"inherit\"></path>\n  </symbol>\n  \n  \n  <symbol id=\"closedArrowHeadFilled\" viewBox=\"0 0 22 22\" xmlns=\"http://www.w3.org/2000/symbol\">\n    <path d=\"M18.875 6.5L11 15.5L3.125 6.5L18.875 6.5Z\"></path>\n  </symbol>\n  \n  <symbol id=\"openArrow\">\n    <path d=\"M11 18.3591L11 3\" stroke=\"inherit\" fill=\"none\"></path>\n    <path d=\"M18 11.5L11 18.5L4 11.5\" stroke=\"inherit\" fill=\"none\"></path>\n  </symbol>\n  \n  <symbol id=\"openArrowHead\">\n    <path d=\"M18 7L11 14L4 7\" fill=\"none\"></path>\n  </symbol>\n\n  <symbol id=\"pinchedArrow\">\n    <path d=\"M11 17.3591L11 2\" fill=\"none\"></path>\n    <path d=\"M2 11C5.85455 12.2308 8.81818 14.9038 11 18C13.1818 14.8269 16.1455 12.1538 20 11\" fill=\"none\"></path>\n  </symbol>\n\n  <symbol id=\"pinchedArrowFilled\">\n    <path d=\"M11.05 10.4894C7.04096 8.73759 1.05005 8 1.05005 8C6.20459 11.3191 9.41368 14.1773 11.05 21C12.6864 14.0851 15.8955 11.227 21.05 8C21.05 8 15.0591 8.73759 11.05 10.4894Z\" stroke-width=\"1\"></path>\n    <path d=\"M11 11L11 1\" fill=\"none\"></path>\n  </symbol>\n\n  <symbol id=\"pinchedArrowHead\">\n    <path d=\"M2 7.24091C5.85455 8.40454 8.81818 10.9318 11 13.8591C13.1818 10.8591 16.1455 8.33181 20 7.24091\" fill=\"none\"></path>\n  </symbol>\n  \n  <symbol id=\"pinchedArrowHeadFilled\">\n    <path d=\"M11.05 7.1591C7.04096 5.60456 1.05005 4.95001 1.05005 4.95001C6.20459 7.89547 9.41368 10.4318 11.05 16.4864C12.6864 10.35 15.8955 7.81365 21.05 4.95001C21.05 4.95001 15.0591 5.60456 11.05 7.1591Z\"></path>\n  </symbol>\n\n</svg>"
+        },
+        {
+          "tag": "img",
+          "src": "https://images.squarespace-cdn.com/content/v1/698250781730ac02db2c8a80/b648517c-0be5-4ff1-ace0-4ed7bb671f48/PHP_Logo_HorizontalWhite.png?format=1500w",
+          "alt": "Premium Home Partners",
+          "cls": "",
+          "inHeader": true,
+          "w": 277,
+          "h": 83
+        },
+        {
+          "tag": "img",
+          "src": "https://images.squarespace-cdn.com/content/v1/698250781730ac02db2c8a80/b648517c-0be5-4ff1-ace0-4ed7bb671f48/PHP_Logo_HorizontalWhite.png?format=1500w",
+          "alt": "Premium Home Partners",
+          "cls": "",
+          "inHeader": true,
+          "w": 0,
+          "h": 0
+        },
+        {
+          "tag": "img",
+          "src": "https://images.squarespace-cdn.com/content/v1/698250781730ac02db2c8a80/b1cf54d2-a80b-445f-ad0a-411e48898017/Kitchen-to-Windows-WEB.jpg?format=1500w",
+          "alt": "",
+          "cls": "",
+          "inHeader": false,
+          "w": 1440,
+          "h": 705
+        },
+        {
+          "tag": "img",
+          "src": "https://images.squarespace-cdn.com/content/v1/698250781730ac02db2c8a80/f9817f7a-3d20-4904-8464-c46e04781490/841A3366.png?format=750w",
+          "alt": "",
+          "cls": "",
+          "inHeader": false,
+          "w": 501,
+          "h": 810
+        },
+        {
+          "tag": "svg",
+          "src": null,
+          "alt": null,
+          "cls": null,
+          "inHeader": false,
+          "w": 0,
+          "h": 0
+        }
+      ],
+      "icons": [
+        "https://images.squarespace-cdn.com/content/v1/698250781730ac02db2c8a80/b8c6a758-379f-496e-a535-006fe87622ff/favicon.ico?format=100w",
+        "https://images.squarespace-cdn.com/content/v1/698250781730ac02db2c8a80/c509552a-d7aa-41c7-a335-d4539ad55717/favicon.ico?format=100w",
+        "http://static1.squarespace.com/static/698250781730ac02db2c8a80/t/698252707b9a8e35706d3365/1770148464926/PHP_Logo_HorizontalWhite.png?format=1500w",
+        "http://static1.squarespace.com/static/698250781730ac02db2c8a80/t/698252707b9a8e35706d3365/1770148464926/PHP_Logo_HorizontalWhite.png?format=1500w"
+      ],
+      "links": [
+        {
+          "href": "https://www.premiumhomepartners.com/cart",
+          "text": "0"
+        },
+        {
+          "href": "https://www.premiumhomepartners.com/#page",
+          "text": "SKIP TO CONTENT"
+        },
+        {
+          "href": "https://www.premiumhomepartners.com/",
+          "text": ""
+        },
+        {
+          "href": "https://www.premiumhomepartners.com/services",
+          "text": "Services"
+        },
+        {
+          "href": "https://www.premiumhomepartners.com/about",
+          "text": "The Experience"
+        },
+        {
+          "href": "https://www.premiumhomepartners.com/team",
+          "text": "Our Team"
+        },
+        {
+          "href": "https://www.premiumhomepartners.com/assessment",
+          "text": "Schedule an Assessment"
+        },
+        {
+          "href": "https://www.premiumhomepartners.com/",
+          "text": ""
+        },
+        {
+          "href": "https://www.premiumhomepartners.com/services",
+          "text": "Services"
+        },
+        {
+          "href": "https://www.premiumhomepartners.com/about",
+          "text": "The Experience"
+        },
+        {
+          "href": "https://www.premiumhomepartners.com/team",
+          "text": "Our Team"
+        },
+        {
+          "href": "https://www.premiumhomepartners.com/assessment",
+          "text": "Schedule an Assessment"
+        },
+        {
+          "href": "https://www.premiumhomepartners.com/services",
+          "text": ""
+        },
+        {
+          "href": "https://www.premiumhomepartners.com/about",
+          "text": ""
+        },
+        {
+          "href": "https://www.premiumhomepartners.com/team",
+          "text": ""
+        },
+        {
+          "href": "https://www.premiumhomepartners.com/assessment",
+          "text": ""
+        },
+        {
+          "href": "https://www.premiumhomepartners.com/assessment",
+          "text": "Schedule an Assessment"
+        }
+      ],
+      "cssVars": {},
+      "fontLinks": [
+        "@font-face {\n  font-family: 'Source Sans Pro';\n  font-style: normal;\n  font-weight: 700;\n  font-display: swap;\n  src: url('https://file.squarespace-cdn.com/content/v2/namespaces/fonts/libraries/sqsp/assets/1d35083e-f339-47a5-ad96-8ec778fec4b2/vietnamese.woff2') format('woff2');\n  unicode-range: U+0102-0103, U+0110-0111, U+0128-0129, U+0168-0169, U+01A0-01A1, U+01AF-01B0, U+0300-0301, U+0303-0304, U+0308-0309, U+0323, U+0329, U+1EA0-1EF9, U+20AB;\n}\n@font-face {\n  font-family: 'Source Sans Pro';\n  font-style: normal;\n  font-weight: 700;\n  font-display: swap;\n  src: url('https://file.squarespace-cdn.com/content/v2/namespaces/fonts/libraries/sqsp/assets/83e85d60-7795-46cd-b706-4d0043313f1b/latin-ext.woff2') format('woff2');\n  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;\n}\n@font-face {\n  font-family: 'Source Sans Pro';\n  font-style: normal;\n  font-weight: 700;\n  font-display: swap;\n  src: url('https://file.squarespace-cdn.com/content/v2/namespaces/fonts/libraries/sqsp/assets/48047284-7452-4c96-a9b3-730c1d1c73d8/cyrillic-ext.woff2') format('woff2');\n  unicode-range: U+0460-052F, U+1C80-1C8A, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F;\n}\n@font-face {\n  font-family: 'Source Sans Pro';\n  font-style: normal;\n  font-weight: 700;\n  font-display: swap;\n  src: url('https://file.squarespace-cdn.com/content/v2/namespaces/fonts/libraries/sqsp/assets/8497bc18-0ec5-472d-ad52-0ec0c1a66457/greek-ext.woff2') format('woff2');\n  unicode-range: U+1F00-1FFF;\n}\n@font-face {\n  font-family: 'Source Sans Pro';\n  font-style: normal;\n  font-weight: 700;\n  font-display: swap;\n  src: url('https://file.squarespace-cdn.com/content/v2/namespaces/fonts/libraries/sqsp/assets/645fc68b-6060-4799-88e7-6974a5c20b24/cyrillic.woff2') format('woff2');\n  unicode-range: U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;\n}\n@font-face {\n  font-family: 'Source Sans Pro';\n  font-style: normal;\n  font-weight: 700;\n  font-display: swap;\n  src: url('https://file.squarespace-cdn.com/content/v2/namespaces/fonts/libraries/sqsp/assets/d27750f8-d5e8-43f1-b2fb-683fbc0e5d67/latin.woff2') format('woff2');\n  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;\n}\n@font-face {\n  font-family: 'Source Sans Pro';\n  font-style: normal;\n  font-weight: 700;\n  font-display: swap;\n  src: url('https://file.squarespace-cdn.com/content/v2/namespaces/fonts/libraries/sqsp/assets/8975ffda-31ff-4288-9503-2f3d5e52b8ad/greek.woff2') format('woff2');\n  unicode-range: U+0370-0377, U+037A-037F, U+0384-038A, U+038C, U+038E-03A1, U+03A3-03FF;\n}\n@font-face {\n  font-family: 'Libre Caslon Display';\n  font-style: normal;\n  font-weight: 400;\n  font-display: swap;\n  src: url('https://file.squarespace-cdn.com/content/v2/namespaces/fonts/libraries/sqsp/assets/2b3030a9-36f7-4b4e-883e-219d803cc2c2/latin-ext.woff2') format('woff2');\n  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;\n}\n@font-face {\n  font-family: 'Libre Caslon Display';\n  font-style: normal;\n  font-weight: 400;\n  font-display: swap;\n  src: url('https://file.squarespace-cdn.com/content/v2/namespaces/fonts/libraries/sqsp/assets/ecfe31d4-e83c-480d-ae13-749073a12b42/latin.woff2') format('woff2');\n  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;\n}\n@font-face {\n  font-family: 'Source Sans Pro';\n  font-style: italic;\n  font-weight: 700;\n  font-display: swap;\n  src: url('https://file.squarespace-cdn.com/content/v2/namespaces/fonts/libraries/sqsp/assets/cdde8e97-8f8e-4c"
+      ],
+      "themeColor": null
+    },
+    {
+      "url": "https://www.premiumhomepartners.com/cart",
+      "name": "cart",
+      "title": "Premium Home Partners",
+      "description": "",
+      "colors": [
+        {
+          "value": "rgb(250, 250, 250)",
+          "count": 127,
+          "where": [
+            "text:body",
+            "text:header/nav",
+            "text:link/button",
+            "bg:header/nav",
+            "text:heading",
+            "text:footer"
+          ]
+        },
+        {
+          "value": "rgb(0, 0, 0)",
+          "count": 14,
+          "where": [
+            "text:link/button",
+            "text:header/nav"
+          ]
+        },
+        {
+          "value": "rgb(13, 30, 48)",
+          "count": 13,
+          "where": [
+            "text:link/button",
+            "text:body",
+            "bg:footer"
+          ]
+        },
+        {
+          "value": "rgb(220, 220, 220)",
+          "count": 2,
+          "where": [
+            "bg:link/button"
+          ]
+        }
+      ],
+      "fonts": [
+        {
+          "value": "\"Source Sans Pro\" | 400 | 16px",
+          "count": 126,
+          "where": [
+            "body",
+            "link/button",
+            "header/nav",
+            "footer"
+          ]
+        },
+        {
+          "value": "sans-serif | 400 | 16px",
+          "count": 8,
+          "where": [
+            "body"
+          ]
+        },
+        {
+          "value": "\"Source Sans Pro\" | 400 | 0px",
+          "count": 6,
+          "where": [
+            "header/nav",
+            "link/button"
+          ]
+        },
+        {
+          "value": "\"Source Sans Pro\" | 400 | 10px",
+          "count": 2,
+          "where": [
+            "body"
+          ]
+        },
+        {
+          "value": "\"Source Sans Pro\" | 400 | 12.544px | uppercase | ls 0.75264px",
+          "count": 1,
+          "where": [
+            "link/button"
+          ]
+        },
+        {
+          "value": "\"Libre Caslon Display\" | 500 | 24px | ls -0.96px",
+          "count": 1,
+          "where": [
+            "heading"
+          ]
+        },
+        {
+          "value": "\"Source Sans Pro\" | 400 | 17.728px | ls 0.35456px",
+          "count": 1,
+          "where": [
+            "link/button"
+          ]
+        },
+        {
+          "value": "\"Libre Caslon Display\" | 400 | 36.736px | ls -1.46944px",
+          "count": 1,
+          "where": [
+            "heading"
+          ]
+        }
+      ],
+      "imgs": [
+        {
+          "tag": "svg",
+          "src": null,
+          "alt": null,
+          "cls": "icon icon--cart",
+          "inHeader": false,
+          "w": 0,
+          "h": 0,
+          "svg": "<svg class=\"icon icon--cart\" width=\"61\" height=\"49\" viewBox=\"0 0 61 49\">\n  <path fill-rule=\"evenodd\" clip-rule=\"evenodd\" d=\"M0.5 2C0.5 1.17157 1.17157 0.5 2 0.5H13.6362C14.3878 0.5 15.0234 1.05632 15.123 1.80135L16.431 11.5916H59C59.5122 11.5916 59.989 11.8529 60.2645 12.2847C60.54 12.7165 60.5762 13.2591 60.3604 13.7236L50.182 35.632C49.9361 36.1614 49.4054 36.5 48.8217 36.5H18.0453C17.2937 36.5 16.6581 35.9437 16.5585 35.1987L12.3233 3.5H2C1.17157 3.5 0.5 2.82843 0.5 2ZM16.8319 14.5916L19.3582 33.5H47.8646L56.6491 14.5916H16.8319Z\"></path>\n  <path d=\"M18.589 35H49.7083L60 13H16L18.589 35Z\"></path>\n  <path d=\"M21 49C23.2091 49 25 47.2091 25 45C25 42.7909 23.2091 41 21 41C18.7909 41 17 42.7909 17 45C17 47.2091 18.7909 49 21 49Z\"></path>\n  <path d=\"M45 49C47.2091 49 49 47.2091 49 45C49 42.7909 47.2091 41 45 41C42.7909 41 41 42.7909 41 45C41 47.2091 42.7909 49 45 49Z\"></path>\n</svg>"
+        },
+        {
+          "tag": "svg",
+          "src": null,
+          "alt": null,
+          "cls": null,
+          "inHeader": true,
+          "w": 0,
+          "h": 0,
+          "svg": "<svg style=\"display:none\" viewBox=\"0 0 22 22\" xmlns=\"http://www.w3.org/2000/svg\">\n  <symbol id=\"circle\">\n    <path d=\"M11.5 17C14.5376 17 17 14.5376 17 11.5C17 8.46243 14.5376 6 11.5 6C8.46243 6 6 8.46243 6 11.5C6 14.5376 8.46243 17 11.5 17Z\" fill=\"none\"></path>\n  </symbol>\n\n  <symbol id=\"circleFilled\">\n    <path d=\"M11.5 17C14.5376 17 17 14.5376 17 11.5C17 8.46243 14.5376 6 11.5 6C8.46243 6 6 8.46243 6 11.5C6 14.5376 8.46243 17 11.5 17Z\"></path>\n  </symbol>\n\n  <symbol id=\"dash\">\n    <path d=\"M11 11H19H3\"></path>\n  </symbol>\n\n  <symbol id=\"squareFilled\">\n    <rect x=\"6\" y=\"6\" width=\"11\" height=\"11\"></rect>\n  </symbol>\n\n  <symbol id=\"square\">\n    <rect x=\"7\" y=\"7\" width=\"9\" height=\"9\" fill=\"none\" stroke=\"inherit\"></rect>\n  </symbol>\n  \n  <symbol id=\"plus\">\n    <path d=\"M11 3V19\"></path>\n    <path d=\"M19 11L3 11\"></path>\n  </symbol>\n  \n  <symbol id=\"closedArrow\">\n    <path d=\"M11 11V2M11 18.1797L17 11.1477L5 11.1477L11 18.1797Z\" fill=\"none\"></path>\n  </symbol>\n  \n  <symbol id=\"closedArrowFilled\">\n    <path d=\"M11 11L11 2\" stroke=\"inherit\" fill=\"none\"></path>\n    <path fill-rule=\"evenodd\" clip-rule=\"evenodd\" d=\"M2.74695 9.38428L19.038 9.38428L10.8925 19.0846L2.74695 9.38428Z\" stroke-width=\"1\"></path>\n  </symbol>\n  \n  <symbol id=\"closedArrowHead\" viewBox=\"0 0 22 22\" xmlns=\"http://www.w3.org/2000/symbol\">\n    <path d=\"M18 7L11 15L4 7L18 7Z\" fill=\"none\" stroke=\"inherit\"></path>\n  </symbol>\n  \n  \n  <symbol id=\"closedArrowHeadFilled\" viewBox=\"0 0 22 22\" xmlns=\"http://www.w3.org/2000/symbol\">\n    <path d=\"M18.875 6.5L11 15.5L3.125 6.5L18.875 6.5Z\"></path>\n  </symbol>\n  \n  <symbol id=\"openArrow\">\n    <path d=\"M11 18.3591L11 3\" stroke=\"inherit\" fill=\"none\"></path>\n    <path d=\"M18 11.5L11 18.5L4 11.5\" stroke=\"inherit\" fill=\"none\"></path>\n  </symbol>\n  \n  <symbol id=\"openArrowHead\">\n    <path d=\"M18 7L11 14L4 7\" fill=\"none\"></path>\n  </symbol>\n\n  <symbol id=\"pinchedArrow\">\n    <path d=\"M11 17.3591L11 2\" fill=\"none\"></path>\n    <path d=\"M2 11C5.85455 12.2308 8.81818 14.9038 11 18C13.1818 14.8269 16.1455 12.1538 20 11\" fill=\"none\"></path>\n  </symbol>\n\n  <symbol id=\"pinchedArrowFilled\">\n    <path d=\"M11.05 10.4894C7.04096 8.73759 1.05005 8 1.05005 8C6.20459 11.3191 9.41368 14.1773 11.05 21C12.6864 14.0851 15.8955 11.227 21.05 8C21.05 8 15.0591 8.73759 11.05 10.4894Z\" stroke-width=\"1\"></path>\n    <path d=\"M11 11L11 1\" fill=\"none\"></path>\n  </symbol>\n\n  <symbol id=\"pinchedArrowHead\">\n    <path d=\"M2 7.24091C5.85455 8.40454 8.81818 10.9318 11 13.8591C13.1818 10.8591 16.1455 8.33181 20 7.24091\" fill=\"none\"></path>\n  </symbol>\n  \n  <symbol id=\"pinchedArrowHeadFilled\">\n    <path d=\"M11.05 7.1591C7.04096 5.60456 1.05005 4.95001 1.05005 4.95001C6.20459 7.89547 9.41368 10.4318 11.05 16.4864C12.6864 10.35 15.8955 7.81365 21.05 4.95001C21.05 4.95001 15.0591 5.60456 11.05 7.1591Z\"></path>\n  </symbol>\n\n</svg>"
+        },
+        {
+          "tag": "img",
+          "src": "https://images.squarespace-cdn.com/content/v1/698250781730ac02db2c8a80/b648517c-0be5-4ff1-ace0-4ed7bb671f48/PHP_Logo_HorizontalWhite.png?format=1500w",
+          "alt": "Premium Home Partners",
+          "cls": "",
+          "inHeader": true,
+          "w": 277,
+          "h": 83
+        },
+        {
+          "tag": "img",
+          "src": "https://images.squarespace-cdn.com/content/v1/698250781730ac02db2c8a80/b648517c-0be5-4ff1-ace0-4ed7bb671f48/PHP_Logo_HorizontalWhite.png?format=1500w",
+          "alt": "Premium Home Partners",
+          "cls": "",
+          "inHeader": true,
+          "w": 0,
+          "h": 0
+        },
+        {
+          "tag": "svg",
+          "src": null,
+          "alt": null,
+          "cls": null,
+          "inHeader": false,
+          "w": 0,
+          "h": 0
+        }
+      ],
+      "icons": [
+        "https://images.squarespace-cdn.com/content/v1/698250781730ac02db2c8a80/b8c6a758-379f-496e-a535-006fe87622ff/favicon.ico?format=100w",
+        "https://images.squarespace-cdn.com/content/v1/698250781730ac02db2c8a80/c509552a-d7aa-41c7-a335-d4539ad55717/favicon.ico?format=100w",
+        "http://images.squarespace-cdn.com/content/v1/698250781730ac02db2c8a80/b648517c-0be5-4ff1-ace0-4ed7bb671f48/PHP_Logo_HorizontalWhite.png?format=1500w",
+        "http://images.squarespace-cdn.com/content/v1/698250781730ac02db2c8a80/b648517c-0be5-4ff1-ace0-4ed7bb671f48/PHP_Logo_HorizontalWhite.png?format=1500w"
+      ],
+      "links": [
+        {
+          "href": "https://www.premiumhomepartners.com/cart",
+          "text": "0"
+        },
+        {
+          "href": "https://www.premiumhomepartners.com/cart#page",
+          "text": "SKIP TO CONTENT"
+        },
+        {
+          "href": "https://www.premiumhomepartners.com/",
+          "text": ""
+        },
+        {
+          "href": "https://www.premiumhomepartners.com/services",
+          "text": "Services"
+        },
+        {
+          "href": "https://www.premiumhomepartners.com/about",
+          "text": "The Experience"
+        },
+        {
+          "href": "https://www.premiumhomepartners.com/team",
+          "text": "Our Team"
+        },
+        {
+          "href": "https://www.premiumhomepartners.com/assessment",
+          "text": "Schedule an Assessment"
+        },
+        {
+          "href": "https://www.premiumhomepartners.com/",
+          "text": ""
+        },
+        {
+          "href": "https://www.premiumhomepartners.com/services",
+          "text": "Services"
+        },
+        {
+          "href": "https://www.premiumhomepartners.com/about",
+          "text": "The Experience"
+        },
+        {
+          "href": "https://www.premiumhomepartners.com/team",
+          "text": "Our Team"
+        },
+        {
+          "href": "https://www.premiumhomepartners.com/assessment",
+          "text": "Schedule an Assessment"
+        },
+        {
+          "href": "https://www.premiumhomepartners.com/services",
+          "text": ""
+        },
+        {
+          "href": "https://www.premiumhomepartners.com/about",
+          "text": ""
+        },
+        {
+          "href": "https://www.premiumhomepartners.com/team",
+          "text": ""
+        },
+        {
+          "href": "https://www.premiumhomepartners.com/assessment",
+          "text": ""
+        },
+        {
+          "href": "https://www.premiumhomepartners.com/",
+          "text": "Continue Shopping"
+        }
+      ],
+      "cssVars": {},
+      "fontLinks": [
+        "@font-face {\n  font-family: 'Libre Caslon Display';\n  font-style: normal;\n  font-weight: 400;\n  font-display: swap;\n  src: url('https://file.squarespace-cdn.com/content/v2/namespaces/fonts/libraries/sqsp/assets/2b3030a9-36f7-4b4e-883e-219d803cc2c2/latin-ext.woff2') format('woff2');\n  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;\n}\n@font-face {\n  font-family: 'Libre Caslon Display';\n  font-style: normal;\n  font-weight: 400;\n  font-display: swap;\n  src: url('https://file.squarespace-cdn.com/content/v2/namespaces/fonts/libraries/sqsp/assets/ecfe31d4-e83c-480d-ae13-749073a12b42/latin.woff2') format('woff2');\n  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;\n}\n@font-face {\n  font-family: 'Sorts Mill Goudy';\n  font-style: normal;\n  font-weight: 400;\n  font-display: swap;\n  src: url('https://file.squarespace-cdn.com/content/v2/namespaces/fonts/libraries/sqsp/assets/5471111f-b15d-497a-a303-cc5563dc9927/latin-ext.woff2') format('woff2');\n  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;\n}\n@font-face {\n  font-family: 'Sorts Mill Goudy';\n  font-style: normal;\n  font-weight: 400;\n  font-display: swap;\n  src: url('https://file.squarespace-cdn.com/content/v2/namespaces/fonts/libraries/sqsp/assets/8ebf84a1-d9c4-4a76-8191-4fa4dbfeb64a/latin.woff2') format('woff2');\n  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;\n}\n@font-face {\n  font-family: 'Source Sans Pro';\n  font-style: normal;\n  font-weight: 700;\n  font-display: swap;\n  src: url('https://file.squarespace-cdn.com/content/v2/namespaces/fonts/libraries/sqsp/assets/1d35083e-f339-47a5-ad96-8ec778fec4b2/vietnamese.woff2') format('woff2');\n  unicode-range: U+0102-0103, U+0110-0111, U+0128-0129, U+0168-0169, U+01A0-01A1, U+01AF-01B0, U+0300-0301, U+0303-0304, U+0308-0309, U+0323, U+0329, U+1EA0-1EF9, U+20AB;\n}\n@font-face {\n  font-family: 'Source Sans Pro';\n  font-style: normal;\n  font-weight: 700;\n  font-display: swap;\n  src: url('https://file.squarespace-cdn.com/content/v2/namespaces/fonts/libraries/sqsp/assets/83e85d60-7795-46cd-b706-4d0043313f1b/latin-ext.woff2') format('woff2');\n  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;\n}\n@font-face {\n  font-family: 'Source Sans Pro';\n  font-style: normal;\n  font-weight: 700;\n  font-display: swap;\n  src: url('https://file.squarespace-cdn.com/content/v2/namespaces/fonts/libraries/sqsp/assets/48047284-7452-4c96-a9b3-730c1d1c73d8/cyrillic-ext.woff2') format('woff2');\n  unicode-range: U+0460-052F, U+1C80-1C8A, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F;\n}\n@font-face {\n  font-family: 'Source Sans Pro';\n  font-style: normal;\n  font-weight: 700;\n  font-display: swap;\n  src: url('https://file.squarespace-cdn.com/content/v2/namespaces/fonts/libraries/sqsp/assets/8497bc18-0ec5-472d-ad52-0ec0c1a66457/greek-ext.woff2') format('woff2');\n  unicode-range: U+1F00-1FFF;\n}\n@font-face {\n  font-family: 'Source Sans Pro';\n  font-style: normal;\n  font-weight: 700;\n  font-display: swap;\n  src: url('https://file.squarespace-cdn.com/content/v2/namespaces/fonts/libraries/sqsp/assets/645fc68b-6060-4799-88e7-6974a5c20b24/cyrillic.woff2') format('woff2');\n  unicode-range: U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;\n}\n@font-face {\n  font-family: 'Source Sans Pro';\n  font-style: normal;\n  font-weight: 700;\n  fo"
+      ],
+      "themeColor": null
+    },
+    {
+      "url": "https://www.premiumhomepartners.com/services",
+      "name": "services",
+      "title": "Services — Premium Home Partners",
+      "description": "",
+      "colors": [
+        {
+          "value": "rgb(250, 250, 250)",
+          "count": 172,
+          "where": [
+            "text:body",
+            "text:header/nav",
+            "text:link/button",
+            "bg:header/nav",
+            "text:heading",
+            "bg:body",
+            "text:footer"
+          ]
+        },
+        {
+          "value": "rgb(13, 30, 48)",
+          "count": 116,
+          "where": [
+            "text:link/button",
+            "text:body",
+            "bg:body",
+            "text:heading",
+            "bg:footer"
+          ]
+        },
+        {
+          "value": "rgb(0, 0, 0)",
+          "count": 14,
+          "where": [
+            "text:link/button",
+            "text:header/nav"
+          ]
+        },
+        {
+          "value": "rgba(13, 30, 48, 0.5)",
+          "count": 3,
+          "where": [
+            "bg:body"
+          ]
+        },
+        {
+          "value": "rgb(9, 55, 93)",
+          "count": 2,
+          "where": [
+            "bg:body"
+          ]
+        },
+        {
+          "value": "rgba(13, 30, 48, 0.024)",
+          "count": 1,
+          "where": [
+            "bg:header/nav"
+          ]
+        },
+        {
+          "value": "rgb(220, 220, 220)",
+          "count": 1,
+          "where": [
+            "bg:link/button"
+          ]
+        },
+        {
+          "value": "rgb(255, 255, 255)",
+          "count": 1,
+          "where": [
+            "text:body"
+          ]
+        }
+      ],
+      "fonts": [
+        {
+          "value": "\"Source Sans Pro\" | 400 | 16px",
+          "count": 259,
+          "where": [
+            "body",
+            "link/button",
+            "header/nav",
+            "footer"
+          ]
+        },
+        {
+          "value": "sans-serif | 400 | 16px",
+          "count": 8,
+          "where": [
+            "body"
+          ]
+        },
+        {
+          "value": "\"Source Sans Pro\" | 400 | 0px",
+          "count": 6,
+          "where": [
+            "header/nav",
+            "link/button"
+          ]
+        },
+        {
+          "value": "\"Libre Caslon Display\" | 400 | 26.368px | ls -1.05472px",
+          "count": 6,
+          "where": [
+            "heading"
+          ]
+        },
+        {
+          "value": "\"Libre Caslon Display\" | 400 | 36.736px | ls -1.46944px",
+          "count": 5,
+          "where": [
+            "heading",
+            "body"
+          ]
+        },
+        {
+          "value": "\"Source Sans Pro\" | 400 | 10px",
+          "count": 2,
+          "where": [
+            "body"
+          ]
+        },
+        {
+          "value": "\"Libre Caslon Display\" | 400 | 67.84px | ls -2.7136px",
+          "count": 2,
+          "where": [
+            "heading",
+            "body"
+          ]
+        },
+        {
+          "value": "\"Source Sans Pro\" | 400 | 12.544px | uppercase | ls 0.75264px",
+          "count": 1,
+          "where": [
+            "link/button"
+          ]
+        },
+        {
+          "value": "\"Libre Caslon Display\" | 400 | 50.56px | ls -2.0224px",
+          "count": 1,
+          "where": [
+            "heading"
+          ]
+        }
+      ],
+      "imgs": [
+        {
+          "tag": "svg",
+          "src": null,
+          "alt": null,
+          "cls": "icon icon--cart",
+          "inHeader": false,
+          "w": 0,
+          "h": 0,
+          "svg": "<svg class=\"icon icon--cart\" width=\"61\" height=\"49\" viewBox=\"0 0 61 49\">\n  <path fill-rule=\"evenodd\" clip-rule=\"evenodd\" d=\"M0.5 2C0.5 1.17157 1.17157 0.5 2 0.5H13.6362C14.3878 0.5 15.0234 1.05632 15.123 1.80135L16.431 11.5916H59C59.5122 11.5916 59.989 11.8529 60.2645 12.2847C60.54 12.7165 60.5762 13.2591 60.3604 13.7236L50.182 35.632C49.9361 36.1614 49.4054 36.5 48.8217 36.5H18.0453C17.2937 36.5 16.6581 35.9437 16.5585 35.1987L12.3233 3.5H2C1.17157 3.5 0.5 2.82843 0.5 2ZM16.8319 14.5916L19.3582 33.5H47.8646L56.6491 14.5916H16.8319Z\"></path>\n  <path d=\"M18.589 35H49.7083L60 13H16L18.589 35Z\"></path>\n  <path d=\"M21 49C23.2091 49 25 47.2091 25 45C25 42.7909 23.2091 41 21 41C18.7909 41 17 42.7909 17 45C17 47.2091 18.7909 49 21 49Z\"></path>\n  <path d=\"M45 49C47.2091 49 49 47.2091 49 45C49 42.7909 47.2091 41 45 41C42.7909 41 41 42.7909 41 45C41 47.2091 42.7909 49 45 49Z\"></path>\n</svg>"
+        },
+        {
+          "tag": "svg",
+          "src": null,
+          "alt": null,
+          "cls": null,
+          "inHeader": true,
+          "w": 0,
+          "h": 0,
+          "svg": "<svg style=\"display:none\" viewBox=\"0 0 22 22\" xmlns=\"http://www.w3.org/2000/svg\">\n  <symbol id=\"circle\">\n    <path d=\"M11.5 17C14.5376 17 17 14.5376 17 11.5C17 8.46243 14.5376 6 11.5 6C8.46243 6 6 8.46243 6 11.5C6 14.5376 8.46243 17 11.5 17Z\" fill=\"none\"></path>\n  </symbol>\n\n  <symbol id=\"circleFilled\">\n    <path d=\"M11.5 17C14.5376 17 17 14.5376 17 11.5C17 8.46243 14.5376 6 11.5 6C8.46243 6 6 8.46243 6 11.5C6 14.5376 8.46243 17 11.5 17Z\"></path>\n  </symbol>\n\n  <symbol id=\"dash\">\n    <path d=\"M11 11H19H3\"></path>\n  </symbol>\n\n  <symbol id=\"squareFilled\">\n    <rect x=\"6\" y=\"6\" width=\"11\" height=\"11\"></rect>\n  </symbol>\n\n  <symbol id=\"square\">\n    <rect x=\"7\" y=\"7\" width=\"9\" height=\"9\" fill=\"none\" stroke=\"inherit\"></rect>\n  </symbol>\n  \n  <symbol id=\"plus\">\n    <path d=\"M11 3V19\"></path>\n    <path d=\"M19 11L3 11\"></path>\n  </symbol>\n  \n  <symbol id=\"closedArrow\">\n    <path d=\"M11 11V2M11 18.1797L17 11.1477L5 11.1477L11 18.1797Z\" fill=\"none\"></path>\n  </symbol>\n  \n  <symbol id=\"closedArrowFilled\">\n    <path d=\"M11 11L11 2\" stroke=\"inherit\" fill=\"none\"></path>\n    <path fill-rule=\"evenodd\" clip-rule=\"evenodd\" d=\"M2.74695 9.38428L19.038 9.38428L10.8925 19.0846L2.74695 9.38428Z\" stroke-width=\"1\"></path>\n  </symbol>\n  \n  <symbol id=\"closedArrowHead\" viewBox=\"0 0 22 22\" xmlns=\"http://www.w3.org/2000/symbol\">\n    <path d=\"M18 7L11 15L4 7L18 7Z\" fill=\"none\" stroke=\"inherit\"></path>\n  </symbol>\n  \n  \n  <symbol id=\"closedArrowHeadFilled\" viewBox=\"0 0 22 22\" xmlns=\"http://www.w3.org/2000/symbol\">\n    <path d=\"M18.875 6.5L11 15.5L3.125 6.5L18.875 6.5Z\"></path>\n  </symbol>\n  \n  <symbol id=\"openArrow\">\n    <path d=\"M11 18.3591L11 3\" stroke=\"inherit\" fill=\"none\"></path>\n    <path d=\"M18 11.5L11 18.5L4 11.5\" stroke=\"inherit\" fill=\"none\"></path>\n  </symbol>\n  \n  <symbol id=\"openArrowHead\">\n    <path d=\"M18 7L11 14L4 7\" fill=\"none\"></path>\n  </symbol>\n\n  <symbol id=\"pinchedArrow\">\n    <path d=\"M11 17.3591L11 2\" fill=\"none\"></path>\n    <path d=\"M2 11C5.85455 12.2308 8.81818 14.9038 11 18C13.1818 14.8269 16.1455 12.1538 20 11\" fill=\"none\"></path>\n  </symbol>\n\n  <symbol id=\"pinchedArrowFilled\">\n    <path d=\"M11.05 10.4894C7.04096 8.73759 1.05005 8 1.05005 8C6.20459 11.3191 9.41368 14.1773 11.05 21C12.6864 14.0851 15.8955 11.227 21.05 8C21.05 8 15.0591 8.73759 11.05 10.4894Z\" stroke-width=\"1\"></path>\n    <path d=\"M11 11L11 1\" fill=\"none\"></path>\n  </symbol>\n\n  <symbol id=\"pinchedArrowHead\">\n    <path d=\"M2 7.24091C5.85455 8.40454 8.81818 10.9318 11 13.8591C13.1818 10.8591 16.1455 8.33181 20 7.24091\" fill=\"none\"></path>\n  </symbol>\n  \n  <symbol id=\"pinchedArrowHeadFilled\">\n    <path d=\"M11.05 7.1591C7.04096 5.60456 1.05005 4.95001 1.05005 4.95001C6.20459 7.89547 9.41368 10.4318 11.05 16.4864C12.6864 10.35 15.8955 7.81365 21.05 4.95001C21.05 4.95001 15.0591 5.60456 11.05 7.1591Z\"></path>\n  </symbol>\n\n</svg>"
+        },
+        {
+          "tag": "img",
+          "src": "https://images.squarespace-cdn.com/content/v1/698250781730ac02db2c8a80/b648517c-0be5-4ff1-ace0-4ed7bb671f48/PHP_Logo_HorizontalWhite.png?format=1500w",
+          "alt": "Premium Home Partners",
+          "cls": "",
+          "inHeader": true,
+          "w": 277,
+          "h": 83
+        },
+        {
+          "tag": "img",
+          "src": "https://images.squarespace-cdn.com/content/v1/698250781730ac02db2c8a80/b648517c-0be5-4ff1-ace0-4ed7bb671f48/PHP_Logo_HorizontalWhite.png?format=1500w",
+          "alt": "Premium Home Partners",
+          "cls": "",
+          "inHeader": true,
+          "w": 0,
+          "h": 0
+        },
+        {
+          "tag": "img",
+          "src": "https://images.squarespace-cdn.com/content/v1/698250781730ac02db2c8a80/de4c4c00-d99d-42cd-8188-113800fdb1a5/Christopher+AI20933+edited.jpg?format=1500w",
+          "alt": "",
+          "cls": "",
+          "inHeader": false,
+          "w": 1440,
+          "h": 705
+        },
+        {
+          "tag": "img",
+          "src": "https://images.squarespace-cdn.com/content/v1/698250781730ac02db2c8a80/4feeb605-c3df-4535-9a21-b46188f276e5/_TSC9673-edit.jpg?format=1500w",
+          "alt": "",
+          "cls": "",
+          "inHeader": false,
+          "w": 330,
+          "h": 610
+        },
+        {
+          "tag": "img",
+          "src": "https://images.squarespace-cdn.com/content/v1/698250781730ac02db2c8a80/27e29039-491b-4cb2-9ec2-9357355f908a/Screenshot+2026-02-03+170235.png?format=1500w",
+          "alt": "",
+          "cls": "",
+          "inHeader": false,
+          "w": 330,
+          "h": 634
+        },
+        {
+          "tag": "img",
+          "src": "https://images.squarespace-cdn.com/content/v1/698250781730ac02db2c8a80/562ed6a7-f10e-417b-b7de-da85134d755d/04_04_mls.jpg?format=1500w",
+          "alt": "",
+          "cls": "",
+          "inHeader": false,
+          "w": 444,
+          "h": 780
+        },
+        {
+          "tag": "svg",
+          "src": null,
+          "alt": null,
+          "cls": null,
+          "inHeader": false,
+          "w": 0,
+          "h": 0
+        }
+      ],
+      "icons": [
+        "https://images.squarespace-cdn.com/content/v1/698250781730ac02db2c8a80/b8c6a758-379f-496e-a535-006fe87622ff/favicon.ico?format=100w",
+        "https://images.squarespace-cdn.com/content/v1/698250781730ac02db2c8a80/c509552a-d7aa-41c7-a335-d4539ad55717/favicon.ico?format=100w"
+      ],
+      "links": [
+        {
+          "href": "https://www.premiumhomepartners.com/cart",
+          "text": "0"
+        },
+        {
+          "href": "https://www.premiumhomepartners.com/services#page",
+          "text": "SKIP TO CONTENT"
+        },
+        {
+          "href": "https://www.premiumhomepartners.com/",
+          "text": ""
+        },
+        {
+          "href": "https://www.premiumhomepartners.com/services",
+          "text": "Services"
+        },
+        {
+          "href": "https://www.premiumhomepartners.com/about",
+          "text": "The Experience"
+        },
+        {
+          "href": "https://www.premiumhomepartners.com/team",
+          "text": "Our Team"
+        },
+        {
+          "href": "https://www.premiumhomepartners.com/assessment",
+          "text": "Schedule an Assessment"
+        },
+        {
+          "href": "https://www.premiumhomepartners.com/",
+          "text": ""
+        },
+        {
+          "href": "https://www.premiumhomepartners.com/services",
+          "text": "Services"
+        },
+        {
+          "href": "https://www.premiumhomepartners.com/about",
+          "text": "The Experience"
+        },
+        {
+          "href": "https://www.premiumhomepartners.com/team",
+          "text": "Our Team"
+        },
+        {
+          "href": "https://www.premiumhomepartners.com/assessment",
+          "text": "Schedule an Assessment"
+        },
+        {
+          "href": "https://www.premiumhomepartners.com/services",
+          "text": ""
+        },
+        {
+          "href": "https://www.premiumhomepartners.com/about",
+          "text": ""
+        },
+        {
+          "href": "https://www.premiumhomepartners.com/team",
+          "text": ""
+        },
+        {
+          "href": "https://www.premiumhomepartners.com/assessment",
+          "text": ""
+        }
+      ],
+      "cssVars": {},
+      "fontLinks": [
+        "@font-face {\n  font-family: 'Source Sans Pro';\n  font-style: normal;\n  font-weight: 400;\n  font-display: swap;\n  src: url('https://file.squarespace-cdn.com/content/v2/namespaces/fonts/libraries/sqsp/assets/b7dd2236-930f-4d81-9c77-7cec81260193/latin.woff2') format('woff2');\n  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;\n}\n@font-face {\n  font-family: 'Source Sans Pro';\n  font-style: normal;\n  font-weight: 400;\n  font-display: swap;\n  src: url('https://file.squarespace-cdn.com/content/v2/namespaces/fonts/libraries/sqsp/assets/9aa28dc4-4e92-41ce-a6c7-d21e231eb3aa/greek-ext.woff2') format('woff2');\n  unicode-range: U+1F00-1FFF;\n}\n@font-face {\n  font-family: 'Source Sans Pro';\n  font-style: normal;\n  font-weight: 400;\n  font-display: swap;\n  src: url('https://file.squarespace-cdn.com/content/v2/namespaces/fonts/libraries/sqsp/assets/31fb64b9-1014-4a40-b663-fb70f94ef99c/latin-ext.woff2') format('woff2');\n  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;\n}\n@font-face {\n  font-family: 'Source Sans Pro';\n  font-style: normal;\n  font-weight: 400;\n  font-display: swap;\n  src: url('https://file.squarespace-cdn.com/content/v2/namespaces/fonts/libraries/sqsp/assets/320d8579-3d91-4288-a181-23f2b5d2f98e/vietnamese.woff2') format('woff2');\n  unicode-range: U+0102-0103, U+0110-0111, U+0128-0129, U+0168-0169, U+01A0-01A1, U+01AF-01B0, U+0300-0301, U+0303-0304, U+0308-0309, U+0323, U+0329, U+1EA0-1EF9, U+20AB;\n}\n@font-face {\n  font-family: 'Source Sans Pro';\n  font-style: normal;\n  font-weight: 400;\n  font-display: swap;\n  src: url('https://file.squarespace-cdn.com/content/v2/namespaces/fonts/libraries/sqsp/assets/e55f857c-e886-49a2-84b4-4c6e6cbbe27e/greek.woff2') format('woff2');\n  unicode-range: U+0370-0377, U+037A-037F, U+0384-038A, U+038C, U+038E-03A1, U+03A3-03FF;\n}\n@font-face {\n  font-family: 'Source Sans Pro';\n  font-style: normal;\n  font-weight: 400;\n  font-display: swap;\n  src: url('https://file.squarespace-cdn.com/content/v2/namespaces/fonts/libraries/sqsp/assets/bd06faa7-07c3-4b89-9173-94d0c781c0aa/cyrillic-ext.woff2') format('woff2');\n  unicode-range: U+0460-052F, U+1C80-1C8A, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F;\n}\n@font-face {\n  font-family: 'Source Sans Pro';\n  font-style: normal;\n  font-weight: 400;\n  font-display: swap;\n  src: url('https://file.squarespace-cdn.com/content/v2/namespaces/fonts/libraries/sqsp/assets/7e399908-f138-4090-a532-e92b10631448/cyrillic.woff2') format('woff2');\n  unicode-range: U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;\n}\n@font-face {\n  font-family: 'Libre Caslon Display';\n  font-style: normal;\n  font-weight: 400;\n  font-display: swap;\n  src: url('https://file.squarespace-cdn.com/content/v2/namespaces/fonts/libraries/sqsp/assets/2b3030a9-36f7-4b4e-883e-219d803cc2c2/latin-ext.woff2') format('woff2');\n  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;\n}\n@font-face {\n  font-family: 'Libre Caslon Display';\n  font-style: normal;\n  font-weight: 400;\n  font-display: swap;\n  src: url('https://file.squarespace-cdn.com/content/v2/namespaces/fonts/libraries/sqsp/assets/ecfe31d4-e83c-480d-ae13-749073a12b42/latin.woff2') format('woff2');\n  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;\n}\n@font-face {\n  font-family: 'Sorts Mill Goudy';\n  font-style: normal;\n  font-weight: 400;\n  font-display: swap;\n  src: url('https://file.squarespace-cdn.com/content/v2/namespaces/fonts/libraries/sqsp/assets/5471111f-b15d-4"
+      ],
+      "themeColor": null
+    },
+    {
+      "url": "https://www.premiumhomepartners.com/about",
+      "name": "about",
+      "title": "Our Story — Premium Home Partners",
+      "description": "",
+      "colors": [
+        {
+          "value": "rgb(250, 250, 250)",
+          "count": 147,
+          "where": [
+            "text:body",
+            "text:header/nav",
+            "text:link/button",
+            "bg:body",
+            "text:footer",
+            "text:heading"
+          ]
+        },
+        {
+          "value": "rgb(13, 30, 48)",
+          "count": 107,
+          "where": [
+            "text:link/button",
+            "text:body",
+            "bg:body",
+            "text:heading",
+            "bg:footer"
+          ]
+        },
+        {
+          "value": "rgb(220, 220, 220)",
+          "count": 27,
+          "where": [
+            "bg:link/button",
+            "text:link/button",
+            "text:header/nav",
+            "bg:header/nav",
+            "text:heading",
+            "bg:body"
+          ]
+        },
+        {
+          "value": "rgb(0, 0, 0)",
+          "count": 14,
+          "where": [
+            "text:link/button",
+            "text:header/nav"
+          ]
+        },
+        {
+          "value": "rgba(13, 30, 48, 0.5)",
+          "count": 6,
+          "where": [
+            "bg:body"
+          ]
+        },
+        {
+          "value": "rgba(13, 30, 48, 0.404)",
+          "count": 1,
+          "where": [
+            "bg:header/nav"
+          ]
+        }
+      ],
+      "fonts": [
+        {
+          "value": "\"Source Sans Pro\" | 400 | 16px",
+          "count": 247,
+          "where": [
+            "body",
+            "link/button",
+            "header/nav",
+            "footer"
+          ]
+        },
+        {
+          "value": "\"Libre Caslon Display\" | 400 | 36.736px | ls -1.46944px",
+          "count": 8,
+          "where": [
+            "heading"
+          ]
+        },
+        {
+          "value": "sans-serif | 400 | 16px",
+          "count": 8,
+          "where": [
+            "body"
+          ]
+        },
+        {
+          "value": "\"Source Sans Pro\" | 400 | 0px",
+          "count": 6,
+          "where": [
+            "header/nav",
+            "link/button"
+          ]
+        },
+        {
+          "value": "\"Source Sans Pro\" | 400 | 10px",
+          "count": 2,
+          "where": [
+            "body"
+          ]
+        },
+        {
+          "value": "\"Libre Caslon Display\" | 400 | 50.56px | ls -2.0224px",
+          "count": 2,
+          "where": [
+            "heading"
+          ]
+        },
+        {
+          "value": "\"Source Sans Pro\" | 400 | 12.544px | uppercase | ls 0.75264px",
+          "count": 1,
+          "where": [
+            "link/button"
+          ]
+        },
+        {
+          "value": "\"Libre Caslon Display\" | 400 | 67.84px | ls -2.7136px",
+          "count": 1,
+          "where": [
+            "heading"
+          ]
+        },
+        {
+          "value": "\"Libre Caslon Display\" | 400 | 26.368px | ls -1.05472px",
+          "count": 1,
+          "where": [
+            "heading"
+          ]
+        }
+      ],
+      "imgs": [
+        {
+          "tag": "svg",
+          "src": null,
+          "alt": null,
+          "cls": "icon icon--cart",
+          "inHeader": false,
+          "w": 0,
+          "h": 0,
+          "svg": "<svg class=\"icon icon--cart\" width=\"61\" height=\"49\" viewBox=\"0 0 61 49\">\n  <path fill-rule=\"evenodd\" clip-rule=\"evenodd\" d=\"M0.5 2C0.5 1.17157 1.17157 0.5 2 0.5H13.6362C14.3878 0.5 15.0234 1.05632 15.123 1.80135L16.431 11.5916H59C59.5122 11.5916 59.989 11.8529 60.2645 12.2847C60.54 12.7165 60.5762 13.2591 60.3604 13.7236L50.182 35.632C49.9361 36.1614 49.4054 36.5 48.8217 36.5H18.0453C17.2937 36.5 16.6581 35.9437 16.5585 35.1987L12.3233 3.5H2C1.17157 3.5 0.5 2.82843 0.5 2ZM16.8319 14.5916L19.3582 33.5H47.8646L56.6491 14.5916H16.8319Z\"></path>\n  <path d=\"M18.589 35H49.7083L60 13H16L18.589 35Z\"></path>\n  <path d=\"M21 49C23.2091 49 25 47.2091 25 45C25 42.7909 23.2091 41 21 41C18.7909 41 17 42.7909 17 45C17 47.2091 18.7909 49 21 49Z\"></path>\n  <path d=\"M45 49C47.2091 49 49 47.2091 49 45C49 42.7909 47.2091 41 45 41C42.7909 41 41 42.7909 41 45C41 47.2091 42.7909 49 45 49Z\"></path>\n</svg>"
+        },
+        {
+          "tag": "svg",
+          "src": null,
+          "alt": null,
+          "cls": null,
+          "inHeader": true,
+          "w": 0,
+          "h": 0,
+          "svg": "<svg style=\"display:none\" viewBox=\"0 0 22 22\" xmlns=\"http://www.w3.org/2000/svg\">\n  <symbol id=\"circle\">\n    <path d=\"M11.5 17C14.5376 17 17 14.5376 17 11.5C17 8.46243 14.5376 6 11.5 6C8.46243 6 6 8.46243 6 11.5C6 14.5376 8.46243 17 11.5 17Z\" fill=\"none\"></path>\n  </symbol>\n\n  <symbol id=\"circleFilled\">\n    <path d=\"M11.5 17C14.5376 17 17 14.5376 17 11.5C17 8.46243 14.5376 6 11.5 6C8.46243 6 6 8.46243 6 11.5C6 14.5376 8.46243 17 11.5 17Z\"></path>\n  </symbol>\n\n  <symbol id=\"dash\">\n    <path d=\"M11 11H19H3\"></path>\n  </symbol>\n\n  <symbol id=\"squareFilled\">\n    <rect x=\"6\" y=\"6\" width=\"11\" height=\"11\"></rect>\n  </symbol>\n\n  <symbol id=\"square\">\n    <rect x=\"7\" y=\"7\" width=\"9\" height=\"9\" fill=\"none\" stroke=\"inherit\"></rect>\n  </symbol>\n  \n  <symbol id=\"plus\">\n    <path d=\"M11 3V19\"></path>\n    <path d=\"M19 11L3 11\"></path>\n  </symbol>\n  \n  <symbol id=\"closedArrow\">\n    <path d=\"M11 11V2M11 18.1797L17 11.1477L5 11.1477L11 18.1797Z\" fill=\"none\"></path>\n  </symbol>\n  \n  <symbol id=\"closedArrowFilled\">\n    <path d=\"M11 11L11 2\" stroke=\"inherit\" fill=\"none\"></path>\n    <path fill-rule=\"evenodd\" clip-rule=\"evenodd\" d=\"M2.74695 9.38428L19.038 9.38428L10.8925 19.0846L2.74695 9.38428Z\" stroke-width=\"1\"></path>\n  </symbol>\n  \n  <symbol id=\"closedArrowHead\" viewBox=\"0 0 22 22\" xmlns=\"http://www.w3.org/2000/symbol\">\n    <path d=\"M18 7L11 15L4 7L18 7Z\" fill=\"none\" stroke=\"inherit\"></path>\n  </symbol>\n  \n  \n  <symbol id=\"closedArrowHeadFilled\" viewBox=\"0 0 22 22\" xmlns=\"http://www.w3.org/2000/symbol\">\n    <path d=\"M18.875 6.5L11 15.5L3.125 6.5L18.875 6.5Z\"></path>\n  </symbol>\n  \n  <symbol id=\"openArrow\">\n    <path d=\"M11 18.3591L11 3\" stroke=\"inherit\" fill=\"none\"></path>\n    <path d=\"M18 11.5L11 18.5L4 11.5\" stroke=\"inherit\" fill=\"none\"></path>\n  </symbol>\n  \n  <symbol id=\"openArrowHead\">\n    <path d=\"M18 7L11 14L4 7\" fill=\"none\"></path>\n  </symbol>\n\n  <symbol id=\"pinchedArrow\">\n    <path d=\"M11 17.3591L11 2\" fill=\"none\"></path>\n    <path d=\"M2 11C5.85455 12.2308 8.81818 14.9038 11 18C13.1818 14.8269 16.1455 12.1538 20 11\" fill=\"none\"></path>\n  </symbol>\n\n  <symbol id=\"pinchedArrowFilled\">\n    <path d=\"M11.05 10.4894C7.04096 8.73759 1.05005 8 1.05005 8C6.20459 11.3191 9.41368 14.1773 11.05 21C12.6864 14.0851 15.8955 11.227 21.05 8C21.05 8 15.0591 8.73759 11.05 10.4894Z\" stroke-width=\"1\"></path>\n    <path d=\"M11 11L11 1\" fill=\"none\"></path>\n  </symbol>\n\n  <symbol id=\"pinchedArrowHead\">\n    <path d=\"M2 7.24091C5.85455 8.40454 8.81818 10.9318 11 13.8591C13.1818 10.8591 16.1455 8.33181 20 7.24091\" fill=\"none\"></path>\n  </symbol>\n  \n  <symbol id=\"pinchedArrowHeadFilled\">\n    <path d=\"M11.05 7.1591C7.04096 5.60456 1.05005 4.95001 1.05005 4.95001C6.20459 7.89547 9.41368 10.4318 11.05 16.4864C12.6864 10.35 15.8955 7.81365 21.05 4.95001C21.05 4.95001 15.0591 5.60456 11.05 7.1591Z\"></path>\n  </symbol>\n\n</svg>"
+        },
+        {
+          "tag": "img",
+          "src": "https://images.squarespace-cdn.com/content/v1/698250781730ac02db2c8a80/b648517c-0be5-4ff1-ace0-4ed7bb671f48/PHP_Logo_HorizontalWhite.png?format=1500w",
+          "alt": "Premium Home Partners",
+          "cls": "",
+          "inHeader": true,
+          "w": 277,
+          "h": 83
+        },
+        {
+          "tag": "img",
+          "src": "https://images.squarespace-cdn.com/content/v1/698250781730ac02db2c8a80/b648517c-0be5-4ff1-ace0-4ed7bb671f48/PHP_Logo_HorizontalWhite.png?format=1500w",
+          "alt": "Premium Home Partners",
+          "cls": "",
+          "inHeader": true,
+          "w": 0,
+          "h": 0
+        },
+        {
+          "tag": "img",
+          "src": "https://images.squarespace-cdn.com/content/v1/698250781730ac02db2c8a80/23742340-e468-42eb-ac4d-545142e27291/Back+Exterior+View+2+WEB.jpg?format=1500w",
+          "alt": "",
+          "cls": "",
+          "inHeader": false,
+          "w": 1012,
+          "h": 550
+        },
+        {
+          "tag": "img",
+          "src": "https://images.squarespace-cdn.com/content/v1/698250781730ac02db2c8a80/70286da8-abad-47a7-b49a-e25ecd6ee313/Carriage+House+WEB.jpg?format=500w",
+          "alt": "",
+          "cls": "",
+          "inHeader": false,
+          "w": 387,
+          "h": 500
+        },
+        {
+          "tag": "img",
+          "src": "https://images.squarespace-cdn.com/content/v1/698250781730ac02db2c8a80/f2b35716-b18a-4a64-ab23-d0242212321f/McGahey-413-20140904.jpg?format=500w",
+          "alt": "",
+          "cls": "",
+          "inHeader": false,
+          "w": 387,
+          "h": 582
+        },
+        {
+          "tag": "img",
+          "src": "https://images.squarespace-cdn.com/content/v1/698250781730ac02db2c8a80/5103597c-2cc8-4ac0-8246-f683844f1f12/Screenshot+2026-02-03+170050.png?format=500w",
+          "alt": "",
+          "cls": "",
+          "inHeader": false,
+          "w": 444,
+          "h": 390
+        },
+        {
+          "tag": "img",
+          "src": "https://images.squarespace-cdn.com/content/v1/698250781730ac02db2c8a80/617b69bf-8082-4d84-8c0c-d8a5c1fc399b/Evening-Exterior-from-Neighbors-Dock-WEB.jpg?format=500w",
+          "alt": "",
+          "cls": "",
+          "inHeader": false,
+          "w": 444,
+          "h": 390
+        },
+        {
+          "tag": "img",
+          "src": "https://images.squarespace-cdn.com/content/v1/698250781730ac02db2c8a80/a2263c49-dddf-4aa8-9c4c-9322fd75c82a/841A3531.png?format=500w",
+          "alt": "",
+          "cls": "",
+          "inHeader": false,
+          "w": 444,
+          "h": 390
+        },
+        {
+          "tag": "svg",
+          "src": null,
+          "alt": null,
+          "cls": null,
+          "inHeader": false,
+          "w": 0,
+          "h": 0
+        }
+      ],
+      "icons": [
+        "https://images.squarespace-cdn.com/content/v1/698250781730ac02db2c8a80/b8c6a758-379f-496e-a535-006fe87622ff/favicon.ico?format=100w",
+        "https://images.squarespace-cdn.com/content/v1/698250781730ac02db2c8a80/c509552a-d7aa-41c7-a335-d4539ad55717/favicon.ico?format=100w"
+      ],
+      "links": [
+        {
+          "href": "https://www.premiumhomepartners.com/cart",
+          "text": "0"
+        },
+        {
+          "href": "https://www.premiumhomepartners.com/about#page",
+          "text": "SKIP TO CONTENT"
+        },
+        {
+          "href": "https://www.premiumhomepartners.com/",
+          "text": ""
+        },
+        {
+          "href": "https://www.premiumhomepartners.com/services",
+          "text": "Services"
+        },
+        {
+          "href": "https://www.premiumhomepartners.com/about",
+          "text": "The Experience"
+        },
+        {
+          "href": "https://www.premiumhomepartners.com/team",
+          "text": "Our Team"
+        },
+        {
+          "href": "https://www.premiumhomepartners.com/assessment",
+          "text": "Schedule an Assessment"
+        },
+        {
+          "href": "https://www.premiumhomepartners.com/",
+          "text": ""
+        },
+        {
+          "href": "https://www.premiumhomepartners.com/services",
+          "text": "Services"
+        },
+        {
+          "href": "https://www.premiumhomepartners.com/about",
+          "text": "The Experience"
+        },
+        {
+          "href": "https://www.premiumhomepartners.com/team",
+          "text": "Our Team"
+        },
+        {
+          "href": "https://www.premiumhomepartners.com/assessment",
+          "text": "Schedule an Assessment"
+        },
+        {
+          "href": "https://www.premiumhomepartners.com/services",
+          "text": ""
+        },
+        {
+          "href": "https://www.premiumhomepartners.com/about",
+          "text": ""
+        },
+        {
+          "href": "https://www.premiumhomepartners.com/team",
+          "text": ""
+        },
+        {
+          "href": "https://www.premiumhomepartners.com/assessment",
+          "text": ""
+        }
+      ],
+      "cssVars": {},
+      "fontLinks": [
+        "@font-face {\n  font-family: 'Libre Caslon Display';\n  font-style: normal;\n  font-weight: 400;\n  font-display: swap;\n  src: url('https://file.squarespace-cdn.com/content/v2/namespaces/fonts/libraries/sqsp/assets/2b3030a9-36f7-4b4e-883e-219d803cc2c2/latin-ext.woff2') format('woff2');\n  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;\n}\n@font-face {\n  font-family: 'Libre Caslon Display';\n  font-style: normal;\n  font-weight: 400;\n  font-display: swap;\n  src: url('https://file.squarespace-cdn.com/content/v2/namespaces/fonts/libraries/sqsp/assets/ecfe31d4-e83c-480d-ae13-749073a12b42/latin.woff2') format('woff2');\n  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;\n}\n@font-face {\n  font-family: 'Source Sans Pro';\n  font-style: normal;\n  font-weight: 400;\n  font-display: swap;\n  src: url('https://file.squarespace-cdn.com/content/v2/namespaces/fonts/libraries/sqsp/assets/b7dd2236-930f-4d81-9c77-7cec81260193/latin.woff2') format('woff2');\n  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;\n}\n@font-face {\n  font-family: 'Source Sans Pro';\n  font-style: normal;\n  font-weight: 400;\n  font-display: swap;\n  src: url('https://file.squarespace-cdn.com/content/v2/namespaces/fonts/libraries/sqsp/assets/9aa28dc4-4e92-41ce-a6c7-d21e231eb3aa/greek-ext.woff2') format('woff2');\n  unicode-range: U+1F00-1FFF;\n}\n@font-face {\n  font-family: 'Source Sans Pro';\n  font-style: normal;\n  font-weight: 400;\n  font-display: swap;\n  src: url('https://file.squarespace-cdn.com/content/v2/namespaces/fonts/libraries/sqsp/assets/31fb64b9-1014-4a40-b663-fb70f94ef99c/latin-ext.woff2') format('woff2');\n  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;\n}\n@font-face {\n  font-family: 'Source Sans Pro';\n  font-style: normal;\n  font-weight: 400;\n  font-display: swap;\n  src: url('https://file.squarespace-cdn.com/content/v2/namespaces/fonts/libraries/sqsp/assets/320d8579-3d91-4288-a181-23f2b5d2f98e/vietnamese.woff2') format('woff2');\n  unicode-range: U+0102-0103, U+0110-0111, U+0128-0129, U+0168-0169, U+01A0-01A1, U+01AF-01B0, U+0300-0301, U+0303-0304, U+0308-0309, U+0323, U+0329, U+1EA0-1EF9, U+20AB;\n}\n@font-face {\n  font-family: 'Source Sans Pro';\n  font-style: normal;\n  font-weight: 400;\n  font-display: swap;\n  src: url('https://file.squarespace-cdn.com/content/v2/namespaces/fonts/libraries/sqsp/assets/e55f857c-e886-49a2-84b4-4c6e6cbbe27e/greek.woff2') format('woff2');\n  unicode-range: U+0370-0377, U+037A-037F, U+0384-038A, U+038C, U+038E-03A1, U+03A3-03FF;\n}\n@font-face {\n  font-family: 'Source Sans Pro';\n  font-style: normal;\n  font-weight: 400;\n  font-display: swap;\n  src: url('https://file.squarespace-cdn.com/content/v2/namespaces/fonts/libraries/sqsp/assets/bd06faa7-07c3-4b89-9173-94d0c781c0aa/cyrillic-ext.woff2') format('woff2');\n  unicode-range: U+0460-052F, U+1C80-1C8A, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F;\n}\n@font-face {\n  font-family: 'Source Sans Pro';\n  font-style: normal;\n  font-weight: 400;\n  font-display: swap;\n  src: url('https://file.squarespace-cdn.com/content/v2/namespaces/fonts/libraries/sqsp/assets/7e399908-f138-4090-a532-e92b10631448/cyrillic.woff2') format('woff2');\n  unicode-range: U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;\n}\n@font-face {\n  font-family: 'Source Sans Pro';\n  font-style: normal;\n  font-weight: 700;\n  font-display: swap;\n  src: url('https://file.squarespace-cdn.com/content/v2/namespaces/fonts/libraries/sqsp/assets/1d35083e-f339-47"
+      ],
+      "themeColor": null
+    },
+    {
+      "url": "https://www.premiumhomepartners.com/team",
+      "name": "team",
+      "title": "Team — Premium Home Partners",
+      "description": "",
+      "colors": [
+        {
+          "value": "rgb(250, 250, 250)",
+          "count": 159,
+          "where": [
+            "text:body",
+            "text:header/nav",
+            "text:link/button",
+            "bg:body",
+            "text:footer",
+            "text:heading"
+          ]
+        },
+        {
+          "value": "rgb(13, 30, 48)",
+          "count": 65,
+          "where": [
+            "text:link/button",
+            "text:body",
+            "bg:body",
+            "text:heading",
+            "bg:link/button",
+            "bg:footer"
+          ]
+        },
+        {
+          "value": "rgb(220, 220, 220)",
+          "count": 24,
+          "where": [
+            "bg:link/button",
+            "text:link/button",
+            "text:header/nav",
+            "bg:header/nav",
+            "text:heading",
+            "bg:body"
+          ]
+        },
+        {
+          "value": "rgb(0, 0, 0)",
+          "count": 14,
+          "where": [
+            "text:link/button",
+            "text:header/nav"
+          ]
+        },
+        {
+          "value": "rgba(13, 30, 48, 0.5)",
+          "count": 5,
+          "where": [
+            "bg:header/nav",
+            "bg:body"
+          ]
+        },
+        {
+          "value": "rgb(9, 55, 93)",
+          "count": 2,
+          "where": [
+            "bg:body"
+          ]
+        },
+        {
+          "value": "rgb(255, 255, 255)",
+          "count": 1,
+          "where": [
+            "text:body"
+          ]
+        }
+      ],
+      "fonts": [
+        {
+          "value": "\"Source Sans Pro\" | 400 | 16px",
+          "count": 219,
+          "where": [
+            "body",
+            "link/button",
+            "header/nav",
+            "footer"
+          ]
+        },
+        {
+          "value": "sans-serif | 400 | 16px",
+          "count": 8,
+          "where": [
+            "body"
+          ]
+        },
+        {
+          "value": "\"Source Sans Pro\" | 400 | 0px",
+          "count": 6,
+          "where": [
+            "header/nav",
+            "link/button"
+          ]
+        },
+        {
+          "value": "\"Source Sans Pro\" | 400 | 24.64px",
+          "count": 3,
+          "where": [
+            "body"
+          ]
+        },
+        {
+          "value": "\"Source Sans Pro\" | 400 | 10px",
+          "count": 2,
+          "where": [
+            "body"
+          ]
+        },
+        {
+          "value": "\"Libre Caslon Display\" | 400 | 67.84px | ls -2.7136px",
+          "count": 2,
+          "where": [
+            "heading",
+            "body"
+          ]
+        },
+        {
+          "value": "\"Source Sans Pro\" | 400 | 12.544px | uppercase | ls 0.75264px",
+          "count": 1,
+          "where": [
+            "link/button"
+          ]
+        },
+        {
+          "value": "\"Libre Caslon Display\" | 400 | 26.368px | ls -1.05472px",
+          "count": 1,
+          "where": [
+            "heading"
+          ]
+        },
+        {
+          "value": "\"Libre Caslon Display\" | 400 | 50.56px | ls -2.0224px",
+          "count": 1,
+          "where": [
+            "heading"
+          ]
+        },
+        {
+          "value": "\"Source Sans Pro\" | 400 | 16px | ls 0.32px",
+          "count": 1,
+          "where": [
+            "link/button"
+          ]
+        },
+        {
+          "value": "\"Libre Caslon Display\" | 400 | 36.736px | ls -1.46944px",
+          "count": 1,
+          "where": [
+            "heading"
+          ]
+        }
+      ],
+      "imgs": [
+        {
+          "tag": "svg",
+          "src": null,
+          "alt": null,
+          "cls": "icon icon--cart",
+          "inHeader": false,
+          "w": 0,
+          "h": 0,
+          "svg": "<svg class=\"icon icon--cart\" width=\"61\" height=\"49\" viewBox=\"0 0 61 49\">\n  <path fill-rule=\"evenodd\" clip-rule=\"evenodd\" d=\"M0.5 2C0.5 1.17157 1.17157 0.5 2 0.5H13.6362C14.3878 0.5 15.0234 1.05632 15.123 1.80135L16.431 11.5916H59C59.5122 11.5916 59.989 11.8529 60.2645 12.2847C60.54 12.7165 60.5762 13.2591 60.3604 13.7236L50.182 35.632C49.9361 36.1614 49.4054 36.5 48.8217 36.5H18.0453C17.2937 36.5 16.6581 35.9437 16.5585 35.1987L12.3233 3.5H2C1.17157 3.5 0.5 2.82843 0.5 2ZM16.8319 14.5916L19.3582 33.5H47.8646L56.6491 14.5916H16.8319Z\"></path>\n  <path d=\"M18.589 35H49.7083L60 13H16L18.589 35Z\"></path>\n  <path d=\"M21 49C23.2091 49 25 47.2091 25 45C25 42.7909 23.2091 41 21 41C18.7909 41 17 42.7909 17 45C17 47.2091 18.7909 49 21 49Z\"></path>\n  <path d=\"M45 49C47.2091 49 49 47.2091 49 45C49 42.7909 47.2091 41 45 41C42.7909 41 41 42.7909 41 45C41 47.2091 42.7909 49 45 49Z\"></path>\n</svg>"
+        },
+        {
+          "tag": "svg",
+          "src": null,
+          "alt": null,
+          "cls": null,
+          "inHeader": true,
+          "w": 0,
+          "h": 0,
+          "svg": "<svg style=\"display:none\" viewBox=\"0 0 22 22\" xmlns=\"http://www.w3.org/2000/svg\">\n  <symbol id=\"circle\">\n    <path d=\"M11.5 17C14.5376 17 17 14.5376 17 11.5C17 8.46243 14.5376 6 11.5 6C8.46243 6 6 8.46243 6 11.5C6 14.5376 8.46243 17 11.5 17Z\" fill=\"none\"></path>\n  </symbol>\n\n  <symbol id=\"circleFilled\">\n    <path d=\"M11.5 17C14.5376 17 17 14.5376 17 11.5C17 8.46243 14.5376 6 11.5 6C8.46243 6 6 8.46243 6 11.5C6 14.5376 8.46243 17 11.5 17Z\"></path>\n  </symbol>\n\n  <symbol id=\"dash\">\n    <path d=\"M11 11H19H3\"></path>\n  </symbol>\n\n  <symbol id=\"squareFilled\">\n    <rect x=\"6\" y=\"6\" width=\"11\" height=\"11\"></rect>\n  </symbol>\n\n  <symbol id=\"square\">\n    <rect x=\"7\" y=\"7\" width=\"9\" height=\"9\" fill=\"none\" stroke=\"inherit\"></rect>\n  </symbol>\n  \n  <symbol id=\"plus\">\n    <path d=\"M11 3V19\"></path>\n    <path d=\"M19 11L3 11\"></path>\n  </symbol>\n  \n  <symbol id=\"closedArrow\">\n    <path d=\"M11 11V2M11 18.1797L17 11.1477L5 11.1477L11 18.1797Z\" fill=\"none\"></path>\n  </symbol>\n  \n  <symbol id=\"closedArrowFilled\">\n    <path d=\"M11 11L11 2\" stroke=\"inherit\" fill=\"none\"></path>\n    <path fill-rule=\"evenodd\" clip-rule=\"evenodd\" d=\"M2.74695 9.38428L19.038 9.38428L10.8925 19.0846L2.74695 9.38428Z\" stroke-width=\"1\"></path>\n  </symbol>\n  \n  <symbol id=\"closedArrowHead\" viewBox=\"0 0 22 22\" xmlns=\"http://www.w3.org/2000/symbol\">\n    <path d=\"M18 7L11 15L4 7L18 7Z\" fill=\"none\" stroke=\"inherit\"></path>\n  </symbol>\n  \n  \n  <symbol id=\"closedArrowHeadFilled\" viewBox=\"0 0 22 22\" xmlns=\"http://www.w3.org/2000/symbol\">\n    <path d=\"M18.875 6.5L11 15.5L3.125 6.5L18.875 6.5Z\"></path>\n  </symbol>\n  \n  <symbol id=\"openArrow\">\n    <path d=\"M11 18.3591L11 3\" stroke=\"inherit\" fill=\"none\"></path>\n    <path d=\"M18 11.5L11 18.5L4 11.5\" stroke=\"inherit\" fill=\"none\"></path>\n  </symbol>\n  \n  <symbol id=\"openArrowHead\">\n    <path d=\"M18 7L11 14L4 7\" fill=\"none\"></path>\n  </symbol>\n\n  <symbol id=\"pinchedArrow\">\n    <path d=\"M11 17.3591L11 2\" fill=\"none\"></path>\n    <path d=\"M2 11C5.85455 12.2308 8.81818 14.9038 11 18C13.1818 14.8269 16.1455 12.1538 20 11\" fill=\"none\"></path>\n  </symbol>\n\n  <symbol id=\"pinchedArrowFilled\">\n    <path d=\"M11.05 10.4894C7.04096 8.73759 1.05005 8 1.05005 8C6.20459 11.3191 9.41368 14.1773 11.05 21C12.6864 14.0851 15.8955 11.227 21.05 8C21.05 8 15.0591 8.73759 11.05 10.4894Z\" stroke-width=\"1\"></path>\n    <path d=\"M11 11L11 1\" fill=\"none\"></path>\n  </symbol>\n\n  <symbol id=\"pinchedArrowHead\">\n    <path d=\"M2 7.24091C5.85455 8.40454 8.81818 10.9318 11 13.8591C13.1818 10.8591 16.1455 8.33181 20 7.24091\" fill=\"none\"></path>\n  </symbol>\n  \n  <symbol id=\"pinchedArrowHeadFilled\">\n    <path d=\"M11.05 7.1591C7.04096 5.60456 1.05005 4.95001 1.05005 4.95001C6.20459 7.89547 9.41368 10.4318 11.05 16.4864C12.6864 10.35 15.8955 7.81365 21.05 4.95001C21.05 4.95001 15.0591 5.60456 11.05 7.1591Z\"></path>\n  </symbol>\n\n</svg>"
+        },
+        {
+          "tag": "img",
+          "src": "https://images.squarespace-cdn.com/content/v1/698250781730ac02db2c8a80/b648517c-0be5-4ff1-ace0-4ed7bb671f48/PHP_Logo_HorizontalWhite.png?format=1500w",
+          "alt": "Premium Home Partners",
+          "cls": "",
+          "inHeader": true,
+          "w": 277,
+          "h": 83
+        },
+        {
+          "tag": "img",
+          "src": "https://images.squarespace-cdn.com/content/v1/698250781730ac02db2c8a80/b648517c-0be5-4ff1-ace0-4ed7bb671f48/PHP_Logo_HorizontalWhite.png?format=1500w",
+          "alt": "Premium Home Partners",
+          "cls": "",
+          "inHeader": true,
+          "w": 0,
+          "h": 0
+        },
+        {
+          "tag": "img",
+          "src": "https://images.squarespace-cdn.com/content/v1/698250781730ac02db2c8a80/d7e1534e-56fe-48a8-ac0e-b3c3d6043c84/DSC_1031+copy.jpg?format=1500w",
+          "alt": "",
+          "cls": "",
+          "inHeader": false,
+          "w": 1440,
+          "h": 491
+        },
+        {
+          "tag": "img",
+          "src": "https://images.squarespace-cdn.com/content/v1/698250781730ac02db2c8a80/693cf562-773e-4016-8102-8b50e5fc5f49/Screenshot+2026-02-04+091137.png?format=1500w",
+          "alt": "",
+          "cls": "",
+          "inHeader": false,
+          "w": 330,
+          "h": 554
+        },
+        {
+          "tag": "img",
+          "src": "https://images.squarespace-cdn.com/content/v1/698250781730ac02db2c8a80/ad32c4ef-e543-4eb9-a879-e251ca0f6c88/2025+Burke+Cox+Headshot.png?format=500w",
+          "alt": "",
+          "cls": "",
+          "inHeader": false,
+          "w": 330,
+          "h": 350
+        },
+        {
+          "tag": "img",
+          "src": "https://images.squarespace-cdn.com/content/v1/698250781730ac02db2c8a80/3d108449-f621-4080-b51d-6f8239ecd74c/Screenshot+2026-02-10+104855.png?format=500w",
+          "alt": "",
+          "cls": "",
+          "inHeader": false,
+          "w": 330,
+          "h": 350
+        },
+        {
+          "tag": "img",
+          "src": "https://images.squarespace-cdn.com/content/v1/698250781730ac02db2c8a80/25b0ff5b-b57e-404b-8924-7783eb960412/Screenshot+2026-02-17+161257.png?format=500w",
+          "alt": "",
+          "cls": "",
+          "inHeader": false,
+          "w": 330,
+          "h": 350
+        },
+        {
+          "tag": "svg",
+          "src": null,
+          "alt": null,
+          "cls": null,
+          "inHeader": false,
+          "w": 0,
+          "h": 0
+        }
+      ],
+      "icons": [
+        "https://images.squarespace-cdn.com/content/v1/698250781730ac02db2c8a80/b8c6a758-379f-496e-a535-006fe87622ff/favicon.ico?format=100w",
+        "https://images.squarespace-cdn.com/content/v1/698250781730ac02db2c8a80/c509552a-d7aa-41c7-a335-d4539ad55717/favicon.ico?format=100w"
+      ],
+      "links": [
+        {
+          "href": "https://www.premiumhomepartners.com/cart",
+          "text": "0"
+        },
+        {
+          "href": "https://www.premiumhomepartners.com/team#page",
+          "text": "SKIP TO CONTENT"
+        },
+        {
+          "href": "https://www.premiumhomepartners.com/",
+          "text": ""
+        },
+        {
+          "href": "https://www.premiumhomepartners.com/services",
+          "text": "Services"
+        },
+        {
+          "href": "https://www.premiumhomepartners.com/about",
+          "text": "The Experience"
+        },
+        {
+          "href": "https://www.premiumhomepartners.com/team",
+          "text": "Our Team"
+        },
+        {
+          "href": "https://www.premiumhomepartners.com/assessment",
+          "text": "Schedule an Assessment"
+        },
+        {
+          "href": "https://www.premiumhomepartners.com/",
+          "text": ""
+        },
+        {
+          "href": "https://www.premiumhomepartners.com/services",
+          "text": "Services"
+        },
+        {
+          "href": "https://www.premiumhomepartners.com/about",
+          "text": "The Experience"
+        },
+        {
+          "href": "https://www.premiumhomepartners.com/team",
+          "text": "Our Team"
+        },
+        {
+          "href": "https://www.premiumhomepartners.com/assessment",
+          "text": "Schedule an Assessment"
+        },
+        {
+          "href": "https://www.premiumhomepartners.com/services",
+          "text": ""
+        },
+        {
+          "href": "https://www.premiumhomepartners.com/about",
+          "text": ""
+        },
+        {
+          "href": "https://www.premiumhomepartners.com/team",
+          "text": ""
+        },
+        {
+          "href": "https://www.premiumhomepartners.com/assessment",
+          "text": ""
+        },
+        {
+          "href": "https://www.premiumhomepartners.com/assessment",
+          "text": "Schedule an Assessment"
+        }
+      ],
+      "cssVars": {},
+      "fontLinks": [
+        "@font-face {\n  font-family: 'Source Sans Pro';\n  font-style: italic;\n  font-weight: 700;\n  font-display: swap;\n  src: url('https://file.squarespace-cdn.com/content/v2/namespaces/fonts/libraries/sqsp/assets/cdde8e97-8f8e-4c8b-8e1c-83709464aa76/cyrillic-ext.woff2') format('woff2');\n  unicode-range: U+0460-052F, U+1C80-1C8A, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F;\n}\n@font-face {\n  font-family: 'Source Sans Pro';\n  font-style: italic;\n  font-weight: 700;\n  font-display: swap;\n  src: url('https://file.squarespace-cdn.com/content/v2/namespaces/fonts/libraries/sqsp/assets/414bf655-2b27-47dc-9608-c70e5629de8a/latin-ext.woff2') format('woff2');\n  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;\n}\n@font-face {\n  font-family: 'Source Sans Pro';\n  font-style: italic;\n  font-weight: 700;\n  font-display: swap;\n  src: url('https://file.squarespace-cdn.com/content/v2/namespaces/fonts/libraries/sqsp/assets/8824166d-cc4f-4fab-b2b9-eb6f9e5f9e5e/vietnamese.woff2') format('woff2');\n  unicode-range: U+0102-0103, U+0110-0111, U+0128-0129, U+0168-0169, U+01A0-01A1, U+01AF-01B0, U+0300-0301, U+0303-0304, U+0308-0309, U+0323, U+0329, U+1EA0-1EF9, U+20AB;\n}\n@font-face {\n  font-family: 'Source Sans Pro';\n  font-style: italic;\n  font-weight: 700;\n  font-display: swap;\n  src: url('https://file.squarespace-cdn.com/content/v2/namespaces/fonts/libraries/sqsp/assets/42fe1dba-f785-4a67-a6b7-e65beed8c6b2/cyrillic.woff2') format('woff2');\n  unicode-range: U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;\n}\n@font-face {\n  font-family: 'Source Sans Pro';\n  font-style: italic;\n  font-weight: 700;\n  font-display: swap;\n  src: url('https://file.squarespace-cdn.com/content/v2/namespaces/fonts/libraries/sqsp/assets/7e74e5f2-d876-44c7-8585-b35ec27ad385/latin.woff2') format('woff2');\n  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;\n}\n@font-face {\n  font-family: 'Source Sans Pro';\n  font-style: italic;\n  font-weight: 700;\n  font-display: swap;\n  src: url('https://file.squarespace-cdn.com/content/v2/namespaces/fonts/libraries/sqsp/assets/2350df97-8a06-4d18-a74b-1b80ea2e680e/greek.woff2') format('woff2');\n  unicode-range: U+0370-0377, U+037A-037F, U+0384-038A, U+038C, U+038E-03A1, U+03A3-03FF;\n}\n@font-face {\n  font-family: 'Sorts Mill Goudy';\n  font-style: normal;\n  font-weight: 400;\n  font-display: swap;\n  src: url('https://file.squarespace-cdn.com/content/v2/namespaces/fonts/libraries/sqsp/assets/5471111f-b15d-497a-a303-cc5563dc9927/latin-ext.woff2') format('woff2');\n  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;\n}\n@font-face {\n  font-family: 'Sorts Mill Goudy';\n  font-style: normal;\n  font-weight: 400;\n  font-display: swap;\n  src: url('https://file.squarespace-cdn.com/content/v2/namespaces/fonts/libraries/sqsp/assets/8ebf84a1-d9c4-4a76-8191-4fa4dbfeb64a/latin.woff2') format('woff2');\n  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;\n}\n@font-face {\n  font-family: 'Source Sans Pro';\n  font-style: normal;\n  font-weight: 400;\n  font-display: swap;\n  src: url('https://file.squarespace-cdn.com/content/v2/namespaces/fonts/libraries/sqsp/assets/b7dd2236-930f-4d81-9c77-7cec81260193/latin.woff2') format('woff2');\n  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;\n}\n@font-face {\n  font-family: 'Source Sans Pro';\n  font-style: normal;\n  font"
+      ],
+      "themeColor": null
+    },
+    {
+      "url": "https://www.premiumhomepartners.com/assessment",
+      "name": "assessment",
+      "title": "Assessment — Premium Home Partners",
+      "description": "",
+      "colors": [
+        {
+          "value": "rgb(250, 250, 250)",
+          "count": 220,
+          "where": [
+            "text:body",
+            "text:header/nav",
+            "text:link/button",
+            "bg:body",
+            "text:footer",
+            "text:heading"
+          ]
+        },
+        {
+          "value": "rgb(0, 0, 0)",
+          "count": 25,
+          "where": [
+            "text:link/button",
+            "text:header/nav",
+            "text:body",
+            "border:body"
+          ]
+        },
+        {
+          "value": "rgb(220, 220, 220)",
+          "count": 22,
+          "where": [
+            "bg:link/button",
+            "text:link/button",
+            "text:header/nav",
+            "bg:header/nav",
+            "text:heading"
+          ]
+        },
+        {
+          "value": "rgb(13, 30, 48)",
+          "count": 21,
+          "where": [
+            "text:link/button",
+            "text:body",
+            "bg:body",
+            "bg:footer"
+          ]
+        },
+        {
+          "value": "rgba(13, 30, 48, 0.5)",
+          "count": 4,
+          "where": [
+            "bg:body"
+          ]
+        },
+        {
+          "value": "rgba(13, 30, 48, 0.008)",
+          "count": 1,
+          "where": [
+            "bg:header/nav"
+          ]
+        },
+        {
+          "value": "rgb(169, 169, 169)",
+          "count": 1,
+          "where": [
+            "border:body"
+          ]
+        }
+      ],
+      "fonts": [
+        {
+          "value": "\"Source Sans Pro\" | 400 | 16px",
+          "count": 225,
+          "where": [
+            "body",
+            "link/button",
+            "header/nav",
+            "footer"
+          ]
+        },
+        {
+          "value": "sans-serif | 400 | 16px",
+          "count": 9,
+          "where": [
+            "body"
+          ]
+        },
+        {
+          "value": "\"Source Sans Pro\" | 400 | 14.272px",
+          "count": 7,
+          "where": [
+            "body"
+          ]
+        },
+        {
+          "value": "\"Source Sans Pro\" | 400 | 16px | ls 0.32px",
+          "count": 7,
+          "where": [
+            "link/button",
+            "body"
+          ]
+        },
+        {
+          "value": "\"Source Sans Pro\" | 400 | 0px",
+          "count": 6,
+          "where": [
+            "header/nav",
+            "link/button"
+          ]
+        },
+        {
+          "value": "\"Source Sans Pro\" | 400 | 12px",
+          "count": 6,
+          "where": [
+            "body"
+          ]
+        },
+        {
+          "value": "\"Source Sans Pro\" | 400 | 10px",
+          "count": 2,
+          "where": [
+            "body"
+          ]
+        },
+        {
+          "value": "\"Source Sans Pro\" | 400 | 12.544px | uppercase | ls 0.75264px",
+          "count": 1,
+          "where": [
+            "link/button"
+          ]
+        },
+        {
+          "value": "\"Libre Caslon Display\" | 400 | 67.84px | ls -2.7136px",
+          "count": 1,
+          "where": [
+            "heading"
+          ]
+        },
+        {
+          "value": "\"Libre Caslon Display\" | 400 | 36.736px | ls -1.46944px",
+          "count": 1,
+          "where": [
+            "heading"
+          ]
+        }
+      ],
+      "imgs": [
+        {
+          "tag": "svg",
+          "src": null,
+          "alt": null,
+          "cls": "icon icon--cart",
+          "inHeader": false,
+          "w": 0,
+          "h": 0,
+          "svg": "<svg class=\"icon icon--cart\" width=\"61\" height=\"49\" viewBox=\"0 0 61 49\">\n  <path fill-rule=\"evenodd\" clip-rule=\"evenodd\" d=\"M0.5 2C0.5 1.17157 1.17157 0.5 2 0.5H13.6362C14.3878 0.5 15.0234 1.05632 15.123 1.80135L16.431 11.5916H59C59.5122 11.5916 59.989 11.8529 60.2645 12.2847C60.54 12.7165 60.5762 13.2591 60.3604 13.7236L50.182 35.632C49.9361 36.1614 49.4054 36.5 48.8217 36.5H18.0453C17.2937 36.5 16.6581 35.9437 16.5585 35.1987L12.3233 3.5H2C1.17157 3.5 0.5 2.82843 0.5 2ZM16.8319 14.5916L19.3582 33.5H47.8646L56.6491 14.5916H16.8319Z\"></path>\n  <path d=\"M18.589 35H49.7083L60 13H16L18.589 35Z\"></path>\n  <path d=\"M21 49C23.2091 49 25 47.2091 25 45C25 42.7909 23.2091 41 21 41C18.7909 41 17 42.7909 17 45C17 47.2091 18.7909 49 21 49Z\"></path>\n  <path d=\"M45 49C47.2091 49 49 47.2091 49 45C49 42.7909 47.2091 41 45 41C42.7909 41 41 42.7909 41 45C41 47.2091 42.7909 49 45 49Z\"></path>\n</svg>"
+        },
+        {
+          "tag": "svg",
+          "src": null,
+          "alt": null,
+          "cls": null,
+          "inHeader": true,
+          "w": 0,
+          "h": 0,
+          "svg": "<svg style=\"display:none\" viewBox=\"0 0 22 22\" xmlns=\"http://www.w3.org/2000/svg\">\n  <symbol id=\"circle\">\n    <path d=\"M11.5 17C14.5376 17 17 14.5376 17 11.5C17 8.46243 14.5376 6 11.5 6C8.46243 6 6 8.46243 6 11.5C6 14.5376 8.46243 17 11.5 17Z\" fill=\"none\"></path>\n  </symbol>\n\n  <symbol id=\"circleFilled\">\n    <path d=\"M11.5 17C14.5376 17 17 14.5376 17 11.5C17 8.46243 14.5376 6 11.5 6C8.46243 6 6 8.46243 6 11.5C6 14.5376 8.46243 17 11.5 17Z\"></path>\n  </symbol>\n\n  <symbol id=\"dash\">\n    <path d=\"M11 11H19H3\"></path>\n  </symbol>\n\n  <symbol id=\"squareFilled\">\n    <rect x=\"6\" y=\"6\" width=\"11\" height=\"11\"></rect>\n  </symbol>\n\n  <symbol id=\"square\">\n    <rect x=\"7\" y=\"7\" width=\"9\" height=\"9\" fill=\"none\" stroke=\"inherit\"></rect>\n  </symbol>\n  \n  <symbol id=\"plus\">\n    <path d=\"M11 3V19\"></path>\n    <path d=\"M19 11L3 11\"></path>\n  </symbol>\n  \n  <symbol id=\"closedArrow\">\n    <path d=\"M11 11V2M11 18.1797L17 11.1477L5 11.1477L11 18.1797Z\" fill=\"none\"></path>\n  </symbol>\n  \n  <symbol id=\"closedArrowFilled\">\n    <path d=\"M11 11L11 2\" stroke=\"inherit\" fill=\"none\"></path>\n    <path fill-rule=\"evenodd\" clip-rule=\"evenodd\" d=\"M2.74695 9.38428L19.038 9.38428L10.8925 19.0846L2.74695 9.38428Z\" stroke-width=\"1\"></path>\n  </symbol>\n  \n  <symbol id=\"closedArrowHead\" viewBox=\"0 0 22 22\" xmlns=\"http://www.w3.org/2000/symbol\">\n    <path d=\"M18 7L11 15L4 7L18 7Z\" fill=\"none\" stroke=\"inherit\"></path>\n  </symbol>\n  \n  \n  <symbol id=\"closedArrowHeadFilled\" viewBox=\"0 0 22 22\" xmlns=\"http://www.w3.org/2000/symbol\">\n    <path d=\"M18.875 6.5L11 15.5L3.125 6.5L18.875 6.5Z\"></path>\n  </symbol>\n  \n  <symbol id=\"openArrow\">\n    <path d=\"M11 18.3591L11 3\" stroke=\"inherit\" fill=\"none\"></path>\n    <path d=\"M18 11.5L11 18.5L4 11.5\" stroke=\"inherit\" fill=\"none\"></path>\n  </symbol>\n  \n  <symbol id=\"openArrowHead\">\n    <path d=\"M18 7L11 14L4 7\" fill=\"none\"></path>\n  </symbol>\n\n  <symbol id=\"pinchedArrow\">\n    <path d=\"M11 17.3591L11 2\" fill=\"none\"></path>\n    <path d=\"M2 11C5.85455 12.2308 8.81818 14.9038 11 18C13.1818 14.8269 16.1455 12.1538 20 11\" fill=\"none\"></path>\n  </symbol>\n\n  <symbol id=\"pinchedArrowFilled\">\n    <path d=\"M11.05 10.4894C7.04096 8.73759 1.05005 8 1.05005 8C6.20459 11.3191 9.41368 14.1773 11.05 21C12.6864 14.0851 15.8955 11.227 21.05 8C21.05 8 15.0591 8.73759 11.05 10.4894Z\" stroke-width=\"1\"></path>\n    <path d=\"M11 11L11 1\" fill=\"none\"></path>\n  </symbol>\n\n  <symbol id=\"pinchedArrowHead\">\n    <path d=\"M2 7.24091C5.85455 8.40454 8.81818 10.9318 11 13.8591C13.1818 10.8591 16.1455 8.33181 20 7.24091\" fill=\"none\"></path>\n  </symbol>\n  \n  <symbol id=\"pinchedArrowHeadFilled\">\n    <path d=\"M11.05 7.1591C7.04096 5.60456 1.05005 4.95001 1.05005 4.95001C6.20459 7.89547 9.41368 10.4318 11.05 16.4864C12.6864 10.35 15.8955 7.81365 21.05 4.95001C21.05 4.95001 15.0591 5.60456 11.05 7.1591Z\"></path>\n  </symbol>\n\n</svg>"
+        },
+        {
+          "tag": "img",
+          "src": "https://images.squarespace-cdn.com/content/v1/698250781730ac02db2c8a80/b648517c-0be5-4ff1-ace0-4ed7bb671f48/PHP_Logo_HorizontalWhite.png?format=1500w",
+          "alt": "Premium Home Partners",
+          "cls": "",
+          "inHeader": true,
+          "w": 277,
+          "h": 83
+        },
+        {
+          "tag": "img",
+          "src": "https://images.squarespace-cdn.com/content/v1/698250781730ac02db2c8a80/b648517c-0be5-4ff1-ace0-4ed7bb671f48/PHP_Logo_HorizontalWhite.png?format=1500w",
+          "alt": "Premium Home Partners",
+          "cls": "",
+          "inHeader": true,
+          "w": 0,
+          "h": 0
+        },
+        {
+          "tag": "img",
+          "src": "https://images.squarespace-cdn.com/content/v1/698250781730ac02db2c8a80/a7bf33e2-7004-45db-9904-83431e9c5a68/Screenshot+2026-02-04+083609.png?format=1500w",
+          "alt": "",
+          "cls": "",
+          "inHeader": false,
+          "w": 146,
+          "h": 390
+        },
+        {
+          "tag": "img",
+          "src": "https://images.squarespace-cdn.com/content/v1/698250781730ac02db2c8a80/d522db24-fe29-44c8-aa7e-0273de0c6034/_TSC6579.jpg?format=1500w",
+          "alt": "",
+          "cls": "",
+          "inHeader": false,
+          "w": 330,
+          "h": 270
+        },
+        {
+          "tag": "img",
+          "src": "https://images.squarespace-cdn.com/content/v1/698250781730ac02db2c8a80/0743b92f-fdc9-4812-9abf-ca68a81686f2/Screenshot+2026-02-04+083910.png?format=1500w",
+          "alt": "",
+          "cls": "",
+          "inHeader": false,
+          "w": 387,
+          "h": 310
+        },
+        {
+          "tag": "img",
+          "src": "https://images.squarespace-cdn.com/content/v1/698250781730ac02db2c8a80/86ecbf68-d942-406d-85f6-fb417e99515a/Screenshot+2026-02-04+083459.png?format=1500w",
+          "alt": "",
+          "cls": "",
+          "inHeader": false,
+          "w": 146,
+          "h": 390
+        },
+        {
+          "tag": "svg",
+          "src": null,
+          "alt": null,
+          "cls": null,
+          "inHeader": false,
+          "w": 0,
+          "h": 0
+        }
+      ],
+      "icons": [
+        "https://images.squarespace-cdn.com/content/v1/698250781730ac02db2c8a80/b8c6a758-379f-496e-a535-006fe87622ff/favicon.ico?format=100w",
+        "https://images.squarespace-cdn.com/content/v1/698250781730ac02db2c8a80/c509552a-d7aa-41c7-a335-d4539ad55717/favicon.ico?format=100w"
+      ],
+      "links": [
+        {
+          "href": "https://www.premiumhomepartners.com/cart",
+          "text": "0"
+        },
+        {
+          "href": "https://www.premiumhomepartners.com/assessment#page",
+          "text": "SKIP TO CONTENT"
+        },
+        {
+          "href": "https://www.premiumhomepartners.com/",
+          "text": ""
+        },
+        {
+          "href": "https://www.premiumhomepartners.com/services",
+          "text": "Services"
+        },
+        {
+          "href": "https://www.premiumhomepartners.com/about",
+          "text": "The Experience"
+        },
+        {
+          "href": "https://www.premiumhomepartners.com/team",
+          "text": "Our Team"
+        },
+        {
+          "href": "https://www.premiumhomepartners.com/assessment",
+          "text": "Schedule an Assessment"
+        },
+        {
+          "href": "https://www.premiumhomepartners.com/",
+          "text": ""
+        },
+        {
+          "href": "https://www.premiumhomepartners.com/services",
+          "text": "Services"
+        },
+        {
+          "href": "https://www.premiumhomepartners.com/about",
+          "text": "The Experience"
+        },
+        {
+          "href": "https://www.premiumhomepartners.com/team",
+          "text": "Our Team"
+        },
+        {
+          "href": "https://www.premiumhomepartners.com/assessment",
+          "text": "Schedule an Assessment"
+        },
+        {
+          "href": "https://www.premiumhomepartners.com/services",
+          "text": ""
+        },
+        {
+          "href": "https://www.premiumhomepartners.com/about",
+          "text": ""
+        },
+        {
+          "href": "https://www.premiumhomepartners.com/team",
+          "text": ""
+        },
+        {
+          "href": "https://www.premiumhomepartners.com/assessment",
+          "text": ""
+        }
+      ],
+      "cssVars": {},
+      "fontLinks": [
+        "@font-face {\n  font-family: 'Sorts Mill Goudy';\n  font-style: normal;\n  font-weight: 400;\n  font-display: swap;\n  src: url('https://file.squarespace-cdn.com/content/v2/namespaces/fonts/libraries/sqsp/assets/5471111f-b15d-497a-a303-cc5563dc9927/latin-ext.woff2') format('woff2');\n  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;\n}\n@font-face {\n  font-family: 'Sorts Mill Goudy';\n  font-style: normal;\n  font-weight: 400;\n  font-display: swap;\n  src: url('https://file.squarespace-cdn.com/content/v2/namespaces/fonts/libraries/sqsp/assets/8ebf84a1-d9c4-4a76-8191-4fa4dbfeb64a/latin.woff2') format('woff2');\n  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;\n}\n@font-face {\n  font-family: 'Source Sans Pro';\n  font-style: italic;\n  font-weight: 700;\n  font-display: swap;\n  src: url('https://file.squarespace-cdn.com/content/v2/namespaces/fonts/libraries/sqsp/assets/cdde8e97-8f8e-4c8b-8e1c-83709464aa76/cyrillic-ext.woff2') format('woff2');\n  unicode-range: U+0460-052F, U+1C80-1C8A, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F;\n}\n@font-face {\n  font-family: 'Source Sans Pro';\n  font-style: italic;\n  font-weight: 700;\n  font-display: swap;\n  src: url('https://file.squarespace-cdn.com/content/v2/namespaces/fonts/libraries/sqsp/assets/414bf655-2b27-47dc-9608-c70e5629de8a/latin-ext.woff2') format('woff2');\n  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;\n}\n@font-face {\n  font-family: 'Source Sans Pro';\n  font-style: italic;\n  font-weight: 700;\n  font-display: swap;\n  src: url('https://file.squarespace-cdn.com/content/v2/namespaces/fonts/libraries/sqsp/assets/8824166d-cc4f-4fab-b2b9-eb6f9e5f9e5e/vietnamese.woff2') format('woff2');\n  unicode-range: U+0102-0103, U+0110-0111, U+0128-0129, U+0168-0169, U+01A0-01A1, U+01AF-01B0, U+0300-0301, U+0303-0304, U+0308-0309, U+0323, U+0329, U+1EA0-1EF9, U+20AB;\n}\n@font-face {\n  font-family: 'Source Sans Pro';\n  font-style: italic;\n  font-weight: 700;\n  font-display: swap;\n  src: url('https://file.squarespace-cdn.com/content/v2/namespaces/fonts/libraries/sqsp/assets/42fe1dba-f785-4a67-a6b7-e65beed8c6b2/cyrillic.woff2') format('woff2');\n  unicode-range: U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;\n}\n@font-face {\n  font-family: 'Source Sans Pro';\n  font-style: italic;\n  font-weight: 700;\n  font-display: swap;\n  src: url('https://file.squarespace-cdn.com/content/v2/namespaces/fonts/libraries/sqsp/assets/7e74e5f2-d876-44c7-8585-b35ec27ad385/latin.woff2') format('woff2');\n  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;\n}\n@font-face {\n  font-family: 'Source Sans Pro';\n  font-style: italic;\n  font-weight: 700;\n  font-display: swap;\n  src: url('https://file.squarespace-cdn.com/content/v2/namespaces/fonts/libraries/sqsp/assets/2350df97-8a06-4d18-a74b-1b80ea2e680e/greek.woff2') format('woff2');\n  unicode-range: U+0370-0377, U+037A-037F, U+0384-038A, U+038C, U+038E-03A1, U+03A3-03FF;\n}\n@font-face {\n  font-family: 'Source Sans Pro';\n  font-style: italic;\n  font-weight: 400;\n  font-display: swap;\n  src: url('https://file.squarespace-cdn.com/content/v2/namespaces/fonts/libraries/sqsp/assets/9bcccafd-8676-48d9-b2d7-94508be72e37/vietnamese.woff2') format('woff2');\n  unicode-range: U+0102-0103, U+0110-0111, U+0128-0129, U+0168-0169, U+01A0-01A1, U+01AF-01B0, U+0300-0301, U+0303-0304, U+0308-0309, U+0323, U+0329, U+1EA0-1EF9, U+20AB;\n}\n@font-face {\n  font-family: 'Source Sans Pro';\n  font-style: italic;\n  font-weight: 400;"
+      ],
+      "themeColor": null
+    }
+  ],
+  "assets": [
+    {
+      "src": "https://images.squarespace-cdn.com/content/v1/698250781730ac02db2c8a80/b648517c-0be5-4ff1-ace0-4ed7bb671f48/PHP_Logo_HorizontalWhite.png?format=1500w",
+      "file": "asset-01-730ac02db2c8a80-b648517c-0be5-4ff1-ace0-.png",
+      "bytes": 22313,
+      "type": "image/png"
+    },
+    {
+      "src": "https://images.squarespace-cdn.com/content/v1/698250781730ac02db2c8a80/b1cf54d2-a80b-445f-ad0a-411e48898017/Kitchen-to-Windows-WEB.jpg?format=1500w",
+      "file": "asset-02-730ac02db2c8a80-b1cf54d2-a80b-445f-ad0a-.jpg",
+      "bytes": 239157,
+      "type": "image/jpeg"
+    },
+    {
+      "src": "https://images.squarespace-cdn.com/content/v1/698250781730ac02db2c8a80/f9817f7a-3d20-4904-8464-c46e04781490/841A3366.png?format=750w",
+      "file": "asset-03-730ac02db2c8a80-f9817f7a-3d20-4904-8464-.png",
+      "bytes": 247068,
+      "type": "image/png"
+    },
+    {
+      "src": "https://images.squarespace-cdn.com/content/v1/698250781730ac02db2c8a80/b8c6a758-379f-496e-a535-006fe87622ff/favicon.ico?format=100w",
+      "file": "asset-04-730ac02db2c8a80-b8c6a758-379f-496e-a535-.ico",
+      "bytes": 1503,
+      "type": "image/png"
+    },
+    {
+      "src": "https://images.squarespace-cdn.com/content/v1/698250781730ac02db2c8a80/c509552a-d7aa-41c7-a335-d4539ad55717/favicon.ico?format=100w",
+      "file": "asset-05-730ac02db2c8a80-c509552a-d7aa-41c7-a335-.ico",
+      "bytes": 1428,
+      "type": "image/png"
+    },
+    {
+      "src": "http://static1.squarespace.com/static/698250781730ac02db2c8a80/t/698252707b9a8e35706d3365/1770148464926/PHP_Logo_HorizontalWhite.png?format=1500w",
+      "file": "asset-06-c02db2c8a80-t-698252707b9a8e35706d3365-1.png",
+      "bytes": 22313,
+      "type": "image/png"
+    },
+    {
+      "src": "http://images.squarespace-cdn.com/content/v1/698250781730ac02db2c8a80/b648517c-0be5-4ff1-ace0-4ed7bb671f48/PHP_Logo_HorizontalWhite.png?format=1500w",
+      "file": "asset-07-730ac02db2c8a80-b648517c-0be5-4ff1-ace0-.png",
+      "bytes": 38168,
+      "type": "image/webp"
+    },
+    {
+      "src": "https://images.squarespace-cdn.com/content/v1/698250781730ac02db2c8a80/de4c4c00-d99d-42cd-8188-113800fdb1a5/Christopher+AI20933+edited.jpg?format=1500w",
+      "file": "asset-08-730ac02db2c8a80-de4c4c00-d99d-42cd-8188-.jpg",
+      "bytes": 463093,
+      "type": "image/jpeg"
+    },
+    {
+      "src": "https://images.squarespace-cdn.com/content/v1/698250781730ac02db2c8a80/4feeb605-c3df-4535-9a21-b46188f276e5/_TSC9673-edit.jpg?format=1500w",
+      "file": "asset-09-730ac02db2c8a80-4feeb605-c3df-4535-9a21-.jpg",
+      "bytes": 411955,
+      "type": "image/jpeg"
+    },
+    {
+      "src": "https://images.squarespace-cdn.com/content/v1/698250781730ac02db2c8a80/27e29039-491b-4cb2-9ec2-9357355f908a/Screenshot+2026-02-03+170235.png?format=1500w",
+      "file": "asset-10-730ac02db2c8a80-27e29039-491b-4cb2-9ec2-.png",
+      "bytes": 498334,
+      "type": "image/png"
+    },
+    {
+      "src": "https://images.squarespace-cdn.com/content/v1/698250781730ac02db2c8a80/562ed6a7-f10e-417b-b7de-da85134d755d/04_04_mls.jpg?format=1500w",
+      "file": "asset-11-730ac02db2c8a80-562ed6a7-f10e-417b-b7de-.jpg",
+      "bytes": 473683,
+      "type": "image/jpeg"
+    },
+    {
+      "src": "https://images.squarespace-cdn.com/content/v1/698250781730ac02db2c8a80/23742340-e468-42eb-ac4d-545142e27291/Back+Exterior+View+2+WEB.jpg?format=1500w",
+      "file": "asset-12-730ac02db2c8a80-23742340-e468-42eb-ac4d-.jpg",
+      "bytes": 449049,
+      "type": "image/jpeg"
+    },
+    {
+      "src": "https://images.squarespace-cdn.com/content/v1/698250781730ac02db2c8a80/70286da8-abad-47a7-b49a-e25ecd6ee313/Carriage+House+WEB.jpg?format=500w",
+      "file": "asset-13-730ac02db2c8a80-70286da8-abad-47a7-b49a-.jpg",
+      "bytes": 113715,
+      "type": "image/jpeg"
+    },
+    {
+      "src": "https://images.squarespace-cdn.com/content/v1/698250781730ac02db2c8a80/f2b35716-b18a-4a64-ab23-d0242212321f/McGahey-413-20140904.jpg?format=500w",
+      "file": "asset-14-730ac02db2c8a80-f2b35716-b18a-4a64-ab23-.jpg",
+      "bytes": 123236,
+      "type": "image/jpeg"
+    },
+    {
+      "src": "https://images.squarespace-cdn.com/content/v1/698250781730ac02db2c8a80/5103597c-2cc8-4ac0-8246-f683844f1f12/Screenshot+2026-02-03+170050.png?format=500w",
+      "file": "asset-15-730ac02db2c8a80-5103597c-2cc8-4ac0-8246-.png",
+      "bytes": 122740,
+      "type": "image/png"
+    },
+    {
+      "src": "https://images.squarespace-cdn.com/content/v1/698250781730ac02db2c8a80/617b69bf-8082-4d84-8c0c-d8a5c1fc399b/Evening-Exterior-from-Neighbors-Dock-WEB.jpg?format=500w",
+      "file": "asset-16-730ac02db2c8a80-617b69bf-8082-4d84-8c0c-.jpg",
+      "bytes": 44357,
+      "type": "image/jpeg"
+    },
+    {
+      "src": "https://images.squarespace-cdn.com/content/v1/698250781730ac02db2c8a80/a2263c49-dddf-4aa8-9c4c-9322fd75c82a/841A3531.png?format=500w",
+      "file": "asset-17-730ac02db2c8a80-a2263c49-dddf-4aa8-9c4c-.png",
+      "bytes": 72545,
+      "type": "image/png"
+    },
+    {
+      "src": "https://images.squarespace-cdn.com/content/v1/698250781730ac02db2c8a80/d7e1534e-56fe-48a8-ac0e-b3c3d6043c84/DSC_1031+copy.jpg?format=1500w",
+      "file": "asset-18-730ac02db2c8a80-d7e1534e-56fe-48a8-ac0e-.jpg",
+      "bytes": 458139,
+      "type": "image/jpeg"
+    },
+    {
+      "src": "https://images.squarespace-cdn.com/content/v1/698250781730ac02db2c8a80/693cf562-773e-4016-8102-8b50e5fc5f49/Screenshot+2026-02-04+091137.png?format=1500w",
+      "file": "asset-19-730ac02db2c8a80-693cf562-773e-4016-8102-.png",
+      "bytes": 293172,
+      "type": "image/png"
+    },
+    {
+      "src": "https://images.squarespace-cdn.com/content/v1/698250781730ac02db2c8a80/ad32c4ef-e543-4eb9-a879-e251ca0f6c88/2025+Burke+Cox+Headshot.png?format=500w",
+      "file": "asset-20-730ac02db2c8a80-ad32c4ef-e543-4eb9-a879-.png",
+      "bytes": 58371,
+      "type": "image/png"
+    },
+    {
+      "src": "https://images.squarespace-cdn.com/content/v1/698250781730ac02db2c8a80/3d108449-f621-4080-b51d-6f8239ecd74c/Screenshot+2026-02-10+104855.png?format=500w",
+      "file": "asset-21-730ac02db2c8a80-3d108449-f621-4080-b51d-.png",
+      "bytes": 75896,
+      "type": "image/png"
+    },
+    {
+      "src": "https://images.squarespace-cdn.com/content/v1/698250781730ac02db2c8a80/25b0ff5b-b57e-404b-8924-7783eb960412/Screenshot+2026-02-17+161257.png?format=500w",
+      "file": "asset-22-730ac02db2c8a80-25b0ff5b-b57e-404b-8924-.png",
+      "bytes": 79611,
+      "type": "image/png"
+    },
+    {
+      "src": "https://images.squarespace-cdn.com/content/v1/698250781730ac02db2c8a80/a7bf33e2-7004-45db-9904-83431e9c5a68/Screenshot+2026-02-04+083609.png?format=1500w",
+      "file": "asset-23-730ac02db2c8a80-a7bf33e2-7004-45db-9904-.png",
+      "bytes": 695630,
+      "type": "image/png"
+    },
+    {
+      "src": "https://images.squarespace-cdn.com/content/v1/698250781730ac02db2c8a80/d522db24-fe29-44c8-aa7e-0273de0c6034/_TSC6579.jpg?format=1500w",
+      "file": "asset-24-730ac02db2c8a80-d522db24-fe29-44c8-aa7e-.jpg",
+      "bytes": 362409,
+      "type": "image/jpeg"
+    },
+    {
+      "src": "https://images.squarespace-cdn.com/content/v1/698250781730ac02db2c8a80/86ecbf68-d942-406d-85f6-fb417e99515a/Screenshot+2026-02-04+083459.png?format=1500w",
+      "file": "asset-25-730ac02db2c8a80-86ecbf68-d942-406d-85f6-.png",
+      "bytes": 623939,
+      "type": "image/png"
+    }
+  ]
+}
