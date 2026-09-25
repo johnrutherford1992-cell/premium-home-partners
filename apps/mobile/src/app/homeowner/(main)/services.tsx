@@ -19,7 +19,7 @@ export default function ServicesTab() {
     <View>
       <Display>Add-on services</Display>
       <Txt size={14} muted style={{ marginTop: 6, lineHeight: 20 }}>
-        One tap. We gather quotes from vetted pros and coordinate the work.
+        One tap. We gather quotes from vetted service partners and coordinate the work, so you don't have to.
       </Txt>
     </View>
   );
@@ -112,7 +112,7 @@ export default function ServicesTab() {
             {collecting ? (
               <Pulse period={1600}>
                 <Txt size={12} muted style={{ marginTop: 8 }}>
-                  Asking vetted pros near you…
+                  Asking vetted service partners near you…
                 </Txt>
               </Pulse>
             ) : null}

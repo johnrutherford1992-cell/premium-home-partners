@@ -3,6 +3,7 @@ import { router } from 'expo-router';
 import { useEffect, useMemo, useRef, useState, type ReactNode } from 'react';
 import { Pressable, TextInput, View, type TextInputProps } from 'react-native';
 import { AppExitLink } from '../../components/AppExitLink';
+import { Logo } from '../../components/brand/Logo';
 import { usePhotoCapture } from '../../components/camera';
 import { BlankField } from '../../components/RoleGate';
 import { ErrorState, LoadingState } from '../../components/States';
@@ -71,14 +72,13 @@ function Welcome({ onStart }: { onStart: () => void }) {
     <View style={{ flex: 1, justifyContent: 'space-between', minHeight: 640 }}>
       <View style={{ marginTop: 18, gap: 12 }}>
         <AppExitLink />
-        <Mono size={12} medium tracking={0.14} accent>
-          PREMIUM HOME PARTNERS
-        </Mono>
+        <Logo width={176} style={{ marginTop: 6 }} />
       </View>
       <View>
         <Display size={64}>{'Your home,\nlooked after.'}</Display>
         <Txt size={16} muted style={{ lineHeight: 24, marginTop: 14 }}>
-          Scan your appliances once. We build the manufacturer's maintenance schedule, price it, and handle every visit.
+          Complete care for your home, without the mental load. Scan your appliances once; we build the maintenance plan, price it, and
+          handle every visit.
         </Txt>
       </View>
       <View style={{ gap: 10 }}>

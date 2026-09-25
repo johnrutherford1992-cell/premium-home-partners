@@ -58,7 +58,10 @@ export default function HomeTab() {
     return (
       <Screen bottomInset={110}>
         {header}
-        <EmptyState title="No visits scheduled" body="Your next visit will appear here once it's booked." />
+        <EmptyState
+          title="No visits scheduled yet"
+          body="Your next visit appears here as soon as it's booked, with the full service list a week ahead and a reminder 48 hours before."
+        />
       </Screen>
     );
   }

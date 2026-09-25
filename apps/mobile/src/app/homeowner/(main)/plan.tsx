@@ -47,7 +47,12 @@ export default function PlanTab() {
         {edit ? 'Done' : 'Change coverage ›'}
       </TextLink>
       {edit ? <TierPicker compact tiers={tiers.data.tiers} selected={cur.index} onSelect={setTier.mutate} disabled={setTier.isPending} /> : null}
-      <LqSectionTitle>Your year of care</LqSectionTitle>
+      <View style={{ gap: 4 }}>
+        <LqSectionTitle>Your year of care</LqSectionTitle>
+        <Txt size={13} muted style={{ lineHeight: 19 }}>
+          Proactive, not reactive: routine, seasonal and preventive care, scheduled before small issues become costly ones.
+        </Txt>
+      </View>
       {year.data ? (
         <View style={{ gap: 8 }}>
           {year.data.map((v) => (
