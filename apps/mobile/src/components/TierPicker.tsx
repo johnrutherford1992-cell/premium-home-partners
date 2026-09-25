@@ -1,25 +1,40 @@
 import { Pressable, View } from 'react-native';
-import { useApp } from '../store/app';
-import { useTiers } from '../store/derived';
+import type { TierView } from '../data/pricing';
 import { Display, Txt } from '../ui/primitives';
 import { usePalette } from '../ui/theme';
 
-/** The four coverage tiers. Full rows on onboarding, compact rows on the Plan tab. */
-export function TierPicker({ compact }: { compact?: boolean }) {
-  const { tiers } = useTiers();
-  const tier = useApp((s) => s.tier);
-  const set = useApp((s) => s.set);
+/**
+ * The four coverage tiers. Full rows on onboarding, compact rows on the Plan tab.
+ * Props-driven so it works in both modes: onboarding passes a local selection
+ * (live) or the demo store's tier; Plan passes the plan's tier and setTier.
+ */
+export function TierPicker({
+  compact,
+  tiers,
+  selected,
+  onSelect,
+  disabled,
+}: {
+  compact?: boolean;
+  tiers: TierView[];
+  selected: number;
+  onSelect: (index: number) => void;
+  /** While a tier change is saving: rows don't respond and dim slightly. */
+  disabled?: boolean;
+}) {
   const c = usePalette();
   return (
-    <View style={{ gap: compact ? 8 : 14 }}>
+    <View style={{ gap: compact ? 8 : 14, opacity: disabled ? 0.6 : 1 }}>
       {tiers.map((t, i) => {
-        const on = tier === i;
+        const on = selected === i;
         return (
           <Pressable
             key={t.name}
-            onPress={() => set({ tier: i })}
+            testID={`tier-${i}`}
+            onPress={() => onSelect(i)}
+            disabled={disabled}
             accessibilityRole="radio"
-            accessibilityState={{ selected: on }}
+            accessibilityState={{ selected: on, disabled: !!disabled }}
             style={{
               flexDirection: 'row',
               alignItems: 'center',
@@ -51,9 +66,11 @@ export function TierPicker({ compact }: { compact?: boolean }) {
               )}
             </View>
             {compact ? (
-              <Txt weight="600">{t.monthlyTxt}</Txt>
+              <Txt weight="600" testID={`tier-monthly-${i}`}>
+                {t.monthlyTxt}
+              </Txt>
             ) : (
-              <Txt>
+              <Txt testID={`tier-monthly-${i}`}>
                 <Display size={26} style={{ lineHeight: 28 }}>
                   {t.monthlyTxt}
                 </Display>

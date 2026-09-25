@@ -1,39 +1,58 @@
 import { COORDINATION_FEE, money } from '@php/pricing';
 import { router, useLocalSearchParams } from 'expo-router';
+import type { ReactNode } from 'react';
 import { Pressable, View } from 'react-native';
+import { ErrorState, LoadingState } from '../../components/States';
 import { vendorView } from '../../components/vendorView';
-import { VENDOR_DATES } from '../../data/seed';
-import { useApp } from '../../store/app';
-import { useHomeNames } from '../../store/derived';
+import { usePricingInputs } from '../../data/pricing';
+import { useBidDraft, useVendorRequest, type VendorRequestVM } from '../../data/vendor';
+import { useMode } from '../../lib/mode';
+import { STATUS } from '../../theme/tokens';
 import { PhotoBox, Row, RoundBtn, Screen, TextLink } from '../../ui/controls';
 import { Display, Eyebrow, LqButton, LqCard, Mono, Txt } from '../../ui/primitives';
 import { usePalette } from '../../ui/theme';
 
-export default function VendorRequest() {
-  const { id } = useLocalSearchParams<{ id: string }>();
-  const { reqs, vPrice, vWhen, sqft, set, submitBid } = useApp();
-  const { street } = useHomeNames();
-  const c = usePalette();
-  const r = reqs.find((x) => x.id === id);
-  const back = () => (router.canGoBack() ? router.back() : router.replace('/vendor'));
+const back = () => (router.canGoBack() ? router.back() : router.replace('/vendor'));
 
-  if (!r) {
-    return (
-      <Screen>
-        <TextLink onPress={back}>‹ Requests</TextLink>
-        <Txt muted>This request is no longer available.</Txt>
-      </Screen>
-    );
-  }
-
-  const v = vendorView(r, c);
-  const price = vPrice[r.id] ?? r.base;
-  const step = r.base > 500 ? 50 : 5;
-  const setPrice = (p: number) => set({ vPrice: { ...vPrice, [r.id]: Math.max(step, p) } });
-
+function Frame({ children }: { children?: ReactNode }) {
   return (
     <Screen>
       <TextLink onPress={back}>‹ Requests</TextLink>
+      {children}
+    </Screen>
+  );
+}
+
+export default function VendorRequest() {
+  const { id } = useLocalSearchParams<{ id: string }>();
+  const { mode } = useMode();
+  const c = usePalette();
+  const q = useVendorRequest(typeof id === 'string' ? id : undefined);
+
+  if (q.data === undefined) {
+    return <Frame>{q.error ? <ErrorState message={q.error} onRetry={q.refetch} /> : <LoadingState />}</Frame>;
+  }
+  const r = q.data;
+  const v = r ? vendorView(r, c) : null;
+  // Live: a request booked or withdrawn before this vendor quoted is gone for them.
+  if (!r || !v || (mode === 'live' && v.closed && !v.hasMine)) {
+    return (
+      <Frame>
+        <Txt muted>This request is no longer available.</Txt>
+      </Frame>
+    );
+  }
+  return <RequestDetail key={r.id} r={r} v={v} />;
+}
+
+function RequestDetail({ r, v }: { r: VendorRequestVM; v: ReturnType<typeof vendorView> }) {
+  const c = usePalette();
+  const draft = useBidDraft(r);
+  const fee = usePricingInputs().data?.coordinationFee ?? COORDINATION_FEE;
+  const { price, step } = draft;
+
+  return (
+    <Frame>
       <View>
         <Mono size={11} medium accent>
           REQUEST · VIA PREMIUM HOME
@@ -42,7 +61,13 @@ export default function VendorRequest() {
           {r.name}
         </Display>
         <Txt size={13} muted style={{ marginTop: 4 }}>
-          {street} · {sqft.toLocaleString('en-US')} sq ft lot + home
+          {r.sqft != null ? (
+            <>
+              {r.street} · {r.sqft.toLocaleString('en-US')} sq ft lot + home
+            </>
+          ) : (
+            r.street
+          )}
         </Txt>
       </View>
       <LqCard>
@@ -63,22 +88,23 @@ export default function VendorRequest() {
               YOUR PRICE
             </Mono>
             <View style={{ flexDirection: 'row', alignItems: 'center', gap: 14 }}>
-              <RoundBtn label="-" size={30} onPress={() => setPrice(price - step)} />
+              <RoundBtn label="-" size={30} onPress={() => draft.setPrice(price - step)} />
               <Display size={30} style={{ textTransform: 'none' }}>
                 {money(price)}
               </Display>
-              <RoundBtn label="+" size={30} accent onPress={() => setPrice(price + step)} />
+              <RoundBtn label="+" size={30} accent onPress={() => draft.setPrice(price + step)} />
             </View>
           </Row>
           <View style={{ flexDirection: 'row', gap: 6 }}>
-            {VENDOR_DATES.map((d, i) => {
-              const on = vWhen === i;
+            {draft.dates.map((d, i) => {
+              const on = draft.when === i;
               return (
                 <Pressable
                   key={d}
-                  onPress={() => set({ vWhen: i })}
+                  onPress={() => draft.setWhen(i)}
                   accessibilityRole="radio"
                   accessibilityState={{ selected: on }}
+                  aria-checked={on}
                   style={{ flex: 1, alignItems: 'center', paddingVertical: 9, paddingHorizontal: 4, borderRadius: 12, borderWidth: on ? 2 : 1, borderColor: on ? c.accent : c.rule, backgroundColor: on ? c.glassStrong : 'transparent' }}
                 >
                   <Txt size={12} weight="600">
@@ -89,11 +115,18 @@ export default function VendorRequest() {
             })}
           </View>
           <Txt size={12} muted>
-            PHP coordination fee {Math.round(COORDINATION_FEE * 100)}% · you receive {money(price * (1 - COORDINATION_FEE))}
+            PHP coordination fee {Math.round(fee * 100)}% · you receive {money(price * (1 - fee))}
           </Txt>
-          <LqButton full onPress={() => submitBid(r.id, price, VENDOR_DATES[vWhen])}>
-            Submit quote
-          </LqButton>
+          <View testID="vendor-submit">
+            <LqButton full disabled={draft.submitting} onPress={draft.submit}>
+              {draft.submitting ? 'Submitting…' : 'Submit quote'}
+            </LqButton>
+          </View>
+          {draft.error ? (
+            <Txt testID="vendor-submit-error" accessibilityRole="alert" size={13} color={STATUS.brick} style={{ lineHeight: 19 }}>
+              {draft.error}
+            </Txt>
+          ) : null}
         </>
       ) : (
         <LqCard>
@@ -108,6 +141,6 @@ export default function VendorRequest() {
           </Txt>
         </LqCard>
       )}
-    </Screen>
+    </Frame>
   );
 }
