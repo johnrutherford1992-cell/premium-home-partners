@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { Image, StyleSheet, View, type StyleProp, type ViewStyle } from 'react-native';
 import { PhotoBox } from '../../ui/controls';
 import { Mono } from '../../ui/primitives';
+import { BRAND, RADIUS } from '../../theme/tokens';
 import { usePalette } from '../../ui/theme';
 import { useSignedPhotoUrl } from './signedUrls';
 
@@ -13,7 +14,7 @@ import { useSignedPhotoUrl } from './signedUrls';
 export function RemotePhoto({
   path,
   height = 124,
-  radius = 14,
+  radius = RADIUS.card,
   tag,
   caption = 'tech photo',
   colors,
@@ -50,14 +51,14 @@ export function RemotePhoto({
         />
       ) : null}
       {tag ? (
-        <View style={{ position: 'absolute', left: 8, top: 8, paddingVertical: 3, paddingHorizontal: 6, borderRadius: 6, backgroundColor: c.glassStrong }}>
+        <View style={{ position: 'absolute', left: 8, top: 8, paddingVertical: 3, paddingHorizontal: 6, borderRadius: RADIUS.pill, backgroundColor: c.glassStrong }}>
           <Mono size={9} medium>
             {tag.toUpperCase()}
           </Mono>
         </View>
       ) : null}
       {caption ? (
-        <Mono size={10} color="#fff" style={{ position: 'absolute', left: 8, bottom: 8, opacity: 0.85 }}>
+        <Mono size={10} color={BRAND.white} style={{ position: 'absolute', left: 8, bottom: 8, opacity: 0.85 }}>
           {caption}
         </Mono>
       ) : null}

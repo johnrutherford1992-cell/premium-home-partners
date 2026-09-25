@@ -7,9 +7,10 @@ import { useCallback, useEffect, useMemo, useRef, useState, useSyncExternalStore
 import { AppState, Linking, Modal, StyleSheet, View } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { FriendlyError } from '../../lib/errors';
-import { STATUS } from '../../theme/tokens';
+import { RADIUS } from '../../theme/tokens';
 import { PhotoBox, Row, Stage, TextLink } from '../../ui/controls';
 import { Eyebrow, LqButton, Txt } from '../../ui/primitives';
+import { usePalette } from '../../ui/theme';
 import { downscaleNative } from './nativeImage';
 import { CAMERA_OFF } from './photoUtils';
 import { Shutter } from './Shutter';
@@ -105,6 +106,7 @@ type PermState = 'checking' | 'asking' | 'granted' | 'denied';
 
 function CameraSheet({ req, open, onCancel }: { req: CaptureRequest; open: boolean; onCancel: () => void }) {
   const insets = useSafeAreaInsets();
+  const c = usePalette();
   const [perm, requestPerm, getPerm] = useCameraPermissions();
   const [asked, setAsked] = useState(false);
   const camRef = useRef<CameraView>(null);
@@ -172,7 +174,7 @@ function CameraSheet({ req, open, onCancel }: { req: CaptureRequest; open: boole
         </Row>
         <View style={{ flex: 1 }} onLayout={(e) => setFrameH(Math.round(e.nativeEvent.layout.height))}>
           {frameH > 0 ? (
-            <PhotoBox height={frameH} radius={22} style={{ alignItems: 'center', justifyContent: 'center' }}>
+            <PhotoBox height={frameH} radius={RADIUS.card} style={{ alignItems: 'center', justifyContent: 'center' }}>
               {state === 'granted' ? (
                 <CameraView
                   ref={camRef}
@@ -199,7 +201,7 @@ function CameraSheet({ req, open, onCancel }: { req: CaptureRequest; open: boole
           ) : null}
         </View>
         {error ? (
-          <Txt size={13} color={STATUS.brick} accessibilityRole="alert" style={{ textAlign: 'center' }}>
+          <Txt size={13} color={c.status.brick} accessibilityRole="alert" style={{ textAlign: 'center' }}>
             {error}
           </Txt>
         ) : null}

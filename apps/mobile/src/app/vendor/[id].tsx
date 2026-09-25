@@ -7,7 +7,7 @@ import { vendorView } from '../../components/vendorView';
 import { usePricingInputs } from '../../data/pricing';
 import { useBidDraft, useVendorRequest, type VendorRequestVM } from '../../data/vendor';
 import { useMode } from '../../lib/mode';
-import { STATUS } from '../../theme/tokens';
+import { RADIUS } from '../../theme/tokens';
 import { PhotoBox, Row, RoundBtn, Screen, TextLink } from '../../ui/controls';
 import { Display, Eyebrow, LqButton, LqCard, Mono, Txt } from '../../ui/primitives';
 import { usePalette } from '../../ui/theme';
@@ -76,14 +76,14 @@ function RequestDetail({ r, v }: { r: VendorRequestVM; v: ReturnType<typeof vend
           {r.sub}. Photos of the exterior from intake are attached. PHP coordinates access and scheduling.
         </Txt>
       </LqCard>
-      <PhotoBox height={120} radius={16}>
+      <PhotoBox height={120} radius={RADIUS.card}>
         <Mono size={10} muted style={{ position: 'absolute', left: 10, bottom: 8 }}>
           exterior photo from intake
         </Mono>
       </PhotoBox>
       {!v.hasMine && !v.closed ? (
         <>
-          <Row style={{ paddingVertical: 12, paddingHorizontal: 14, borderRadius: 16, backgroundColor: c.glassStrong, borderWidth: 1, borderColor: c.rule }}>
+          <Row style={{ paddingVertical: 12, paddingHorizontal: 14, borderRadius: RADIUS.card, backgroundColor: c.glassStrong, borderWidth: 1, borderColor: c.rule }}>
             <Mono size={10} medium muted>
               YOUR PRICE
             </Mono>
@@ -105,7 +105,7 @@ function RequestDetail({ r, v }: { r: VendorRequestVM; v: ReturnType<typeof vend
                   accessibilityRole="radio"
                   accessibilityState={{ selected: on }}
                   aria-checked={on}
-                  style={{ flex: 1, alignItems: 'center', paddingVertical: 9, paddingHorizontal: 4, borderRadius: 12, borderWidth: on ? 2 : 1, borderColor: on ? c.accent : c.rule, backgroundColor: on ? c.glassStrong : 'transparent' }}
+                  style={{ flex: 1, alignItems: 'center', paddingVertical: 9, paddingHorizontal: 4, borderRadius: RADIUS.button, borderWidth: on ? 2 : 1, borderColor: on ? c.accent : c.rule, backgroundColor: on ? c.glassStrong : 'transparent' }}
                 >
                   <Txt size={12} weight="600">
                     {d}
@@ -123,7 +123,7 @@ function RequestDetail({ r, v }: { r: VendorRequestVM; v: ReturnType<typeof vend
             </LqButton>
           </View>
           {draft.error ? (
-            <Txt testID="vendor-submit-error" accessibilityRole="alert" size={13} color={STATUS.brick} style={{ lineHeight: 19 }}>
+            <Txt testID="vendor-submit-error" accessibilityRole="alert" size={13} color={c.status.brick} style={{ lineHeight: 19 }}>
               {draft.error}
             </Txt>
           ) : null}

@@ -1,5 +1,4 @@
 import { money } from '@php/pricing';
-import { STATUS } from '../theme/tokens';
 import type { Palette } from '../theme/tokens';
 
 /**
@@ -27,7 +26,7 @@ export function vendorView(r: VendorViewInput, c: Palette) {
     closed,
     myPrice: mine ? money(mine.price) : '',
     status: won ? 'Won · scheduled' : lost ? 'Not selected' : mine ? 'Quote sent' : 'New request',
-    color: won ? STATUS.forest : lost ? c.muted : mine ? STATUS.slate : c.accent,
+    color: won ? c.status.forest : lost ? c.muted : mine ? c.status.slate : c.accent,
     bidsTxt: `${r.bidCount} bid${r.bidCount === 1 ? '' : 's'} so far${closed ? ' · closed' : ''}`,
   };
 }

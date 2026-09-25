@@ -6,7 +6,7 @@ import { Table } from '../../components/Table';
 import { useOfficeTier, useReferenceHome } from '../../data/office';
 import { tierViewsFor, useOfficePricingMutations, usePricingInputs } from '../../data/pricing';
 import { friendlyError } from '../../lib/errors';
-import { STATUS, alpha } from '../../theme/tokens';
+import { RADIUS, alpha } from '../../theme/tokens';
 import { Row, StepperTile } from '../../ui/controls';
 import { Display, Mono, Txt } from '../../ui/primitives';
 import { usePalette } from '../../ui/theme';
@@ -117,7 +117,7 @@ export default function OfficePricing() {
           ...freq[t.id].map((f, i) => (
             <Row
               key={'f' + i}
-              style={{ width: 84, paddingVertical: 4, paddingHorizontal: 6, borderRadius: 8, backgroundColor: i === tier ? alpha(c.accent, 0.16) : c.glass }}
+              style={{ width: 84, paddingVertical: 4, paddingHorizontal: 6, borderRadius: RADIUS.field, backgroundColor: i === tier ? alpha(c.accent, 0.16) : c.field }}
             >
               <Tick label="-" onPress={() => edit.setFreq(t.id, i, f - 1)} />
               <Mono size={13} medium>
@@ -131,13 +131,13 @@ export default function OfficePricing() {
 
       <View style={{ flexDirection: 'row', flexWrap: 'wrap', gap: 12 }}>
         {tiers.map((t, i) => {
-          const mc = t.margin >= 0.35 ? STATUS.forest : t.margin >= 0.2 ? STATUS.ochre : STATUS.brick;
+          const mc = t.margin >= 0.35 ? c.status.forest : t.margin >= 0.2 ? c.status.ochre : c.status.brick;
           return (
             <Pressable
               key={t.name}
               testID={`office-tier-${i}`}
               onPress={() => setTier(i)}
-              style={{ width: tileW, flexGrow: 1, padding: 16, borderRadius: 18, backgroundColor: c.glassStrong, borderWidth: i === tier ? 2 : 1, borderColor: i === tier ? c.accent : c.rule, gap: 6 }}
+              style={{ width: tileW, flexGrow: 1, padding: 16, borderRadius: RADIUS.card, backgroundColor: c.glassStrong, borderWidth: i === tier ? 2 : 1, borderColor: i === tier ? c.accent : c.rule, gap: 6 }}
             >
               <Row>
                 <Txt weight="600">{t.name}</Txt>
