@@ -50,11 +50,23 @@ const SIGNED_OUT: SessionValue = {
 
 const SessionContext = createContext<SessionValue | null>(null);
 
+/**
+ * Internal to lib/demoAccess.tsx: after it moves the auth client to another
+ * account's session, it reports the new user id here, the way signIn does.
+ */
+const AdoptContext = createContext<((userId: string) => void) | null>(null);
+const noAdopt = () => {};
+
+/** @internal The SessionProvider's "this user is now signed in" setter (a no-op outside it). */
+export function useAdoptSession(): (userId: string) => void {
+  return useContext(AdoptContext) ?? noAdopt;
+}
+
 const ROLES: readonly Role[] = ['homeowner', 'tech', 'vendor', 'office'];
 
 export const profileKey = (userId: string | null) => ['session', 'profile', userId] as const;
 
-function withTimeout<T>(p: Promise<T>, ms: number): Promise<T> {
+export function withTimeout<T>(p: Promise<T>, ms: number): Promise<T> {
   return new Promise<T>((resolve, reject) => {
     const t = setTimeout(() => {
       const e = new Error('Request timed out');
@@ -96,7 +108,8 @@ function withTimeout<T>(p: Promise<T>, ms: number): Promise<T> {
 
 let signingOut: Promise<void> | null = null;
 
-function localSignOut(sb: SupabaseClient): Promise<void> {
+/** Local-only sign-out (see above). Also used by lib/demoAccess.tsx to switch accounts. */
+export function localSignOut(sb: SupabaseClient): Promise<void> {
   const run: Promise<void> = (async () => {
     await clearStoredSession();
     await sb.auth.signOut({ scope: 'local' });
@@ -112,7 +125,19 @@ function localSignOut(sb: SupabaseClient): Promise<void> {
 }
 
 /** How long a sign-in waits for a sign-out still in progress (it is local, so normally milliseconds). */
-const SIGN_OUT_WAIT_MS = 12_000;
+export const SIGN_OUT_WAIT_MS = 12_000;
+
+/** Wait for a sign-out still in progress. False if it didn't finish within `ms`. */
+export async function waitForSignOut(ms: number = SIGN_OUT_WAIT_MS): Promise<boolean> {
+  const pending = signingOut;
+  if (!pending) return true;
+  try {
+    await withTimeout(pending, ms);
+    return true;
+  } catch {
+    return false;
+  }
+}
 
 async function fetchProfile(userId: string): Promise<Profile> {
   if (!supabase) throw new FriendlyError('Supabase is not configured.');
@@ -230,6 +255,8 @@ export function SessionProvider({ children }: { children: ReactNode }) {
     void profileQ.refetch();
   }, [profileQ.refetch]);
 
+  const adopt = useCallback((id: string) => setUserId(id), []);
+
   const value = useMemo<SessionValue>(() => {
     let status: SessionStatus;
     let profileError: string | null = null;
@@ -251,7 +278,11 @@ export function SessionProvider({ children }: { children: ReactNode }) {
     };
   }, [userId, profileQ.data, profileQ.isError, profileQ.error, refreshProfile, signIn, signOut]);
 
-  return <SessionContext.Provider value={value}>{children}</SessionContext.Provider>;
+  return (
+    <AdoptContext.Provider value={adopt}>
+      <SessionContext.Provider value={value}>{children}</SessionContext.Provider>
+    </AdoptContext.Provider>
+  );
 }
 
 /** The live session. Outside <SessionProvider> (offline demo) it reads as signed out. */
