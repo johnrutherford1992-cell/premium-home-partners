@@ -1,20 +1,11 @@
 import { useMemo } from 'react';
 import { useShallow } from 'zustand/react/shallow';
-import { DEFAULT_SETTINGS, TASKS, TIERS, adjustedFreq, buildSchedule, money, priceAllTiers, type TierQuote } from '@php/pricing';
+import { DEFAULT_SETTINGS, TASKS, TIERS, adjustedFreq, buildSchedule, priceAllTiers } from '@php/pricing';
+import { toTierViews, type TierView } from '../data/pricing';
 import { MONTHS, SLOTS } from '../data/seed';
 import { useApp } from './app';
 
-export interface TierView extends TierQuote {
-  name: string;
-  visitsTxt: string;
-  monthlyTxt: string;
-  annualTxt: string;
-  matTxt: string;
-  labTxt: string;
-  hoursTxt: string;
-  marginTxt: string;
-  covTxt: string;
-}
+export type { TierView } from '../data/pricing';
 
 /** Pricing for every tier, recomputed whenever office settings or the home profile change. */
 export function useTiers(): { tiers: TierView[]; cur: TierView } {
@@ -32,23 +23,14 @@ export function useTiers(): { tiers: TierView[]; cur: TierView } {
     })),
   );
   return useMemo(() => {
-    const tiers = priceAllTiers({
-      settings: { ...DEFAULT_SETTINGS, rate: p.rate, trip: p.trip, markup: p.markup, techCost: p.techCost },
-      minutes: p.mins,
-      freq: p.freq,
-      home: { pets: p.pets, water: p.water },
-    }).map((q) => ({
-      ...q,
-      name: q.tier.name,
-      visitsTxt: `${q.tier.visits} visits / yr`,
-      monthlyTxt: money(q.monthly),
-      annualTxt: money(q.annual),
-      matTxt: money(q.materials),
-      labTxt: money(q.labor),
-      hoursTxt: q.hours.toFixed(1) + ' hr',
-      marginTxt: Math.round(q.margin * 100) + '%',
-      covTxt: q.tier.coverage + '%',
-    }));
+    const tiers = toTierViews(
+      priceAllTiers({
+        settings: { ...DEFAULT_SETTINGS, rate: p.rate, trip: p.trip, markup: p.markup, techCost: p.techCost },
+        minutes: p.mins,
+        freq: p.freq,
+        home: { pets: p.pets, water: p.water },
+      }),
+    );
     return { tiers, cur: tiers[p.tier] };
   }, [p]);
 }
