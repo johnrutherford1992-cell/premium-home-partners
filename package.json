@@ -10,9 +10,10 @@
     "web": "npm run web -w apps/mobile",
     "build:web": "npm run build:web -w apps/mobile",
     "typecheck": "npm run typecheck --workspaces --if-present",
-    "test": "npm run test --workspaces --if-present",
+    "test": "npm run test --workspaces --if-present && npm run test:functions",
     "sync:pricing": "node scripts/sync-pricing.mjs",
-    "test:e2e": "playwright test"
+    "test:e2e": "playwright test",
+    "test:functions": "node --test --experimental-strip-types --no-warnings supabase/functions/_shared/*.test.ts"
   },
   "devDependencies": {
     "@playwright/test": "^1.56.1"
