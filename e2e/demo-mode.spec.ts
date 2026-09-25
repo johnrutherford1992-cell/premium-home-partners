@@ -31,7 +31,7 @@ test.describe('offline demo mode', () => {
     await testId(page, 'launch-homeowner').click();
     await button(page, 'Set up my home').click();
     await expect(shown(page.getByLabel('YOUR NAME', { exact: true }))).toHaveValue('Elena Alvarez');
-    await expect(shown(page.getByLabel('SERVICE ADDRESS', { exact: true }))).toHaveValue('12 Linden Court, Dallas, TX 75205');
+    await expect(shown(page.getByLabel('SERVICE ADDRESS', { exact: true }))).toHaveValue('12 Linden Court, Mountain Brook, AL 35213');
     await button(page, 'Continue').click();
 
     const shutter = shown(page.getByLabel('Capture serial plate', { exact: true }));

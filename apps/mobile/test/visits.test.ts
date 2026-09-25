@@ -24,7 +24,7 @@ const elena: VisitRow = {
   completed_at: null,
   homes: {
     id: 'h-elena',
-    address: '12 Linden Court, Dallas, TX 75205',
+    address: '12 Linden Court, Mountain Brook, AL 35213',
     pets: true,
     water: 'city_hard',
     notes: 'Gate code 4471. Heater in garage, back left.',
@@ -64,7 +64,7 @@ test('mapVisit builds the Elena view model', () => {
     name: 'Elena Alvarez',
     firstName: 'Elena',
     street: '12 Linden Court',
-    address: '12 Linden Court, Dallas, TX 75205',
+    address: '12 Linden Court, Mountain Brook, AL 35213',
     pets: true,
     notes: 'Gate code 4471. Heater in garage, back left.',
   });
@@ -114,7 +114,7 @@ test('embeds as arrays, confirmed status, missing pieces', () => {
     ...elena,
     status: 'confirmed',
     confirmed_at: null,
-    homes: [{ address: '88 Beverly Dr, Dallas, TX 75205', pets: false, owner: [{ full_name: 'The Whitfields' }] }],
+    homes: [{ address: '88 Beverly Dr, Mountain Brook, AL 35223', pets: false, owner: [{ full_name: 'The Whitfields' }] }],
     plans: [{ tier: 'high' }],
     tech: null,
     visit_tasks: [],

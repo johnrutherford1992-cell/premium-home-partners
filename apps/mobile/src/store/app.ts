@@ -99,7 +99,7 @@ const initial = (): AppState => ({
   dark: false,
   step: 0,
   name: 'Elena Alvarez',
-  addr: '12 Linden Court, Dallas, TX 75205',
+  addr: '12 Linden Court, Mountain Brook, AL 35213',
   scanned: 0,
   scanning: false,
   sqft: 3420,

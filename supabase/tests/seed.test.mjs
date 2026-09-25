@@ -108,7 +108,7 @@ describe('scenario', () => {
   test('Elena: home, five cached appliances, recommended plan, all seven tasks, unconfirmed', async () => {
     const h = await one(db, 'select * from homes where id = $1', [HOME.elena]);
     assert.equal(h.owner_id, U.elena);
-    assert.equal(h.address, '12 Linden Court, Dallas, TX 75205');
+    assert.equal(h.address, '12 Linden Court, Mountain Brook, AL 35213');
     assert.deepEqual([h.sqft, h.year_built, Number(h.bedrooms), Number(h.bathrooms), h.floors, h.hvac_zones, h.pets, h.water],
       [3420, 2006, 4, 3.5, 2, 2, true, 'city_hard']);
     assert.equal(h.notes, 'Gate code 4471. Heater in garage, back left.');
