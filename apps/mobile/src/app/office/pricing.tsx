@@ -139,7 +139,7 @@ export default function OfficePricing() {
               onPress={() => setTier(i)}
               style={{ width: tileW, flexGrow: 1, padding: 16, borderRadius: RADIUS.card, backgroundColor: c.glassStrong, borderWidth: i === tier ? 2 : 1, borderColor: i === tier ? c.accent : c.rule, gap: 6 }}
             >
-              <Row>
+              <Row style={{ flexWrap: 'wrap', columnGap: 8, rowGap: 2 }}>
                 <Txt weight="600">{t.name}</Txt>
                 <Mono size={10} medium muted>
                   {t.visitsTxt}
