@@ -14,6 +14,8 @@ jobs:
           cache: npm
       - run: npm ci
       - run: npm run typecheck
+      - name: Typecheck the e2e suite
+        run: npx tsc --noEmit -p e2e
       - run: npm test
       - run: npm run build:web
       - name: Database RLS + RPC tests (PGlite)

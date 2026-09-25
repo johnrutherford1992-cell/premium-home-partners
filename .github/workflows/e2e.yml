@@ -1,0 +1,97 @@
+name: E2E
+
+# Playwright end-to-end suite against a live Supabase project (see e2e/README.md).
+# It resets the project's demo data (reset_demo) on every spec, so it never runs
+# on its own: dispatch it manually, or add the `e2e` label to a pull request
+# (each later push to that PR re-runs it until the label is removed).
+on:
+  pull_request:
+    types: [labeled, synchronize]
+  workflow_dispatch:
+    inputs:
+      base_url:
+        description: App URL to test. Leave empty to build apps/mobile for the web against the project below and serve it.
+        required: false
+        default: ''
+        type: string
+      supabase_url:
+        description: Supabase project URL (https://<ref>.supabase.co)
+        required: true
+        type: string
+      supabase_anon_key:
+        description: Supabase anon (publishable) key. Public client config, never the service-role key.
+        required: true
+        type: string
+      runs:
+        description: Full runs in a row (stops at the first failure)
+        required: false
+        default: 3
+        type: number
+
+# One suite at a time per project: specs reset the shared demo data.
+concurrency:
+  group: e2e-${{ inputs.supabase_url || 'default-project' }}
+  cancel-in-progress: false
+
+permissions:
+  contents: read
+
+jobs:
+  e2e:
+    if: ${{ github.event_name == 'workflow_dispatch' || contains(github.event.pull_request.labels.*.name, 'e2e') }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    env:
+      CI: 'true'
+      E2E_BASE_URL: ${{ inputs.base_url }}
+      # Pull-request runs use the demo project. Both values are public client
+      # config (they ship in the web bundle; row-level security protects data).
+      E2E_SUPABASE_URL: ${{ inputs.supabase_url || vars.E2E_SUPABASE_URL || 'https://ydsvmsitgkpunfnutdlo.supabase.co' }}
+      E2E_SUPABASE_ANON_KEY: ${{ inputs.supabase_anon_key || vars.E2E_SUPABASE_ANON_KEY || 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Inlkc3Ztc2l0Z2twdW5mbnV0ZGxvIiwicm9sZSI6ImFub24iLCJpYXQiOjE3OTAyOTUwMjgsImV4cCI6MjEwNTg3MTAyOH0.m5hU52oT5LVaszNJucBEgAznsil7NBp5cottgrhj45w' }}
+      RUNS: ${{ inputs.runs || 3 }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - run: npm ci
+
+      - name: Install Chromium
+        run: npx playwright install --with-deps chromium
+
+      - name: Build the web app against this project
+        if: ${{ !inputs.base_url }}
+        working-directory: apps/mobile
+        env:
+          EXPO_PUBLIC_SUPABASE_URL: ${{ env.E2E_SUPABASE_URL }}
+          EXPO_PUBLIC_SUPABASE_ANON_KEY: ${{ env.E2E_SUPABASE_ANON_KEY }}
+        run: npx expo export --platform web --output-dir dist --clear
+
+      - name: Run the suite ${{ env.RUNS }} times in a row
+        run: |
+          set -euo pipefail
+          case "$RUNS" in
+            ''|*[!0-9]*|0) echo "runs must be a whole number of at least 1 (got '$RUNS')" >&2; exit 1 ;;
+          esac
+          for i in $(seq 1 "$RUNS"); do
+            echo "::group::Run $i of $RUNS"
+            E2E_RUN="run-$i" npx playwright test
+            echo "::endgroup::"
+            echo "Run $i of $RUNS passed."
+          done
+
+      - name: Upload HTML reports and traces
+        if: ${{ !cancelled() }}
+        uses: actions/upload-artifact@v4
+        with:
+          name: e2e-report-${{ github.run_id }}-${{ github.run_attempt }}
+          # e2e/output/.auth holds short-lived test sessions: never uploaded.
+          path: |
+            e2e/output/
+            !e2e/output/.auth/
+          include-hidden-files: false
+          if-no-files-found: warn
+          retention-days: 14
