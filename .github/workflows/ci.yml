@@ -16,3 +16,6 @@ jobs:
       - run: npm run typecheck
       - run: npm test
       - run: npm run build:web
+      - name: Database RLS + RPC tests (PGlite)
+        working-directory: supabase/tests
+        run: npm ci && npm test

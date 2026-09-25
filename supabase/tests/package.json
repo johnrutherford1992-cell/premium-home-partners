@@ -1,0 +1,12 @@
+{
+  "name": "@php/supabase-tests",
+  "private": true,
+  "type": "module",
+  "description": "RLS + RPC tests for supabase/migrations, run against PGlite (no Docker, no Supabase project).",
+  "scripts": {
+    "test": "node --test --test-concurrency=1 ./*.test.mjs"
+  },
+  "devDependencies": {
+    "@electric-sql/pglite": "0.5.8"
+  }
+}
