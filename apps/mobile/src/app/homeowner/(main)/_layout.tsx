@@ -3,7 +3,12 @@ import { Tabs, type BottomTabBarProps } from 'expo-router/js-tabs';
 import { Platform, Pressable, View } from 'react-native';
 import { BlurView } from 'expo-blur';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
+import { BlankField } from '../../../components/RoleGate';
+import { ErrorState } from '../../../components/States';
+import { useMyHome } from '../../../data/homeowner';
+import { useMode } from '../../../lib/mode';
 import { useApp } from '../../../store/app';
+import { Screen } from '../../../ui/controls';
 import { Txt } from '../../../ui/primitives';
 import { usePalette } from '../../../ui/theme';
 
@@ -63,9 +68,32 @@ function GlassTabBar({ state, navigation }: BottomTabBarProps) {
 }
 
 export default function HomeownerTabs() {
+  const { mode } = useMode();
+  return mode === 'live' ? <LiveGuard /> : <DemoGuard />;
+}
+
+function DemoGuard() {
   const onboarded = useApp((s) => s.step >= 6);
-  const c = usePalette();
   if (!onboarded) return <Redirect href="/homeowner/onboarding" />;
+  return <HomeownerTabBar />;
+}
+
+/** Live: the tabs need a home with an active plan. */
+function LiveGuard() {
+  const my = useMyHome();
+  if (my.data) return my.data.onboarded ? <HomeownerTabBar /> : <Redirect href="/homeowner/onboarding" />;
+  if (my.error) {
+    return (
+      <Screen>
+        <ErrorState title="We couldn't load your home" message={my.error} onRetry={my.refetch} />
+      </Screen>
+    );
+  }
+  return <BlankField />;
+}
+
+function HomeownerTabBar() {
+  const c = usePalette();
   return (
     <Tabs
       tabBar={(p) => <GlassTabBar {...p} />}
