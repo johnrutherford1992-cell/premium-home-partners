@@ -8,7 +8,6 @@ import { PHOTO_GRADIENTS, TECH } from '../../../data/seed';
 import { useMode } from '../../../lib/mode';
 import { Row, Screen, TextLink } from '../../../ui/controls';
 import { Display, LqBadge, LqCard, LqStat, Txt } from '../../../ui/primitives';
-import { RADIUS } from '../../../theme/tokens';
 import { usePalette } from '../../../ui/theme';
 
 export default function ReportsTab() {
@@ -102,14 +101,14 @@ function ReportDetail({ report, onBack }: { report: ReportVM; onBack: () => void
             const task = TASKS.find((t) => t.id === p.taskKey);
             return (
               <View key={p.key} style={{ width: '47%', flexGrow: 1, gap: 5 }}>
-                <RemotePhoto path={p.path} height={124} radius={RADIUS.card} tag={p.tag} colors={task ? PHOTO_GRADIENTS[task.photo] : undefined} testID="report-photo" />
+                <RemotePhoto path={p.path} height={124} radius={14} tag={p.tag} colors={task ? PHOTO_GRADIENTS[task.photo] : undefined} testID="report-photo" />
                 <Txt size={12}>{p.taskShort}</Txt>
               </View>
             );
           })
         ) : (
           <View style={{ width: '47%', flexGrow: 1, gap: 5 }}>
-            <RemotePhoto path={null} height={124} radius={RADIUS.card} tag="—" colors={[c.rule, c.rule]} />
+            <RemotePhoto path={null} height={124} radius={14} tag="—" colors={[c.rule, c.rule]} />
             <Txt size={12}>No photos captured</Txt>
           </View>
         )}

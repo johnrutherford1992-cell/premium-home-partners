@@ -5,7 +5,6 @@ import { TierPicker } from '../../../components/TierPicker';
 import { useHomeownerTiers, useSetTier, useYearOfCare } from '../../../data/homeowner';
 import { Row, Screen, TextLink } from '../../../ui/controls';
 import { Display, LqSectionTitle, Mono, Txt } from '../../../ui/primitives';
-import { RADIUS } from '../../../theme/tokens';
 import { usePalette } from '../../../ui/theme';
 
 export default function PlanTab() {
@@ -58,7 +57,7 @@ export default function PlanTab() {
           {year.data.map((v) => (
             <View
               key={v.label}
-              style={{ flexDirection: 'row', gap: 12, paddingVertical: 12, paddingHorizontal: 14, borderRadius: RADIUS.card, backgroundColor: c.glassStrong, borderWidth: 1, borderColor: c.rule }}
+              style={{ flexDirection: 'row', gap: 12, paddingVertical: 12, paddingHorizontal: 14, borderRadius: 16, backgroundColor: c.glassStrong, borderWidth: 1, borderColor: c.rule }}
             >
               <View style={{ width: 52 }}>
                 <Display size={22} style={{ lineHeight: 22 }} color={v.first ? c.accent : c.ink}>

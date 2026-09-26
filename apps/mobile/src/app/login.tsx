@@ -7,7 +7,6 @@ import { DEMO_ACCESS } from '../lib/demoAccess';
 import { useMode } from '../lib/mode';
 import { useApp } from '../store/app';
 import { BrandHeader } from '../components/brand/BrandHeader';
-import { FONT, RADIUS } from '../theme/tokens';
 import { Row, Screen, TextLink, Toggle } from '../ui/controls';
 import { Eyebrow, LqButton, LqCard, Mono, Txt } from '../ui/primitives';
 import { usePalette } from '../ui/theme';
@@ -42,7 +41,7 @@ const Field = ({ label, inputRef, ...input }: TextInputProps & { label: string; 
         accessibilityLabel={label}
         placeholderTextColor={c.muted}
         {...input}
-        style={{ padding: 14, borderRadius: RADIUS.field, backgroundColor: c.glassStrong, borderWidth: 1, borderColor: c.line, fontSize: 16, fontFamily: FONT.sans, color: c.ink }}
+        style={{ padding: 14, borderRadius: 14, backgroundColor: c.glassStrong, borderWidth: 1, borderColor: c.rule, fontSize: 16, color: c.ink }}
       />
     </View>
   );
@@ -183,7 +182,7 @@ function SignIn() {
         </LqCard>
       ) : null}
 
-      <View style={{ borderRadius: RADIUS.card, backgroundColor: c.glassStrong, borderWidth: 1, borderColor: c.rule }}>
+      <View style={{ borderRadius: 14, backgroundColor: c.glassStrong, borderWidth: 1, borderColor: c.rule }}>
         <Pressable
           testID="demo-mode-toggle"
           accessibilityRole="switch"

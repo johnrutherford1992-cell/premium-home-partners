@@ -3,26 +3,24 @@ import type { ReactNode } from 'react';
 import { Pressable, ScrollView, StyleSheet, View, type StyleProp, type ViewStyle } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import Svg, { Defs, RadialGradient, Rect, Stop } from 'react-native-svg';
-import { FONT, RADIUS, STATUS, STATUS_INK, alpha } from '../theme/tokens';
+import { FONT, RADIUS, STATUS, alpha } from '../theme/tokens';
 import { Mono, Txt } from './primitives';
 import { usePalette } from './theme';
 
-/** The page field: the brand is flat, so no bloom (kept only if a palette asks for one). */
+/** Field color with the signature accent bloom at 82% / -6%. */
 export function Stage({ children, style }: { children?: ReactNode; style?: StyleProp<ViewStyle> }) {
   const c = usePalette();
   return (
     <View style={[{ flex: 1, backgroundColor: c.field }, style]}>
-      {c.bloom > 0 ? (
-        <Svg width="100%" height="100%" style={StyleSheet.absoluteFill} pointerEvents="none">
-          <Defs>
-            <RadialGradient id="bloom" cx="82%" cy="-6%" rx="80%" ry="60%" fx="82%" fy="-6%" gradientUnits="objectBoundingBox">
-              <Stop offset="0" stopColor={c.accent} stopOpacity={c.bloom} />
-              <Stop offset="1" stopColor={c.accent} stopOpacity={0} />
-            </RadialGradient>
-          </Defs>
-          <Rect x="0" y="0" width="100%" height="100%" fill="url(#bloom)" />
-        </Svg>
-      ) : null}
+      <Svg width="100%" height="100%" style={StyleSheet.absoluteFill} pointerEvents="none">
+        <Defs>
+          <RadialGradient id="bloom" cx="82%" cy="-6%" rx="80%" ry="60%" fx="82%" fy="-6%" gradientUnits="objectBoundingBox">
+            <Stop offset="0" stopColor={c.accent} stopOpacity={c.bloom} />
+            <Stop offset="1" stopColor={c.accent} stopOpacity={0} />
+          </RadialGradient>
+        </Defs>
+        <Rect x="0" y="0" width="100%" height="100%" fill="url(#bloom)" />
+      </Svg>
       {children}
     </View>
   );
@@ -64,8 +62,8 @@ export function Row({ children, style }: { children: ReactNode; style?: StylePro
 
 export function TextLink({ children, onPress, accent }: { children: ReactNode; onPress: () => void; accent?: boolean }) {
   return (
-    <Pressable onPress={onPress} hitSlop={12} style={{ alignSelf: 'flex-start' }}>
-      <Txt size={14} muted={!accent} accent={accent} weight={accent ? '600' : undefined} style={{ letterSpacing: 0.2 }}>
+    <Pressable onPress={onPress} hitSlop={8} style={{ alignSelf: 'flex-start' }}>
+      <Txt size={13} muted={!accent} accent={accent} weight={accent ? '600' : undefined}>
         {children}
       </Txt>
     </Pressable>
@@ -79,7 +77,7 @@ export function RoundBtn({ label, onPress, size = 26, accent }: { label: string;
       onPress={onPress}
       hitSlop={6}
       accessibilityLabel={label === '+' ? 'Increase' : 'Decrease'}
-      style={{ width: size, height: size, borderRadius: RADIUS.button, borderWidth: 1, borderColor: c.line, alignItems: 'center', justifyContent: 'center' }}
+      style={{ width: size, height: size, borderRadius: size / 2, borderWidth: 1, borderColor: c.rule, alignItems: 'center', justifyContent: 'center' }}
     >
       <Txt size={size > 27 ? 16 : 14} color={accent ? c.accent : c.muted}>
         {label === '-' ? '−' : label}
@@ -110,8 +108,8 @@ export function StepperTile({ label, value, onDec, onInc, big }: { label: string
 export function Toggle({ on }: { on: boolean }) {
   const c = usePalette();
   return (
-    <View style={{ width: 44, height: 26, borderRadius: RADIUS.button + 1, backgroundColor: on ? STATUS.forest : c.line }}>
-      <View style={{ position: 'absolute', left: on ? 21 : 3, top: 3, width: 20, height: 20, borderRadius: RADIUS.button, backgroundColor: STATUS_INK }} />
+    <View style={{ width: 44, height: 26, borderRadius: 13, backgroundColor: on ? STATUS.forest : c.rule }}>
+      <View style={{ position: 'absolute', left: on ? 21 : 3, top: 3, width: 20, height: 20, borderRadius: 10, backgroundColor: '#fff' }} />
     </View>
   );
 }
@@ -119,16 +117,12 @@ export function Toggle({ on }: { on: boolean }) {
 export function Segmented<T extends string>({ options, value, onChange }: { options: readonly { key: T; label: string }[]; value: T; onChange: (v: T) => void }) {
   const c = usePalette();
   return (
-    <View style={{ flexDirection: 'row', padding: 2, borderRadius: RADIUS.button, backgroundColor: c.rule }}>
+    <View style={{ flexDirection: 'row', padding: 2, borderRadius: 10, backgroundColor: c.rule }}>
       {options.map((o) => {
         const on = o.key === value;
         return (
-          <Pressable
-            key={o.key}
-            onPress={() => onChange(o.key)}
-            style={{ paddingVertical: 6, paddingHorizontal: 10, borderRadius: RADIUS.button, backgroundColor: on ? c.accent : 'transparent' }}
-          >
-            <Txt size={12} weight={on ? '600' : '400'} color={on ? c.accentInk : c.ink}>
+          <Pressable key={o.key} onPress={() => onChange(o.key)} style={{ paddingVertical: 5, paddingHorizontal: 10, borderRadius: 8, backgroundColor: on ? c.paper : 'transparent' }}>
+            <Txt size={12} weight={on ? '600' : '400'}>
               {o.label}
             </Txt>
           </Pressable>
@@ -138,15 +132,15 @@ export function Segmented<T extends string>({ options, value, onChange }: { opti
   );
 }
 
-/** Small filled tag button (Get quotes / Book / + Photo). */
+/** Small filled pill button (Get quotes / Book / + Photo). */
 export function Pill({ label, bg, ink, onPress, border }: { label: string; bg: string; ink: string; onPress?: () => void; border?: string }) {
   return (
     <Pressable
       onPress={onPress}
       disabled={!onPress}
-      style={{ alignSelf: 'flex-start', paddingVertical: 5, paddingHorizontal: 10, borderRadius: RADIUS.pill, backgroundColor: bg, borderWidth: border ? 1 : 0, borderColor: border }}
+      style={{ alignSelf: 'flex-start', paddingVertical: 5, paddingHorizontal: 10, borderRadius: 12, backgroundColor: bg, borderWidth: border ? 1 : 0, borderColor: border }}
     >
-      <Txt size={12} weight="600" color={ink} style={{ letterSpacing: 0.2 }}>
+      <Txt size={11} weight="600" color={ink}>
         {label}
       </Txt>
     </Pressable>
@@ -154,7 +148,7 @@ export function Pill({ label, bg, ink, onPress, border }: { label: string; bg: s
 }
 
 /** Placeholder for a photo/map; swapped for real images once Storage is wired. */
-export function PhotoBox({ height, colors, radius = RADIUS.card, children, style }: { height: number; colors?: readonly [string, string, ...string[]]; radius?: number; children?: ReactNode; style?: StyleProp<ViewStyle> }) {
+export function PhotoBox({ height, colors, radius = 18, children, style }: { height: number; colors?: readonly [string, string, ...string[]]; radius?: number; children?: ReactNode; style?: StyleProp<ViewStyle> }) {
   const c = usePalette();
   return (
     <LinearGradient

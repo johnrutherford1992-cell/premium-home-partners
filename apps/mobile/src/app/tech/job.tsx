@@ -2,7 +2,7 @@ import { router, useLocalSearchParams } from 'expo-router';
 import { Pressable, View } from 'react-native';
 import { EmptyState, ErrorState, LoadingState } from '../../components/States';
 import { stopWhen, useTechVisit, useTechVisitActions } from '../../data/tech';
-import { RADIUS, STATUS, STATUS_INK } from '../../theme/tokens';
+import { STATUS } from '../../theme/tokens';
 import { Pill, Row, Screen, TextLink } from '../../ui/controls';
 import { Display, Eyebrow, LqButton, LqCard, LqSectionTitle, Mono, Txt } from '../../ui/primitives';
 import { usePalette } from '../../ui/theme';
@@ -96,7 +96,7 @@ export default function TechJob() {
                 gap: 10,
                 paddingVertical: 10,
                 paddingHorizontal: 12,
-                borderRadius: RADIUS.card,
+                borderRadius: 16,
                 backgroundColor: c.glassStrong,
                 borderWidth: 1,
                 borderColor: c.rule,
@@ -112,9 +112,9 @@ export default function TechJob() {
                 // react-native-web ignores accessibilityState; aria-checked reaches the DOM (and native).
                 aria-checked={d}
                 accessibilityLabel={t.name}
-                style={{ width: 26, height: 26, borderRadius: RADIUS.field, borderWidth: 1.5, borderColor: d ? STATUS.forest : c.muted, backgroundColor: d ? STATUS.forest : 'transparent', alignItems: 'center', justifyContent: 'center' }}
+                style={{ width: 26, height: 26, borderRadius: 8, borderWidth: 1.5, borderColor: d ? STATUS.forest : c.muted, backgroundColor: d ? STATUS.forest : 'transparent', alignItems: 'center', justifyContent: 'center' }}
               >
-                <Txt size={14} color={STATUS_INK}>
+                <Txt size={14} color="#fff">
                   {d ? '✓' : ''}
                 </Txt>
               </Pressable>
@@ -130,7 +130,7 @@ export default function TechJob() {
                 <Pill
                   label={uploading ? 'Uploading…' : p ? '✓ Photo' : '+ Photo'}
                   bg={p ? STATUS.forest : 'transparent'}
-                  ink={p ? STATUS_INK : c.accent}
+                  ink={p ? '#fff' : c.accent}
                   border={c.rule}
                   onPress={act.canPhoto && !uploading ? () => act.addPhoto(t) : undefined}
                 />

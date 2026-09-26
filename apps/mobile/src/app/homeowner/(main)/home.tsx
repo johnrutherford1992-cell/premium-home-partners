@@ -5,7 +5,7 @@ import { EmptyState, ErrorState, LoadingState } from '../../../components/States
 import { useConfirmVisit, useCurrentVisit, useMyHome, useRescheduleVisit } from '../../../data/homeowner';
 import type { VisitVM } from '../../../data/visits';
 import { useMode } from '../../../lib/mode';
-import { RADIUS, STATUS } from '../../../theme/tokens';
+import { STATUS } from '../../../theme/tokens';
 import { Avatar, Row, Screen } from '../../../ui/controls';
 import { Display, Eyebrow, LqBadge, LqButton, LqCard, Mono, Txt } from '../../../ui/primitives';
 import { Pulse } from '../../../ui/Pulse';
@@ -102,7 +102,7 @@ function VisitView({ header, visit, live }: { header: ReactNode; visit: VisitVM;
       {banner ? (
         <View
           testID="tech-banner"
-          style={{ flexDirection: 'row', gap: 10, alignItems: 'center', paddingVertical: 12, paddingHorizontal: 14, borderRadius: RADIUS.card, backgroundColor: c.accent }}
+          style={{ flexDirection: 'row', gap: 10, alignItems: 'center', paddingVertical: 12, paddingHorizontal: 14, borderRadius: 16, backgroundColor: c.accent }}
         >
           <Pulse>
             <View style={{ width: 10, height: 10, borderRadius: 5, backgroundColor: c.accentInk }} />
@@ -155,7 +155,7 @@ function VisitView({ header, visit, live }: { header: ReactNode; visit: VisitVM;
       <View style={{ flexDirection: 'row', gap: 6 }}>
         {notices.map((n) => (
           <View key={n.t} style={{ flex: 1 }}>
-            <View style={{ height: 3, backgroundColor: n.on ? STATUS.forest : c.rule, marginBottom: 6 }} />
+            <View style={{ height: 3, borderRadius: 2, backgroundColor: n.on ? STATUS.forest : c.rule, marginBottom: 6 }} />
             <Txt size={11} muted>
               {n.t}
             </Txt>

@@ -6,7 +6,6 @@ import { RoleGate } from '../../components/RoleGate';
 import { useResetDemo } from '../../data/office';
 import { Stage } from '../../ui/controls';
 import { Display, LqButton, LqGlass, Mono, Txt } from '../../ui/primitives';
-import { RADIUS } from '../../theme/tokens';
 import { usePalette } from '../../ui/theme';
 
 const TABS = [
@@ -56,7 +55,7 @@ function OfficeConsole() {
         onPress={() => router.replace(t.href)}
         accessibilityRole="tab"
         accessibilityState={{ selected: on }}
-        style={{ paddingVertical: 10, paddingHorizontal: 12, borderRadius: RADIUS.button, backgroundColor: on ? c.accent : 'transparent' }}
+        style={{ paddingVertical: 10, paddingHorizontal: 12, borderRadius: 12, backgroundColor: on ? c.accent : 'transparent' }}
       >
         <Txt weight="600" color={on ? c.accentInk : c.ink}>
           {t.label}

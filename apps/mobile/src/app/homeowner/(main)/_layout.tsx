@@ -1,23 +1,20 @@
 import { Redirect } from 'expo-router';
 import { Tabs, type BottomTabBarProps } from 'expo-router/js-tabs';
-import { Pressable, View } from 'react-native';
+import { Platform, Pressable, View } from 'react-native';
+import { BlurView } from 'expo-blur';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { BlankField } from '../../../components/RoleGate';
 import { ErrorState } from '../../../components/States';
 import { useMyHome } from '../../../data/homeowner';
 import { useMode } from '../../../lib/mode';
 import { useApp } from '../../../store/app';
-import { RADIUS } from '../../../theme/tokens';
 import { Screen } from '../../../ui/controls';
 import { Txt } from '../../../ui/primitives';
 import { usePalette } from '../../../ui/theme';
 
 const LABELS: Record<string, string> = { home: 'Home', plan: 'Plan', reports: 'Reports', services: 'Services' };
 
-/**
- * Floating tab bar in the site's navy band: 62pt tall, 16pt inset, 24pt from the
- * bottom. Labels are tracked uppercase like the site's nav; the current tab is underlined.
- */
+/** Floating glass tab bar: 62pt tall, radius 31, 16pt inset, 24pt from the bottom. */
 function GlassTabBar({ state, navigation }: BottomTabBarProps) {
   const c = usePalette();
   const insets = useSafeAreaInsets();
@@ -33,17 +30,17 @@ function GlassTabBar({ state, navigation }: BottomTabBarProps) {
         <View
           style={{
             height: 62,
-            borderRadius: RADIUS.tabBar,
+            borderRadius: 31,
             overflow: 'hidden',
-            backgroundColor: c.band,
-            borderWidth: c.dark ? 1 : 0,
+            backgroundColor: c.glassStrong,
+            borderWidth: 1,
             borderColor: c.rule,
-            boxShadow: `0 10px 24px -14px ${c.sh}`,
             flexDirection: 'row',
             justifyContent: 'space-around',
             alignItems: 'center',
           }}
         >
+          {Platform.OS !== 'android' ? <BlurView intensity={60} tint={c.dark ? 'dark' : 'light'} style={{ position: 'absolute', inset: 0 }} /> : null}
           {state.routes.map((r, i) => {
             const on = state.index === i;
             return (
@@ -55,12 +52,12 @@ function GlassTabBar({ state, navigation }: BottomTabBarProps) {
                   const e = navigation.emit({ type: 'tabPress', target: r.key, canPreventDefault: true });
                   if (!on && !e.defaultPrevented) navigation.navigate(r.name, r.params);
                 }}
-                style={{ alignItems: 'center', justifyContent: 'center', gap: 5, minHeight: 44, paddingTop: 7, paddingHorizontal: 10 }}
+                style={{ alignItems: 'center', gap: 4, paddingVertical: 8, paddingHorizontal: 10 }}
               >
-                <Txt size={11} weight="600" color={on ? c.bandInk : c.bandMuted} style={{ textTransform: 'uppercase', letterSpacing: 1 }}>
+                <View style={{ width: 5, height: 5, borderRadius: 3, backgroundColor: on ? c.accent : 'transparent' }} />
+                <Txt size={11} weight="600" color={on ? c.accent : c.muted}>
                   {LABELS[r.name] ?? r.name}
                 </Txt>
-                <View style={{ width: 18, height: 2, backgroundColor: on ? c.bandInk : 'transparent' }} />
               </Pressable>
             );
           })}
