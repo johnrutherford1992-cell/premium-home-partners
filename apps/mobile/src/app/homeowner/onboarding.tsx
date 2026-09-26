@@ -32,7 +32,7 @@ import { useMode } from '../../lib/mode';
 import { toast } from '../../lib/toast';
 import { useApp } from '../../store/app';
 import { useTiers } from '../../store/derived';
-import { FONT, RADIUS, STATUS, STATUS_INK } from '../../theme/tokens';
+import { STATUS } from '../../theme/tokens';
 import { MapPreview, Pill, PhotoBox, Row, Screen, Segmented, StepperTile, TextLink, Toggle } from '../../ui/controls';
 import { Display, Eyebrow, LqBadge, LqButton, LqCard, LqStat, Mono, Txt } from '../../ui/primitives';
 import { usePalette } from '../../ui/theme';
@@ -58,7 +58,7 @@ function Steps({ step, onBack, children }: { step: number; onBack: () => void; c
       </Row>
       <View style={{ flexDirection: 'row', gap: 6 }}>
         {[1, 2, 3, 4, 5].map((i) => (
-          <View key={i} style={{ flex: 1, height: 3, backgroundColor: i <= step ? c.accent : c.rule }} />
+          <View key={i} style={{ flex: 1, height: 4, borderRadius: 2, backgroundColor: i <= step ? c.accent : c.rule }} />
         ))}
       </View>
       {children}
@@ -104,7 +104,7 @@ function Field({ label, value, onChangeText, ...input }: { label: string; value:
         onChangeText={onChangeText}
         accessibilityLabel={label}
         placeholderTextColor={c.muted}
-        style={{ padding: 14, borderRadius: RADIUS.field, backgroundColor: c.glassStrong, borderWidth: 1, borderColor: c.line, fontSize: 16, fontFamily: FONT.sans, color: c.ink }}
+        style={{ padding: 14, borderRadius: 14, backgroundColor: c.glassStrong, borderWidth: 1, borderColor: c.rule, fontSize: 16, color: c.ink }}
       />
     </View>
   );
@@ -156,13 +156,13 @@ function ScanIntro() {
 function PlateBox({ plate, busy, hint }: { plate: Appliance; busy: boolean; hint: string }) {
   const c = usePalette();
   return (
-    <PhotoBox height={220} radius={RADIUS.card} style={{ alignItems: 'center', justifyContent: 'center' }}>
+    <PhotoBox height={220} radius={22} style={{ alignItems: 'center', justifyContent: 'center' }}>
       <View
         style={{
           width: 220,
           paddingVertical: 12,
           paddingHorizontal: 14,
-          borderRadius: RADIUS.field,
+          borderRadius: 8,
           backgroundColor: c.paper,
           transform: [{ rotate: '-3deg' }],
           boxShadow: `0 8px 20px -8px ${c.sh}`,
@@ -180,9 +180,9 @@ function PlateBox({ plate, busy, hint }: { plate: Appliance; busy: boolean; hint
       </View>
       <View
         pointerEvents="none"
-        style={{ position: 'absolute', left: 60, right: 60, top: 52, bottom: 52, borderWidth: 2.5, borderColor: c.accent, borderRadius: RADIUS.field, opacity: busy ? 1 : 0.35 }}
+        style={{ position: 'absolute', left: 60, right: 60, top: 52, bottom: 52, borderWidth: 2.5, borderColor: c.accent, borderRadius: 14, opacity: busy ? 1 : 0.35 }}
       />
-      <View style={{ position: 'absolute', bottom: 12, alignSelf: 'center', backgroundColor: c.glassStrong, paddingVertical: 4, paddingHorizontal: 10, borderRadius: RADIUS.pill }}>
+      <View style={{ position: 'absolute', bottom: 12, alignSelf: 'center', backgroundColor: c.glassStrong, paddingVertical: 4, paddingHorizontal: 10, borderRadius: 20 }}>
         <Mono size={11} medium>
           {hint}
         </Mono>
@@ -295,7 +295,7 @@ function DetailsView({
           {tile({ k: 'zones', label: 'HVAC zones', d: 1, min: 1, max: 6 })}
         </View>
       </View>
-      <View style={{ borderRadius: RADIUS.card, backgroundColor: c.glassStrong, borderWidth: 1, borderColor: c.rule }}>
+      <View style={{ borderRadius: 14, backgroundColor: c.glassStrong, borderWidth: 1, borderColor: c.rule }}>
         <Pressable onPress={onPets} accessibilityRole="switch" accessibilityState={{ checked: v.pets }}>
           <Row style={{ paddingVertical: 12, paddingHorizontal: 14, borderBottomWidth: 1, borderColor: c.rule }}>
             <Txt>Pets in home</Txt>
@@ -345,7 +345,7 @@ function ResearchView({
       <View testID="research-progress">
         <LqStat label="Plan build" value={progress + '%'} sub={progress < 100 ? 'Reading manuals and pricing parts…' : 'Ready: 4 plan options'} />
       </View>
-      <View style={{ height: 3, backgroundColor: c.rule, overflow: 'hidden' }}>
+      <View style={{ height: 4, borderRadius: 2, backgroundColor: c.rule, overflow: 'hidden' }}>
         <View style={{ width: `${progress}%`, height: '100%', backgroundColor: c.accent }} />
       </View>
       <View style={{ borderTopWidth: 1, borderColor: c.rule }}>
@@ -353,8 +353,8 @@ function ResearchView({
           const d = progress >= l.at;
           return (
             <View key={l.at} style={{ flexDirection: 'row', gap: 10, alignItems: 'center', paddingVertical: 11, paddingHorizontal: 2, borderBottomWidth: 1, borderColor: c.rule, opacity: d ? 1 : 0.4 }}>
-              <View style={{ width: 20, height: 20, borderRadius: RADIUS.field, backgroundColor: d ? STATUS.forest : c.rule, alignItems: 'center', justifyContent: 'center' }}>
-                <Txt size={11} color={STATUS_INK}>
+              <View style={{ width: 20, height: 20, borderRadius: 10, backgroundColor: d ? STATUS.forest : c.rule, alignItems: 'center', justifyContent: 'center' }}>
+                <Txt size={11} color="#fff">
                   {d ? '✓' : ''}
                 </Txt>
               </View>

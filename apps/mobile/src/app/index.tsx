@@ -11,7 +11,6 @@ import { useMode } from '../lib/mode';
 import { isSupabaseConfigured } from '../lib/supabase';
 import { useApp } from '../store/app';
 import { useHomeNames, useTiers } from '../store/derived';
-import { RADIUS } from '../theme/tokens';
 import { Row, Screen, TextLink, Toggle } from '../ui/controls';
 import { LqBadge, LqButton, LqCard, Txt } from '../ui/primitives';
 import { usePalette } from '../ui/theme';
@@ -219,7 +218,7 @@ function LiveLauncher() {
           </View>
         );
       })}
-      <View style={{ borderRadius: RADIUS.card, backgroundColor: c.glassStrong, borderWidth: 1, borderColor: c.rule }}>
+      <View style={{ borderRadius: 14, backgroundColor: c.glassStrong, borderWidth: 1, borderColor: c.rule }}>
         <Pressable
           testID="demo-mode-toggle"
           accessibilityRole="switch"

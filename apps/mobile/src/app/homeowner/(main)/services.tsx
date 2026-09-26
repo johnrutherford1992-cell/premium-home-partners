@@ -3,7 +3,7 @@ import { Pressable, View } from 'react-native';
 import { ErrorState, LoadingState } from '../../../components/States';
 import { useBookBid, useQuoteRequests, useRequestQuote } from '../../../data/homeowner';
 import { ADD_ONS } from '../../../data/seed';
-import { RADIUS, STATUS, STATUS_INK } from '../../../theme/tokens';
+import { STATUS } from '../../../theme/tokens';
 import { Pill, Row, Screen } from '../../../ui/controls';
 import { Display, LqCard, Mono, Txt } from '../../../ui/primitives';
 import { Pulse } from '../../../ui/Pulse';
@@ -45,7 +45,7 @@ export default function ServicesTab() {
           const booked = !!r?.booked;
           const label = asking ? 'Finding pros…' : !r ? 'Get quotes' : booked ? 'Booked ✓' : n ? `${n} quote${n > 1 ? 's' : ''}` : 'Finding pros…';
           const bg = asking ? c.rule : !r ? c.accent : booked ? STATUS.forest : n ? STATUS.slate : c.rule;
-          const ink = asking ? c.muted : !r ? c.accentInk : n || booked ? STATUS_INK : c.muted;
+          const ink = asking ? c.muted : !r ? c.accentInk : n || booked ? '#fff' : c.muted;
           return (
             <Pressable
               key={a.id}
@@ -56,7 +56,7 @@ export default function ServicesTab() {
               disabled={asking}
               accessibilityRole="button"
               accessibilityLabel={`${a.name}: ${label}`}
-              style={{ width: '47%', flexGrow: 1, gap: 8, padding: 12, borderRadius: RADIUS.card, backgroundColor: c.glassStrong, borderWidth: 1, borderColor: c.rule }}
+              style={{ width: '47%', flexGrow: 1, gap: 8, padding: 12, borderRadius: 18, backgroundColor: c.glassStrong, borderWidth: 1, borderColor: c.rule }}
             >
               <Txt weight="600">{a.name}</Txt>
               <Txt size={11} muted style={{ lineHeight: 14 }}>
@@ -102,7 +102,7 @@ export default function ServicesTab() {
                     <Pill
                       label={bk ? 'Booked ✓' : other ? '—' : booking ? 'Booking…' : 'Book'}
                       bg={bk ? STATUS.forest : other ? c.rule : c.accent}
-                      ink={bk ? STATUS_INK : other ? c.muted : c.accentInk}
+                      ink={bk ? '#fff' : other ? c.muted : c.accentInk}
                       onPress={!r.booked && !locked ? () => book.mutate(b.id) : undefined}
                     />
                   </View>

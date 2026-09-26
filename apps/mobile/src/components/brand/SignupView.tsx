@@ -1,18 +1,21 @@
-// The sign-up screen's look, in the voice and style of premiumhomepartners.com.
-// Presentational only: app/signup.tsx owns the values, validation and submit.
+// The sign-up screen: Liquid Glass in the Premium Home Partners colors, with
+// the voice of premiumhomepartners.com. Presentational only: app/signup.tsx
+// owns the values, validation and submit.
 //
 // Phone (one column): kitchen hero with the logo and headline, the concierge
-// promise on a navy band, the form, "What happens next" on the soft band, and
-// the site's footer. From 900pt wide: two columns, the photo, promise and steps
-// on the left and the form on the right, each scrolling on its own.
+// promise on a navy band, then the form and "What happens next" as glass cards
+// over the bloom field, and the footer. From 900pt wide: two columns, the
+// photo, promise and steps on the left and the form card on the right, each
+// scrolling on its own.
 
 import { StatusBar } from 'expo-status-bar';
 import { LinearGradient } from 'expo-linear-gradient';
 import { useRef, type ReactNode, type Ref } from 'react';
 import { Image, Pressable, ScrollView, StyleSheet, TextInput, useWindowDimensions, View, type StyleProp, type TextInputProps, type ViewStyle } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
-import { BRAND, FONT, RADIUS, alpha } from '../../theme/tokens';
-import { Display, Eyebrow, LqButton, Mono, Txt } from '../../ui/primitives';
+import { BRAND, RADIUS, alpha } from '../../theme/tokens';
+import { Stage } from '../../ui/controls';
+import { Display, Eyebrow, LqButton, LqCard, Mono, Txt } from '../../ui/primitives';
 import { usePalette } from '../../ui/theme';
 import { Logo } from './Logo';
 
@@ -73,7 +76,7 @@ function NarrowLayout(props: SignupViewProps & { pairNames: boolean }) {
   const c = usePalette();
   const insets = useSafeAreaInsets();
   return (
-    <View style={{ flex: 1, backgroundColor: c.field }}>
+    <Stage>
       <StatusBar style="light" />
       <ScrollView
         style={{ flex: 1 }}
@@ -96,24 +99,23 @@ function NarrowLayout(props: SignupViewProps & { pairNames: boolean }) {
         </PhotoPanel>
 
         <View style={{ backgroundColor: c.band, paddingVertical: 26, paddingHorizontal: 26 }}>
-          <Display size={19} color={c.bandInk} style={{ textAlign: 'center', lineHeight: 26, maxWidth: 520, alignSelf: 'center' }}>
+          <Txt size={16} color={c.bandInk} style={{ textAlign: 'center', lineHeight: 24, maxWidth: 520, alignSelf: 'center' }}>
             {PROMISE_SHORT}
-          </Display>
+          </Txt>
         </View>
 
-        <View style={{ paddingHorizontal: 22, paddingTop: 30, paddingBottom: 38, width: '100%', maxWidth: 560, alignSelf: 'center' }}>
-          <SignupForm {...props} />
-        </View>
-
-        <View style={{ backgroundColor: c.soft, paddingVertical: 36, paddingHorizontal: 22 }}>
-          <View style={{ width: '100%', maxWidth: 560, alignSelf: 'center' }}>
+        <View style={{ paddingHorizontal: 22, paddingTop: 22, paddingBottom: 30, gap: 14, width: '100%', maxWidth: 560, alignSelf: 'center' }}>
+          <LqCard strong style={{ padding: 20 }}>
+            <SignupForm {...props} />
+          </LqCard>
+          <LqCard style={{ padding: 20 }}>
             <NextSteps />
-          </View>
+          </LqCard>
         </View>
 
         <Footer style={{ paddingBottom: insets.bottom + 28 }} />
       </ScrollView>
-    </View>
+    </Stage>
   );
 }
 
@@ -130,9 +132,9 @@ function WideLayout(props: SignupViewProps) {
             <Display size={60} color={c.bandInk} accessibilityRole="header">
               {HEADLINE}
             </Display>
-            <Display size={22} color={c.bandInk} style={{ lineHeight: 31, opacity: 0.94 }}>
+            <Txt size={18} color={c.bandInk} style={{ lineHeight: 28, opacity: 0.94 }}>
               {PROMISE}
-            </Display>
+            </Txt>
             <View style={{ height: 1, backgroundColor: alpha(c.bandInk, 0.24) }} />
             <NextSteps onBand />
             <Footer onPhoto />
@@ -140,18 +142,20 @@ function WideLayout(props: SignupViewProps) {
         </ScrollView>
       </PhotoPanel>
 
-      <View style={{ width: '42%', maxWidth: 600, minWidth: 440, borderLeftWidth: 1, borderColor: c.rule }}>
+      <Stage style={{ flex: 0, width: '42%', maxWidth: 600, minWidth: 440 }}>
         <ScrollView
           style={{ flex: 1 }}
           contentContainerStyle={{ flexGrow: 1, justifyContent: 'center', paddingTop: insets.top + 36, paddingBottom: insets.bottom + 36, paddingHorizontal: 48 }}
           keyboardShouldPersistTaps="handled"
         >
-          <View style={{ width: '100%', maxWidth: 460, alignSelf: 'center', gap: 22 }}>
+          <View style={{ width: '100%', maxWidth: 460, alignSelf: 'center', gap: 14 }}>
             <BackLink onBack={props.onBack} />
-            <SignupForm {...props} pairNames />
+            <LqCard strong style={{ padding: 24 }}>
+              <SignupForm {...props} pairNames />
+            </LqCard>
           </View>
         </ScrollView>
-      </View>
+      </Stage>
     </View>
   );
 }
@@ -321,8 +325,9 @@ function SignupForm({ values, errors, busy, onChange, onSubmit, pairNames }: Sig
             style={{
               paddingVertical: 10,
               paddingHorizontal: 12,
-              borderLeftWidth: 2,
-              borderColor: c.status.brick,
+              borderRadius: 12,
+              borderWidth: 1,
+              borderColor: alpha(c.status.brick, 0.4),
               backgroundColor: alpha(c.status.brick, 0.08),
             }}
           >
@@ -375,9 +380,8 @@ function Field({
           borderRadius: RADIUS.field,
           backgroundColor: c.glassStrong,
           borderWidth: error ? 1.5 : 1,
-          borderColor: error ? c.status.brick : c.line,
+          borderColor: error ? c.status.brick : c.rule,
           fontSize: 17,
-          fontFamily: FONT.sans,
           color: c.ink,
           opacity: input.editable === false ? 0.7 : 1,
         }}
@@ -404,7 +408,7 @@ function TrustLine() {
     <View style={{ borderTopWidth: 1, borderColor: c.rule, paddingTop: 16, flexDirection: 'row', flexWrap: 'wrap', rowGap: 8, columnGap: 14 }}>
       {TRUST.map((t) => (
         <View key={t} style={{ flexDirection: 'row', alignItems: 'center', gap: 8 }}>
-          <View style={{ width: 5, height: 5, backgroundColor: c.muted }} />
+          <View style={{ width: 5, height: 5, borderRadius: 3, backgroundColor: c.muted }} />
           <Mono size={10} medium upper tracking={0.06} muted>
             {t}
           </Mono>

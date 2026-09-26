@@ -7,7 +7,7 @@ import { useCallback, useEffect, useMemo, useRef, useState, useSyncExternalStore
 import { AppState, Linking, Modal, StyleSheet, View } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { FriendlyError } from '../../lib/errors';
-import { RADIUS } from '../../theme/tokens';
+import { STATUS } from '../../theme/tokens';
 import { PhotoBox, Row, Stage, TextLink } from '../../ui/controls';
 import { Eyebrow, LqButton, Txt } from '../../ui/primitives';
 import { usePalette } from '../../ui/theme';
@@ -174,7 +174,7 @@ function CameraSheet({ req, open, onCancel }: { req: CaptureRequest; open: boole
         </Row>
         <View style={{ flex: 1 }} onLayout={(e) => setFrameH(Math.round(e.nativeEvent.layout.height))}>
           {frameH > 0 ? (
-            <PhotoBox height={frameH} radius={RADIUS.card} style={{ alignItems: 'center', justifyContent: 'center' }}>
+            <PhotoBox height={frameH} radius={22} style={{ alignItems: 'center', justifyContent: 'center' }}>
               {state === 'granted' ? (
                 <CameraView
                   ref={camRef}

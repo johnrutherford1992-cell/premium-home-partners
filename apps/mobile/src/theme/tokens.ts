@@ -1,40 +1,33 @@
-// Premium Home Partners brand tokens, taken from premiumhomepartners.com
-// (docs/brand/capture): navy #0D1E30 bands, soft gray #DCDCDC, off-white
-// #FAFAFA, Libre Caslon Display headings, Source Sans body, square corners and
-// hairline rules. The Palette keeps the old Liquid Glass keys so every screen
-// still reads the same fields; glass is now solid and the bloom is off.
+// Liquid Glass tokens, ported from the @php/ui design system (_ds_bundle.css),
+// in the Premium Home Partners colors (premiumhomepartners.com: navy #0D1E30,
+// soft gray #DCDCDC, off-white #FAFAFA; docs/brand/capture).
 
 export type StatusKey = 'forest' | 'ochre' | 'brick' | 'slate';
 
 export interface Palette {
   dark: boolean;
-  /** Page background. */
   field: string;
-  /** Raised surface (cards, sheets). */
   paper: string;
   ink: string;
   muted: string;
-  /** Card surface. Solid now; the name is kept from the glass era. */
   glass: string;
-  /** Field, tile and bar surface. Solid now. */
   glassStrong: string;
-  /** Hairline between rows and around cards. */
   rule: string;
   accent: string;
   accentInk: string;
   sh: string;
-  /** Radial bloom strength over the field (0–1). 0: the brand is flat. */
+  /** Radial bloom strength over the field (0–1). */
   bloom: number;
   blur: number;
   /** Placeholder photo/map gradient stops. */
   photo2: [string, string, string];
-  /** Stronger hairline for form fields and outline buttons (the site's 1px field border). */
+  /** Stronger hairline for form fields and outline buttons. */
   line: string;
-  /** The site's navy band (hero, promise, footer). A deeper navy in dark mode. */
+  /** The brand's navy band (sign-up hero and promise). */
   band: string;
   bandInk: string;
   bandMuted: string;
-  /** The site's soft gray section; a lifted navy in dark mode. */
+  /** The brand's soft gray. */
   soft: string;
   /** Status colors as text on this theme's surfaces (STATUS is for fills). */
   status: Record<StatusKey, string>;
@@ -48,20 +41,20 @@ export const BRAND = { navy: NAVY, softGray: SOFT_GRAY, offWhite: OFF_WHITE, whi
 
 export const LIGHT: Palette = {
   dark: false,
-  field: OFF_WHITE,
-  paper: '#FFFFFF',
+  field: '#F4F5F7',
+  paper: '#ffffff',
   ink: NAVY,
   muted: '#56616E',
-  glass: '#FFFFFF',
-  glassStrong: '#FFFFFF',
-  rule: 'rgba(13,30,48,0.14)',
+  glass: 'rgba(255,255,255,0.46)',
+  glassStrong: 'rgba(255,255,255,0.60)',
+  rule: 'rgba(13,30,48,0.09)',
   accent: NAVY,
-  accentInk: '#FFFFFF',
-  sh: 'rgba(13,30,48,0.18)',
-  bloom: 0,
-  blur: 0,
+  accentInk: '#ffffff',
+  sh: 'rgba(13,30,48,0.28)',
+  bloom: 0.14,
+  blur: 30,
   photo2: ['#C9CED4', '#E4E6E9', '#D2D6DB'],
-  line: 'rgba(13,30,48,0.38)',
+  line: 'rgba(13,30,48,0.16)',
   band: NAVY,
   bandInk: OFF_WHITE,
   bandMuted: '#B4BDC8',
@@ -71,20 +64,20 @@ export const LIGHT: Palette = {
 
 export const DARK: Palette = {
   dark: true,
-  field: NAVY,
+  field: '#07111D',
   paper: '#13273D',
   ink: OFF_WHITE,
   muted: '#A3AFBD',
-  glass: '#13273D',
-  glassStrong: '#172D45',
-  rule: 'rgba(250,250,250,0.14)',
+  glass: 'rgba(24,46,72,0.42)',
+  glassStrong: 'rgba(22,42,66,0.60)',
+  rule: 'rgba(220,220,220,0.16)',
   accent: SOFT_GRAY,
   accentInk: NAVY,
-  sh: 'rgba(0,0,0,0.45)',
-  bloom: 0,
-  blur: 0,
+  sh: 'rgba(0,4,12,0.7)',
+  bloom: 0.18,
+  blur: 26,
   photo2: ['#1F3550', '#132538', '#27405C'],
-  line: 'rgba(250,250,250,0.34)',
+  line: 'rgba(220,220,220,0.26)',
   band: '#081523',
   bandInk: OFF_WHITE,
   bandMuted: '#A3AFBD',
@@ -93,9 +86,8 @@ export const DARK: Palette = {
 };
 
 /**
- * Status fills: semantic and never re-themed. Each carries white text
- * (STATUS_INK) at 4.5:1 or better except ochre, which is only used as a tint.
- * For status-colored text use `palette.status`, which is tuned per theme.
+ * Status fills are semantic and never re-themed; each carries white text
+ * (STATUS_INK). For status-colored text use `palette.status`, tuned per theme.
  */
 export const STATUS = {
   forest: '#2F7A55',
@@ -109,35 +101,19 @@ export const STATUS_INK = '#FFFFFF';
 
 export type Tone = StatusKey | 'neutral';
 
-// Font families registered by the root layout (useFonts). On web each gets a
-// fallback stack, so text still reads well if a font file never arrives.
-// EXPO_OS is inlined at build time, so this file stays free of react-native imports.
-const IS_WEB = process.env.EXPO_OS === 'web';
-const webStack = (family: string, fallback: string) => (IS_WEB ? `${family}, ${fallback}` : family);
-const SANS_FALLBACK = '"Source Sans 3", "Source Sans Pro", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif';
-const SERIF_FALLBACK = '"Libre Caslon Display", "Libre Caslon Text", Georgia, "Times New Roman", serif';
-
 export const FONT = {
-  /** Libre Caslon Display 400: every heading, sentence case, tight tracking. */
-  display: webStack('LibreCaslonDisplay_400Regular', SERIF_FALLBACK),
-  /** Source Sans 3 SemiBold: labels and figures (the old mono slot). */
-  mono: webStack('SourceSans3_400Regular', SANS_FALLBACK),
-  monoMedium: webStack('SourceSans3_600SemiBold', SANS_FALLBACK),
-  /** Source Sans 3, the successor of the site's Source Sans Pro. */
-  sans: webStack('SourceSans3_400Regular', SANS_FALLBACK) as string | undefined,
-  sansSemiBold: webStack('SourceSans3_600SemiBold', SANS_FALLBACK),
-  sansBold: webStack('SourceSans3_700Bold', SANS_FALLBACK),
+  display: 'BarlowCondensed_600SemiBold',
+  mono: 'JetBrainsMono_400Regular',
+  monoMedium: 'JetBrainsMono_500Medium',
+  // Avenir ships on iOS; elsewhere fall back to the platform sans.
+  sans: undefined as string | undefined,
 };
 
-/** Display letter-spacing in em: the site sets its Caslon headings at -0.04em. */
-export const DISPLAY_TRACKING = -0.04;
-
 /**
- * Square, site-like corners that still read as touchable.
  * glass: cards · field: inputs and tiles · pill: badges and small pills ·
- * button: buttons · tabBar: the homeowner tab bar.
+ * tabBar: the homeowner tab bar · card, button: aliases used by the brand screens.
  */
-export const RADIUS = { glass: 4, card: 4, field: 2, pill: 2, button: 2, tabBar: 4 };
+export const RADIUS = { glass: 18, card: 18, field: 14, pill: 20, button: 14, tabBar: 31 };
 export const SPACE = { screen: 22, stack: 14, card: 16 };
 
 /** Mix a hex color with transparency, e.g. accent at 16%. */
