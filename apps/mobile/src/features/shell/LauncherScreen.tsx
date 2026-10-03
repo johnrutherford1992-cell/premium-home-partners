@@ -79,6 +79,9 @@ function Launcher() {
           </LqButton>
         ) : null}
       </Row>
+      <Txt size={12} muted style={{ lineHeight: 18 }}>
+        Demo mode: all four roles share this device's state. Prices, suppliers and research are sample data.
+      </Txt>
       {ROLES.map((r) => (
         <Pressable key={r.href} testID={`launch-${r.href.slice(1)}`} onPress={() => router.push(r.href)} accessibilityRole="link">
           <LqCard style={{ gap: 6 }}>
@@ -97,9 +100,6 @@ function Launcher() {
           </LqCard>
         </Pressable>
       ))}
-      <Txt size={12} muted style={{ lineHeight: 18 }}>
-        Demo mode: all four roles share this device's state. Prices, suppliers and research are sample data.
-      </Txt>
     </Screen>
   );
 }

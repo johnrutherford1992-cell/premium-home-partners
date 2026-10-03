@@ -153,10 +153,15 @@ function ScanIntro() {
 }
 
 /** The 220pt viewfinder with the sample plate card, the accent bounding box and the hint pill. */
-function PlateBox({ plate, busy, hint }: { plate: Appliance; busy: boolean; hint: string }) {
+function PlateBox({ plate, busy, hint, sample }: { plate: Appliance; busy: boolean; hint: string; sample?: boolean }) {
   const c = usePalette();
   return (
     <PhotoBox height={220} radius={22} style={{ alignItems: 'center', justifyContent: 'center' }}>
+      {sample ? (
+        <Mono size={10} muted style={{ position: 'absolute', left: 10, top: 8 }}>
+          Sample label
+        </Mono>
+      ) : null}
       <View
         style={{
           width: 220,
@@ -215,23 +220,26 @@ const BADGE: Record<ApplianceBadge, { label: string; tone: 'forest' | 'slate' | 
   unverified: { label: 'Unverified', tone: 'ochre' },
 };
 
-function ApplianceList({ items }: { items: { key: string; name: string; model: string; note: string; badge: ApplianceBadge }[] }) {
+function ApplianceList({ items, sample = false }: { items: { key: string; name: string; model: string; note: string; badge: ApplianceBadge }[]; sample?: boolean }) {
   const c = usePalette();
   return (
     <View style={{ borderTopWidth: 1, borderColor: c.rule }}>
-      {items.map((ap) => (
-        <Row key={ap.key} style={{ paddingVertical: 9, paddingHorizontal: 2, borderBottomWidth: 1, borderColor: c.rule, gap: 10 }}>
-          <View style={{ flexShrink: 1 }}>
-            <Txt size={13} weight="600">
-              {ap.name}
-            </Txt>
-            <Mono size={11} muted>
-              {ap.note ? `${ap.model} · ${ap.note}` : ap.model}
-            </Mono>
-          </View>
-          <LqBadge tone={BADGE[ap.badge].tone}>{BADGE[ap.badge].label}</LqBadge>
-        </Row>
-      ))}
+      {items.map((ap) => {
+        const shown = sample && ap.badge === 'matched' ? { label: 'Sample', tone: 'slate' as const } : BADGE[ap.badge];
+        return (
+          <Row key={ap.key} style={{ paddingVertical: 9, paddingHorizontal: 2, borderBottomWidth: 1, borderColor: c.rule, gap: 10 }}>
+            <View style={{ flexShrink: 1 }}>
+              <Txt size={13} weight="600">
+                {ap.name}
+              </Txt>
+              <Mono size={11} muted>
+                {ap.note ? `${ap.model} · ${ap.note}` : ap.model}
+              </Mono>
+            </View>
+            <LqBadge tone={shown.tone}>{shown.label}</LqBadge>
+          </Row>
+        );
+      })}
     </View>
   );
 }
@@ -332,11 +340,13 @@ function ResearchView({
   lines,
   parts,
   onNext,
+  eyebrow = 'PARTS PRICED',
 }: {
   progress: number;
   lines: { t: string; at: number }[];
   parts: { id: string; part: string; cost: number }[] | null;
   onNext: () => void;
+  eyebrow?: string;
 }) {
   const c = usePalette();
   return (
@@ -364,7 +374,7 @@ function ResearchView({
         })}
       </View>
       <LqCard>
-        <Eyebrow>PARTS PRICED</Eyebrow>
+        <Eyebrow>{eyebrow}</Eyebrow>
         {(parts ?? [{ id: 'x', part: 'Searching suppliers…', cost: -1 }]).map((p) => (
           <Row key={p.id} style={{ paddingTop: 6, gap: 10 }}>
             <Txt size={13} style={{ flexShrink: 1 }}>
@@ -478,9 +488,9 @@ function DemoScan() {
   return (
     <>
       <ScanIntro />
-      <PlateBox plate={plate} busy={scanning} hint={hint} />
+      <PlateBox plate={plate} busy={scanning} hint={hint} sample />
       <ShutterButton onPress={shutter} busy={scanning} />
-      <ApplianceList items={items} />
+      <ApplianceList items={items} sample />
       <LqButton full onPress={() => goStep(3)} disabled={scanned === 0}>
         {cta}
       </LqButton>
@@ -501,11 +511,11 @@ function DemoResearch() {
     { t: `Reading ${n} serial plates`, at: 8 },
     { t: `Found ${n} manufacturer manuals`, at: 28 },
     { t: `Mapped ${TASKS.length} maintenance tasks`, at: 50 },
-    { t: 'Priced 9 parts at 5 suppliers', at: 74 },
+    { t: 'Sample prices · 9 parts at 5 suppliers', at: 74 },
     { t: `Adjusted for ${adj}`, at: 94 },
   ];
   const parts = research >= 74 ? TASKS.filter((t) => t.cost > 5).slice(0, 4) : null;
-  return <ResearchView progress={research} lines={lines} parts={parts} onNext={() => goStep(5)} />;
+  return <ResearchView progress={research} lines={lines} parts={parts} onNext={() => goStep(5)} eyebrow="SAMPLE PRICES" />;
 }
 
 function DemoTiers() {

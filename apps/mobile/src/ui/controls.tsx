@@ -4,6 +4,7 @@ import { Pressable, ScrollView, StyleSheet, View, type StyleProp, type ViewStyle
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import Svg, { Defs, RadialGradient, Rect, Stop } from 'react-native-svg';
 import { RADIUS, STATUS, alpha } from '../theme/tokens';
+import { useChromeMark } from './chrome';
 import { Mono, Txt } from './primitives';
 import { usePalette } from './theme';
 
@@ -32,6 +33,7 @@ export function Stage({ children, style }: { children?: ReactNode; style?: Style
  */
 export function Screen({ children, bottomInset = 40, footer }: { children: ReactNode; bottomInset?: number; footer?: ReactNode }) {
   const insets = useSafeAreaInsets();
+  const mark = useChromeMark();
   return (
     <Stage>
       <ScrollView
@@ -49,6 +51,7 @@ export function Screen({ children, bottomInset = 40, footer }: { children: React
         showsVerticalScrollIndicator={false}
         keyboardShouldPersistTaps="handled"
       >
+        {mark}
         {children}
       </ScrollView>
       {footer}
